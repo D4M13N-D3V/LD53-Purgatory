@@ -1,0 +1,164 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Purgatory.Levels.Data;
+using UnityEngine;
+using Environment = Purgatory.Levels.Data.Environment;
+using Random = UnityEngine.Random;
+
+namespace Purgatory.Levels
+{
+	public class LevelController : MonoBehaviour
+	{
+		[SerializeField] private float levelScrollSpeed = 5f;
+		[SerializeField] private float segmentSize = 20f;
+
+		[SerializeField] private int lookAheadCount = 2;
+		[SerializeField] private Environment[] environments;
+		[SerializeField] private int[] environmentLengths;
+		[SerializeField] private List<SegmentWeight> segmentWeights;
+		[SerializeField] private LevelSegment[] segments;
+		[SerializeField] private LevelSegment fallbackSegment;
+		
+		private int currentEnvironment = 0;
+		private int currentEnvironmentSegment = 0;
+		private GameObject[] segmentInstances;
+		private float scrollDelta = 0f;
+
+		private LevelSegmentCollection segmentCollection;
+
+		/*
+		 * Position Calc:
+		 *	Previous = (Δ + 1.0) * SIZE
+		 *	Current = Δ * SIZE
+		 *	Next(N) = (Δ - (1.0 * N)) * SIZE
+		 *
+		 * Buffer Layout:
+		 *	[0] = Previous Segment
+		 *	[1] = Current Segment
+		 *	[1+N] = Next Segment(s)
+		 */
+		
+		private async void Start()
+		{
+			segmentInstances = new GameObject[2 + lookAheadCount];
+			
+			segmentCollection = new LevelSegmentCollection(segments);
+			
+			// Later, we'll want to do something smarter here. For now, lets just load all of them.
+			// Also copy out the instances so unity is less of a pain
+			for (int i = 0; i < segments.Length; i++)
+			{
+				segments[i] = Instantiate(segments[i]);
+				await segments[i].Load();
+			}
+
+			await CreateNextSegment();
+		}
+
+		private async void Update()
+		{
+			scrollDelta += Time.deltaTime * levelScrollSpeed;
+
+			if (scrollDelta > 1f)
+			{
+				await CreateNextSegment();
+				scrollDelta = 0f;
+			}
+			
+			int activeIdx = 1;
+			for (int i = 0; i < segmentInstances.Length; i++)
+			{
+				if (!segmentInstances[i])
+					continue;
+				
+				float zPos = 0f;
+				if (i == 0)
+				{
+					zPos = (scrollDelta + 1f) * segmentSize;
+				}else if (i == activeIdx)
+				{
+					zPos = scrollDelta * segmentSize;
+				}
+				else
+				{
+					zPos = (scrollDelta - (i - activeIdx)) * segmentSize;
+				}
+
+				segmentInstances[i].transform.position = new Vector3(0f, 0f, zPos);
+			}
+		}
+
+		private SegmentType GetNextSegmentType()
+		{
+			// If this is the last segment in this environment, return a transition segment
+			if (currentEnvironmentSegment == environmentLengths[currentEnvironment] - 1)
+			{
+				return SegmentType.Transition;
+			}
+			
+			// Otherwise, return a random weighted segment type
+			float totalChance = segmentWeights.Sum(segmentWeight => segmentWeight.Weight);
+			float random = UnityEngine.Random.Range(0, totalChance);
+			float currentChance = 0;
+			foreach (var segmentWeight in segmentWeights)
+			{
+				currentChance += segmentWeight.Weight;
+				if (random <= currentChance)
+				{
+					return segmentWeight.Type;
+				}
+			}
+
+			// This shouldn't be reached, but if it is, return a generic segment
+			return SegmentType.Generic;
+		}
+		
+		private LevelSegment GetNextSegment()
+		{
+			var type = GetNextSegmentType();
+
+			var segmentsResult = segmentCollection.GetSegments(environments[currentEnvironment], type);
+			if (segmentsResult.IsError || segmentsResult.Value.Count == 0)
+				return fallbackSegment;
+
+			var list = segmentsResult.Value;
+			return list[Random.Range(0, list.Count - 1)];
+		}
+
+		private async Task CreateNextSegment()
+		{
+			var nextSegment = GetNextSegment();
+			var segmentPrefabResult = await nextSegment.Load();
+			if (segmentPrefabResult.IsError)
+			{
+				Debug.LogError($"Failed to load segment! Shit's broken");
+				return;
+			}
+
+			var prefab = segmentPrefabResult.Value;
+			float zPos = (2 + lookAheadCount) * segmentSize;
+			var instance = Instantiate(prefab, new Vector3(0f, 0f, zPos), Quaternion.identity);
+			
+			// Move everything backwards in the segmentInstances buffer
+			if (segmentInstances[0])
+				Destroy(segmentInstances[0]);
+
+			for (int i = 1; i < segmentInstances.Length; i++)
+			{
+				segmentInstances[i - 1] = segmentInstances[i];
+			}
+
+			segmentInstances[^1] = instance;
+		}
+		
+		[Serializable]
+		private class SegmentWeight
+		{
+			public SegmentType Type;
+			public float Weight;
+		}
+
+	}
+}
