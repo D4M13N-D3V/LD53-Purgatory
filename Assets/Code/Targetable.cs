@@ -8,7 +8,7 @@ public abstract class Targetable : MonoBehaviour, ITargetable
 
     public int MaximumHealth = 1;
     public int MinimumHealth = 0;
-
+ 
     public int CurrentHP { get => _currentHealth; }
     public bool Alive { get => _currentHealth <= MinimumHealth; }
 
@@ -52,6 +52,7 @@ public abstract class Targetable : MonoBehaviour, ITargetable
     public void Die()
     {
         onDeath?.Invoke();
+        DeathLogic();
     }
 
     public abstract void DeathLogic();
