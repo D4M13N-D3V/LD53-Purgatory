@@ -11,6 +11,8 @@ namespace Purgatory.Levels
 {
 	public class LevelController : MonoBehaviour
 	{
+		public Action<Environment, Environment> EnvironmentChanged;
+
 		[SerializeField] private float levelScrollSpeed = 5f;
 		[SerializeField] private float segmentSize = 20f;
 
@@ -24,37 +26,20 @@ namespace Purgatory.Levels
 		private int currentEnvironment = 0;
 		private int currentEnvironmentSegment = 0;
 		private GameObject[] segmentInstances;
-		private float scrollDelta = 0f;
+		private float scrollDelta = -1f;
 
 		private LevelSegmentCollection segmentCollection;
 
-		/*
-		 * Position Calc:
-		 *	Previous = (Δ + 1.0) * SIZE
-		 *	Current = Δ * SIZE
-		 *	Next(N) = (Δ - (1.0 * N)) * SIZE
-		 *
-		 * Buffer Layout:
-		 *	[0] = Previous Segment
-		 *	[1] = Current Segment
-		 *	[1+N] = Next Segment(s)
-		 */
-		
 		private async void Start()
 		{
 			segmentInstances = new GameObject[2 + lookAheadCount];
 			
 			segmentCollection = new LevelSegmentCollection(segments);
-			
-			// Later, we'll want to do something smarter here. For now, lets just load all of them.
-			// Also copy out the instances so unity is less of a pain
-			for (int i = 0; i < segments.Length; i++)
-			{
-				segments[i] = Instantiate(segments[i]);
-				await segments[i].Load();
-			}
 
-			await CreateNextSegment();
+			for (int i = 0; i < 2 + lookAheadCount; i++)
+			{
+				await CreateNextSegment();
+			}
 		}
 
 		private async void Update()
@@ -130,14 +115,8 @@ namespace Purgatory.Levels
 		private async Task CreateNextSegment()
 		{
 			var nextSegment = GetNextSegment();
-			var segmentPrefabResult = await nextSegment.Load();
-			if (segmentPrefabResult.IsError)
-			{
-				Debug.LogError($"Failed to load segment! Shit's broken");
-				return;
-			}
 
-			var prefab = segmentPrefabResult.Value;
+			var prefab = nextSegment.gameObject;
 			float zPos = (2 + lookAheadCount) * segmentSize;
 			var instance = Instantiate(prefab, new Vector3(0f, 0f, zPos), Quaternion.identity);
 			
@@ -151,6 +130,13 @@ namespace Purgatory.Levels
 			}
 
 			segmentInstances[^1] = instance;
+
+			currentEnvironmentSegment++;
+			if (currentEnvironmentSegment > environmentLengths[currentEnvironment])
+			{
+				currentEnvironment++;
+				currentEnvironmentSegment = 0;
+			}
 		}
 		
 		[Serializable]
