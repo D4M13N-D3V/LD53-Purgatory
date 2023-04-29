@@ -8,7 +8,6 @@ public abstract class Targetable : MonoBehaviour, ITargetable
 
     public int MaximumHealth = 1;
     public int MinimumHealth = 0;
-    public GameObject Boat = null;
 
     public int CurrentHP { get => _currentHealth; }
     public bool Alive { get => _currentHealth <= MinimumHealth; }

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerController : Targetable
 {
+    public GameObject Boat = null;
+
     public PlayerController()
     {
     }
