@@ -4,13 +4,15 @@ using UnityEngine;
 
 public abstract class Targetable : MonoBehaviour, ITargetable
 {
+    [SerializeField]
     private int _currentHealth;
-
-    public int MaximumHealth = 1;
-    public int MinimumHealth = 0;
+    [SerializeField]
+    private int _maximumHealth = 1;
+    [SerializeField]
+    private int _minimumHealth = 0;
  
     public int CurrentHP { get => _currentHealth; }
-    public bool Alive { get => _currentHealth <= MinimumHealth; }
+    public bool Alive { get => _currentHealth <= _minimumHealth; }
 
     delegate void OnDamaged(int amount);
     OnDamaged onDamaged;
@@ -21,10 +23,9 @@ public abstract class Targetable : MonoBehaviour, ITargetable
     delegate void OnDeath();
     OnDeath onDeath;
 
-
-    void Start()
+    public Targetable() : base()
     {
-        _currentHealth = MaximumHealth;
+        _currentHealth = _maximumHealth;
     }
 
     public void Damage(int amount)
@@ -39,7 +40,7 @@ public abstract class Targetable : MonoBehaviour, ITargetable
             }
             else
             {
-                _currentHealth = MinimumHealth;
+                _currentHealth = _minimumHealth;
                 Die();
             }
         }
@@ -51,6 +52,7 @@ public abstract class Targetable : MonoBehaviour, ITargetable
 
     public void Die()
     {
+        Debug.Log("Health went under minimum health, entity died.");
         onDeath?.Invoke();
         DeathLogic();
     }
@@ -64,8 +66,8 @@ public abstract class Targetable : MonoBehaviour, ITargetable
             onHealed?.Invoke(amount);
             Debug.Log($"Applying {amount} of healing.");
             _currentHealth += amount;
-            if (_currentHealth > MaximumHealth)
-                _currentHealth = MaximumHealth;
+            if (_currentHealth > _maximumHealth)
+                _currentHealth = _maximumHealth;
         }
         else
         {

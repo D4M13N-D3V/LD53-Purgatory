@@ -2,11 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class PlayerController : Targetable
 {
-    public GameObject Boat = null;
+    public BoatController Boat = null;
+    public LanternController Lantern = null;
 
-    public PlayerController()
+    public PlayerController():base()
     {
     }
 
