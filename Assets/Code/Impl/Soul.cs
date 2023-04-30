@@ -21,8 +21,11 @@ namespace Purgatory.Impl
         private void OnCollisionEnter(Collision collision)
         {
             var collector = collision.gameObject.GetComponent<SoulCollectionController>();
-            Reward(collector);
-            Collected();
+            if (collector != null)
+            {
+                Reward(collector);
+                Collected();
+            }
         }
     }
 }

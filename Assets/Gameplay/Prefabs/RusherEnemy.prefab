@@ -114,20 +114,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea56fbe8d99f28f438dd08cbe73cc85b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _projectile: {fileID: 474319832058215565, guid: e638b87c6c9158f4cb801abb0951cab4, type: 3}
+  _projectile: {fileID: 8640820544390293194, guid: 1f4e2ba77fdc1fd44a41cc9d559eda80, type: 3}
   _attackIntervalInSeconds: 3
-  _currentHealth: 100
+  _currentHealth: 15
   _hidden: 0
   _distanceToShowSelf: 10
-  _maximumHealth: 100
+  _maximumHealth: 15
   _minimumHealth: 0
-  _attackRange: 30
+  _attackRange: 10
   _aimSpeed: 10
   _targetTransform: {fileID: 0}
   _enemySoul: {fileID: 7942292204207380944, guid: 6f2a6efe87d320c4690b1d7baaf77f1a, type: 3}
   _isRanged: 1
   _isRusher: 1
-  _speed: 1
+  _speed: 5
   _turnSpeed: 4
   _targetRefreshRate: 2
   _rusherDamage: 10

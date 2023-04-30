@@ -61,7 +61,7 @@ namespace Purgatory.Impl
         }
         private IEnumerator AttackCoroutine()
         {
-            if (_target == null || Vector3.Distance(transform.position, _targetTransform.position) > AttackRange)
+            if (_target == null || _targetTransform == null || _targetTransform != null && Vector3.Distance(transform.position, _targetTransform.position) > AttackRange)
             {
                 var target = GetTarget();
                 _target = target?.GetComponent<Targetable>();
@@ -72,6 +72,7 @@ namespace Purgatory.Impl
 
             if (_target != null)
                 LaunchProjectile();
+
             yield return new WaitForSeconds(_attackIntervalInSeconds);
 
             StartCoroutine(AttackCoroutine());

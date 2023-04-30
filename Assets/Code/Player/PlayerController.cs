@@ -13,10 +13,10 @@ namespace Purgatory.Player
         public CameraController Camera = null;
         public SoulCollectionController SoulCollector = null;
 
-        public PlayerController() : base()
+        public PlayerController()
         {
-        }
 
+        }
         public override void DeathLogic()
         {
         }

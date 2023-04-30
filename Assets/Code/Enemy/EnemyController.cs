@@ -74,15 +74,18 @@ namespace Purgatory.Enemy
         // Update is called once per frame
         void Update()
         {
-            Quaternion _lookRotation = Quaternion.LookRotation((_targetTransform.position - transform.position).normalized);
-            transform.rotation = Quaternion.Slerp(transform.rotation, _lookRotation, Time.deltaTime * _aimSpeed);
-
-            if (_isRusher)
+            if (_targetTransform != null)
             {
+                Quaternion _lookRotation = Quaternion.LookRotation((_targetTransform.position - transform.position).normalized);
+                transform.rotation = Quaternion.RotateTowards(transform.rotation, _lookRotation, Time.fixedDeltaTime * _aimSpeed);
+
                 if (_cachedLocation == null)
                     _cachedLocation = _targetTransform.position;
+            }
+            if (_isRusher)
+            {
                 
-                transform.position = Vector3.Lerp(transform.position, _cachedLocation, Time.deltaTime) * _speed;
+                transform.position = Vector3.MoveTowards(transform.position, _cachedLocation, Time.fixedDeltaTime * _speed);
             }
         }
     }
