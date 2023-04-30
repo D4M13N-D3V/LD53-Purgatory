@@ -27,6 +27,7 @@ namespace Purgatory.Impl
 
 
         internal ITargetable _target = null;
+        [SerializeField]
         internal Transform _targetTransform;
 
         public int CurrentHP { get => _currentHealth; }
@@ -37,6 +38,7 @@ namespace Purgatory.Impl
         public float AttackInterval => _attackIntervalInSeconds;
         public float AttackRange => _attackRange;
         public GameObject Projectile => _projectile;
+        public GameObject Target => _targetTransform.gameObject;
 
         delegate void OnDamaged(int amount);
         OnDamaged onDamaged;
@@ -52,6 +54,11 @@ namespace Purgatory.Impl
             _currentHealth = _maximumHealth;
         }
 
+        private void OnDrawGizmos()
+        {
+            UnityEditor.Handles.color = Color.magenta;
+            UnityEditor.Handles.DrawWireDisc(GetComponent<Transform>().position - Vector3.down * -2, Vector3.up, _attackRange);
+        }
         private IEnumerator AttackCoroutine()
         {
             if (_target == null || Vector3.Distance(transform.position, _targetTransform.position) > AttackRange)
