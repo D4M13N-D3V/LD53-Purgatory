@@ -30,7 +30,7 @@ namespace Purgatory.Impl
         public float AttackRange => _attackRange;
         public float AimSpeed => _aimSpeed;
         public GameObject Projectile => _projectile;
-
+        public GameObject Target => _targetTransform.gameObject;
         public abstract void LaunchProjectile();
 
         public abstract GameObject GetTarget();
@@ -53,7 +53,8 @@ namespace Purgatory.Impl
         }
         private void Start()
         {
-            StartCoroutine(AttackCoroutine());
+                StartCoroutine(AttackCoroutine());
+
         }
         private void OnDrawGizmos()
         {
