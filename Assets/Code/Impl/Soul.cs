@@ -1,5 +1,5 @@
-﻿using Assets.Code.Player;
-using Purgatory.Interfaces;
+﻿using Purgatory.Interfaces;
+using Purgatory.Player;
 using System.Collections;
 using UnityEngine;
 

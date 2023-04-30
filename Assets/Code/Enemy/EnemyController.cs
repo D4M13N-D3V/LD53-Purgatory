@@ -24,7 +24,7 @@ namespace Purgatory.Enemy
 
         public override GameObject GetTarget()
         {
-            Collider[] hitColliders = Physics.OverlapSphere(_transform.position, AttackRange);
+            Collider[] hitColliders = Physics.OverlapSphere(transform.position, AttackRange);
             var target = hitColliders.Where(x => x.GetComponent<PlayerController>() != null).OrderBy(x => Guid.NewGuid()).FirstOrDefault();
             
             if(target!=null)

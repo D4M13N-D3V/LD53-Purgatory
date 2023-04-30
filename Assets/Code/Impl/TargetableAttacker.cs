@@ -28,7 +28,6 @@ namespace Purgatory.Impl
 
         internal ITargetable _target = null;
         internal Transform _targetTransform;
-        internal Transform _transform;
 
         public int CurrentHP { get => _currentHealth; }
         public bool Alive { get => _currentHealth <= _minimumHealth; }
@@ -55,7 +54,7 @@ namespace Purgatory.Impl
 
         private IEnumerator AttackCoroutine()
         {
-            if (_target == null || Vector3.Distance(_transform.position, _targetTransform.position) > AttackRange)
+            if (_target == null || Vector3.Distance(transform.position, _targetTransform.position) > AttackRange)
             {
                 var target = GetTarget();
                 _target = target?.GetComponent<Targetable>();
@@ -72,7 +71,6 @@ namespace Purgatory.Impl
         }
         void Start()
         {
-            _transform = GetComponent<Transform>();
             StartCoroutine(AttackCoroutine());
         }
 

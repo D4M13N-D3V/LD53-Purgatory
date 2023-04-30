@@ -11,6 +11,7 @@ namespace Purgatory.Player
         public BoatController Boat = null;
         public LanternController Lantern = null;
         public CameraController Camera = null;
+        public SoulCollectionController SoulCollector = null;
 
         public PlayerController() : base()
         {

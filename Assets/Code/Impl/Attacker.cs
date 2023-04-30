@@ -23,7 +23,6 @@ namespace Purgatory.Impl
 
         internal ITargetable _target = null;
         internal Transform _targetTransform;
-        internal Transform _transform;
 
         public bool Hidden => _hidden;
         public float DistanceToShowSelf => _distanceToShowSelf;
@@ -37,7 +36,7 @@ namespace Purgatory.Impl
         public abstract GameObject GetTarget();
         private IEnumerator AttackCoroutine()
         {
-            if (_target == null || Vector3.Distance(_transform.position, _targetTransform.position) > AttackRange)
+            if (_target == null || Vector3.Distance(transform.position, _targetTransform.position) > AttackRange)
             {
                 var target = GetTarget();
                 _target = target?.GetComponent<Targetable>();
@@ -54,7 +53,6 @@ namespace Purgatory.Impl
         }
         private void Start()
         {
-            _transform = GetComponent<Transform>();
             StartCoroutine(AttackCoroutine());
         }
         private void OnDrawGizmos()

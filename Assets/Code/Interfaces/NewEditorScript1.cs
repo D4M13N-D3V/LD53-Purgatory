@@ -1,4 +1,4 @@
-﻿using Assets.Code.Player;
+﻿using Purgatory.Player;
 using UnityEditor;
 using UnityEngine;
 
