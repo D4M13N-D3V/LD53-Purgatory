@@ -31,11 +31,6 @@ namespace Purgatory.Enemy
         public EnemyController() : base()
         {
         }
-
-        public virtual void RusherImpact()
-        {
-            Debug.Log("Rusher impacted!");
-        }
         public override void DeathLogic()
         {
             GameObject.Instantiate(_enemySoul, transform.position, transform.rotation);
@@ -88,18 +83,6 @@ namespace Purgatory.Enemy
                     _cachedLocation = _targetTransform.position;
                 
                 transform.position = Vector3.Lerp(transform.position, _cachedLocation, Time.deltaTime) * _speed;
-            }
-        }
-        private void OnCollisionEnter(Collision collision)
-        {
-            if (_isRusher)
-            {
-                ITargetable target = collision.gameObject.GetComponent<Targetable>();
-                if (target == null)
-                    target = collision.gameObject.GetComponent<TargetableAttacker>();
-                target.Damage(_rusherDamage);
-                RusherImpact();
-                Destroy(gameObject);
             }
         }
     }

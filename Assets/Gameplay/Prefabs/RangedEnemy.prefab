@@ -111,6 +111,7 @@ GameObject:
   - component: {fileID: 758927670937107936}
   - component: {fileID: 758927670937107939}
   - component: {fileID: 758927670937107940}
+  - component: {fileID: -6180849270466113815}
   m_Layer: 0
   m_Name: RangedEnemy
   m_TagString: Untagged
@@ -218,7 +219,15 @@ MonoBehaviour:
   _minimumHealth: 0
   _attackRange: 30
   _aimSpeed: 10
+  _targetTransform: {fileID: 0}
   _enemySoul: {fileID: 7942292204207380944, guid: 6f2a6efe87d320c4690b1d7baaf77f1a, type: 3}
+  _isRanged: 1
+  _isRusher: 0
+  _speed: 1
+  _turnSpeed: 4
+  _targetRefreshRate: 2
+  _rusherDamage: 10
+  _cachedLocation: {x: 0, y: 0, z: 0}
 --- !u!54 &758927670937107940
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -235,3 +244,16 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
+--- !u!114 &-6180849270466113815
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 758927670937107938}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d3a2dc01a2294c4fbed4882a2530183, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _damage: 1

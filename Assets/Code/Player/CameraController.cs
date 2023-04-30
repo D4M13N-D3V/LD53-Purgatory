@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
+using Cinemachine;
 
 namespace Purgatory.Player
 {
@@ -9,11 +10,11 @@ namespace Purgatory.Player
         private float _damageShakeIntensity = 0.2f;
         [SerializeField]
         private float _damageShakeDuration = 1.0f;
-
+        [SerializeField]
+        private CinemachineVirtualCamera _camera;
         // Use this for initialization
         void Start()
         {
-
         }
 
         // Update is called once per frame
@@ -28,19 +29,18 @@ namespace Purgatory.Player
 
         public IEnumerator Shake(float duration, float magnitude)
         {
-            Vector3 orignalPosition = transform.position;
-            float elapsed = 0f;
-
-            while (elapsed < duration)
-            {
-                float x = orignalPosition.x + Random.Range(-1f, 1f) * magnitude;
-                float y = orignalPosition.y + Random.Range(-1f, 1f) * magnitude;
-
-                transform.position = new Vector3(x, y, orignalPosition.z);
-                elapsed += Time.deltaTime;
-                yield return 0;
-            }
-            transform.position = orignalPosition;
+            Noise(1, magnitude);
+            yield return new WaitForSeconds(duration);
+            Noise(0, 0);
         }
+
+
+        public void Noise(float amplitudeGain, float frequencyGain)
+        {
+            CinemachineBasicMultiChannelPerlin cinemachineBasicMultiChannelPerlin = _camera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+            cinemachineBasicMultiChannelPerlin.m_AmplitudeGain = amplitudeGain;
+            cinemachineBasicMultiChannelPerlin.m_FrequencyGain = frequencyGain;
+        }
+
     }
 }
