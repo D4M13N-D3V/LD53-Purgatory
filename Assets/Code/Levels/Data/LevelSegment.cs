@@ -7,5 +7,12 @@ namespace Purgatory.Levels.Data
 	{
 		public SegmentType Type;
 		public Environment Environment;
+		
+		#if UNITY_EDITOR
+		private void OnDrawGizmos()
+		{
+			Gizmos.DrawWireCube(transform.position, new Vector3(30, 1, 40));
+		}
+#endif
 	}
 }
