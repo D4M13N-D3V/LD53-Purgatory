@@ -31,19 +31,22 @@ namespace Purgatory.Impl
 
         public abstract void LaunchProjectile();
 
+        public abstract GameObject GetTarget();
         private IEnumerator AttackCoroutine()
         {
             yield return new WaitForSeconds(_attackIntervalInSeconds);
             if (_target == null || Vector3.Distance(_transform.position, _targetTransform.position) > AttackRange)
             {
-                Collider[] hitColliders = Physics.OverlapSphere(_transform.position, AttackRange);
-                var target = hitColliders.OrderBy(x => Guid.NewGuid()).FirstOrDefault();
-                _target = target.GetComponent<Targetable>();
+                var target = GetTarget();
+                _target = target?.GetComponent<Targetable>();
                 if (_target == null)
-                    _target = target.GetComponent<TargetableAttacker>();
-                _targetTransform = target.GetComponent<Transform>();
+                    _target = target?.GetComponent<TargetableAttacker>();
+                _targetTransform = target?.GetComponent<Transform>();
             }
-            LaunchProjectile();
+
+            if(_target!=null)
+                LaunchProjectile();
+
             StartCoroutine(AttackCoroutine());
         }
         private void Start()
