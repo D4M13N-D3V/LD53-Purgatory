@@ -14,6 +14,8 @@ namespace Purgatory.Enemy
         [SerializeField]
         public GameObject _enemySoul;
         [SerializeField]
+        private bool _isRanged = true;
+        [SerializeField]
         private bool _isRusher = false;
         [SerializeField]
         private float _speed = 1f;
@@ -56,7 +58,7 @@ namespace Purgatory.Enemy
 
         public override void LaunchProjectile()
         {
-            if (_isRusher == false)
+            if (_isRanged)
             {
                 var rotation = Quaternion.LookRotation(_targetTransform.position - transform.position);
                 var newProject = GameObject.Instantiate(Projectile, transform.position + (transform.forward * 1.5f), rotation);
