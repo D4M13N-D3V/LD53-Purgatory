@@ -15,6 +15,7 @@ namespace Assets.Code
         private float _attackIntervalInSeconds = 3f;
         [SerializeField]
         private int _attackDamage = 1;
+        private float _attackRange = 10;
 
         public bool Hidden => _hidden;
         public float DistanceToShowSelf => _distanceToShowSelf;
@@ -23,8 +24,15 @@ namespace Assets.Code
 
         public int AttackDamage => _attackDamage;
 
+        public float Attackrange => _attackRange;
+
         public GameObject Projectile => _projectile;
 
         public abstract void Attack();
+        private void OnDrawGizmos()
+        {
+            UnityEditor.Handles.color = Color.red;
+            UnityEditor.Handles.DrawWireDisc(GetComponent<Transform>().position - Vector3.down * -2, Vector3.up, _attackRange);
+        }
     }
 }

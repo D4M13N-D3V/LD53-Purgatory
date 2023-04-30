@@ -1,11 +1,10 @@
+using Assets.Code;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LanternController : MonoBehaviour
+public class LanternController : Attacker
 {
-    public float AttackRadius = 10f;
-    // Start is called before the first frame update
     void Start()
     {
         
@@ -17,9 +16,9 @@ public class LanternController : MonoBehaviour
         
     }
 
-    private void OnDrawGizmos()
+
+    public override void Attack()
     {
-        UnityEditor.Handles.color = Color.red;
-        UnityEditor.Handles.DrawWireDisc(GetComponent<Transform>().position-Vector3.down*- 2, Vector3.up, AttackRadius);
+
     }
 }

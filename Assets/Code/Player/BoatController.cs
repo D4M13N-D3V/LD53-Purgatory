@@ -5,17 +5,30 @@ using UnityEngine;
 [RequireComponent(typeof(Transform))]
 public class BoatController : MonoBehaviour
 {
-    public float Speed = 1f;
-    public float MinimumLeft = -12f;
-    public float MaximumLeft = 12f;
-    public float YawMaxRotation = 9f;
-    public float MaximumHorizontalRotation = 6f;
+    [SerializeField]
+    private float _speed = 1f;
+    [SerializeField]
+    private float _minimumLeft = -12f;
+    [SerializeField]
+    private float _maximumLeft = 12f;
+    [SerializeField]
+    private float _yawMaxRotation = 9f;
+    [SerializeField]
+    private float _maximumHorizontalRotation = 6f;
+    [SerializeField]
+    private float _bobbingHeightRange = 1.0f;
+    [SerializeField]
+    [Tooltip("Distance covered per second along X axis of Perlin plane.")]
+    float _xScaleSpeed = 1.0f;
+
+    private float _originalY = 0;
     private Transform _transform;
     private float _horizontalInput = 0f;
 
     void Start()
     {
         _transform = GetComponent<Transform>();
+        _originalY = _transform.position.y;
     }
 
     void Update()
@@ -25,12 +38,17 @@ public class BoatController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (_horizontalInput > 0 && transform.localPosition.z < MaximumLeft)
-            _transform.position += new Vector3(Speed * _horizontalInput * Time.fixedDeltaTime, 0, 0);
-        else if (_horizontalInput < 0 && transform.localPosition.z > MinimumLeft)
-            _transform.position += new Vector3(Speed * _horizontalInput * Time.fixedDeltaTime, 0, 0);
+        if (_horizontalInput > 0 && transform.localPosition.z < _maximumLeft)
+            _transform.position += new Vector3(_speed * _horizontalInput * Time.fixedDeltaTime, 0, 0);
+        else if (_horizontalInput < 0 && transform.localPosition.z > _minimumLeft)
+            _transform.position += new Vector3(_speed * _horizontalInput * Time.fixedDeltaTime, 0, 0);
 
-        _transform.localEulerAngles = new Vector3(YawMaxRotation * _horizontalInput, MaximumHorizontalRotation * _horizontalInput, 0);
+        _transform.localEulerAngles = new Vector3(_yawMaxRotation * _horizontalInput, _maximumHorizontalRotation * _horizontalInput, 0);
 
+
+        float height = _bobbingHeightRange * Mathf.PerlinNoise(Time.time * _xScaleSpeed, 0.0f);
+        Vector3 pos = transform.position;
+        pos.y = _originalY + height;
+        transform.position = pos;
     }
 }
