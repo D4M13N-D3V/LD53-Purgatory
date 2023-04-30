@@ -23,7 +23,11 @@ namespace Purgatory.Impl
         [SerializeField]
         private float _attackRange = 10;
 
+
+        private ITargetable _target = null;
+        private Transform _targetTransform;
         internal Transform _transform;
+
         public int CurrentHP { get => _currentHealth; }
         public bool Alive { get => _currentHealth <= _minimumHealth; }
         public bool Hidden => _hidden;
@@ -49,7 +53,18 @@ namespace Purgatory.Impl
         private IEnumerator AttackCoroutine()
         {
             yield return new WaitForSeconds(_attackIntervalInSeconds);
-            LaunchProjectile();
+            if (_target == null || Vector3.Distance(_transform.position, _targetTransform.position) > AttackRange)
+            {
+                var target = GetTarget();
+                _target = target?.GetComponent<Targetable>();
+                if (_target == null)
+                    _target = target?.GetComponent<TargetableAttacker>();
+                _targetTransform = target?.GetComponent<Transform>();
+            }
+
+            if (_target != null)
+                LaunchProjectile();
+
             StartCoroutine(AttackCoroutine());
         }
         void Start()
@@ -58,6 +73,7 @@ namespace Purgatory.Impl
             StartCoroutine(AttackCoroutine());
         }
 
+        public abstract GameObject GetTarget();
         public abstract void LaunchProjectile();
         public abstract void DeathLogic();
 

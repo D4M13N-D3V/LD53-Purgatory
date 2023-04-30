@@ -11,5 +11,6 @@ namespace Purgatory.Interfaces
         float AttackRange { get; }
         GameObject Projectile { get; }
         void LaunchProjectile();
+        GameObject GetTarget();
     }
 }
