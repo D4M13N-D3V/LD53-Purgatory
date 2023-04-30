@@ -44,6 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c7e6ef9c19c446492d59054c1133c37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  segmentParent: {fileID: 7999543282534504988}
   levelStartOffset: 1
   levelScrollSpeed: 0.15
   segmentSize: 40

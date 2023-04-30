@@ -13,6 +13,7 @@ namespace Purgatory.Levels
 	{
 		public Action<Environment, Environment> EnvironmentChanged;
 
+		[SerializeField] private Transform segmentParent;
 		[SerializeField] private float levelStartOffset = 4f;
 		[SerializeField] private float levelScrollSpeed = 5f;
 		[SerializeField] private float segmentSize = 20f;
@@ -128,6 +129,7 @@ namespace Purgatory.Levels
 			var prefab = nextSegment.gameObject;
 			float zPos = (2 + lookAheadCount) * segmentSize;
 			var instance = Instantiate(prefab, new Vector3(0f, 0f, zPos), Quaternion.identity);
+			instance.transform.parent = segmentParent;
 			
 			// Move everything backwards in the segmentInstances buffer
 			if (segmentInstances[0])
