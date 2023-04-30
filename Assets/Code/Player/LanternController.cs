@@ -25,6 +25,8 @@ namespace Purgatory.Player
                 var rotation = Quaternion.LookRotation(_targetTransform.position - transform.position);
                 var newProject = GameObject.Instantiate(Projectile, transform.position, rotation);
                 newProject.transform.rotation = rotation;
+                var projectile = newProject.GetComponent<Projectile>();
+                projectile.TargetLocation = _targetTransform.position;
                 Debug.Log("Player projectile launched!");
             }
         }
