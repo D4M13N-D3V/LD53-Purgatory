@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &796201633569118847
+--- !u!1 &1737818793626333180
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,51 +8,61 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2670815645055630707}
-  - component: {fileID: 6202356808093491448}
+  - component: {fileID: 425226422139336202}
+  - component: {fileID: 7463703705892061816}
+  - component: {fileID: 5911270032848845163}
+  - component: {fileID: 5420897813561723786}
   m_Layer: 0
-  m_Name: playertest
+  m_Name: Quad
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2670815645055630707
+--- !u!4 &425226422139336202
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 796201633569118847}
-  m_LocalRotation: {x: -0.27059805, y: 0.6532815, z: 0.27059805, w: 0.6532815}
-  m_LocalPosition: {x: 2.76, y: 2.96, z: -0}
-  m_LocalScale: {x: 3.04, y: 3.04, z: 3.04}
-  m_ConstrainProportionsScale: 1
+  m_GameObject: {fileID: 1737818793626333180}
+  m_LocalRotation: {x: 0.23907009, y: -0.66546535, z: 0.23907045, w: 0.6654674}
+  m_LocalPosition: {x: 0.07995999, y: 3.5883121, z: 0.000000059604645}
+  m_LocalScale: {x: 3, y: 6, z: 3}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4300754433525477472}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -45, y: 90, z: 0}
---- !u!212 &6202356808093491448
-SpriteRenderer:
+  m_LocalEulerAnglesHint: {x: 39.522, y: -90, z: 0}
+--- !u!33 &7463703705892061816
+MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 796201633569118847}
+  m_GameObject: {fileID: 1737818793626333180}
+  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!23 &5911270032848845163
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1737818793626333180}
   m_Enabled: 1
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 0
+  m_RayTracingMode: 2
   m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a5140e40dd0e3ce4aad7b92cbdaefcc1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -65,7 +75,7 @@ SpriteRenderer:
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
   m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 0
+  m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
@@ -73,17 +83,21 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 2298f1f50ebd3b2439821c3999977fca, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
-  m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 0.674, y: 1.777}
-  m_AdaptiveModeThreshold: 0.5
-  m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &5420897813561723786
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1737818793626333180}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &4300754432355367826
 GameObject:
   m_ObjectHideFlags: 0
@@ -150,8 +164,8 @@ MonoBehaviour:
   _currentHealth: 100
   _maximumHealth: 1
   _minimumHealth: 0
-  Boat: {fileID: 0}
-  Lantern: {fileID: 0}
+  Boat: {fileID: 4300754432355367819}
+  Lantern: {fileID: 4300754432421549953}
   Camera: {fileID: 0}
   SoulCollector: {fileID: 0}
 --- !u!114 &4300754432355367819
@@ -454,7 +468,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 2670815645055630707}
+  - {fileID: 425226422139336202}
   m_Father: {fileID: 4300754432355367816}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
