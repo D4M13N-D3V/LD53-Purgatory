@@ -113,9 +113,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _damage: 1
-  _speed: 25
-  _minimumArchHeight: 5
-  _maximummArchHeight: 8
+  _speed: 1.5
+  _minimumArchHeight: 10
+  _maximummArchHeight: 25
   TargetLocation: {x: 0, y: 0, z: 0}
   StartingLocation: {x: 0, y: 0, z: 0}
   ControlLocation: {x: 0, y: 0, z: 0}
