@@ -14,13 +14,13 @@ namespace Purgatory.Impl
         public int Damage => _damage;
         public float Speed => _speed;
 
-        public void Impact()
+        public virtual void Impact()
         {
             Debug.Log($"Projectile {gameObject.name} impacted");
             Destroy(this.gameObject);
         }
 
-        public void Launch()
+        public virtual void Launch()
         {
             Debug.Log($"Projectile {gameObject.name} launched");
         }

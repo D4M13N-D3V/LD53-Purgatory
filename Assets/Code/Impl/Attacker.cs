@@ -37,7 +37,6 @@ namespace Purgatory.Impl
         public abstract GameObject GetTarget();
         private IEnumerator AttackCoroutine()
         {
-            yield return new WaitForSeconds(_attackIntervalInSeconds);
             if (_target == null || Vector3.Distance(_transform.position, _targetTransform.position) > AttackRange)
             {
                 var target = GetTarget();
@@ -49,6 +48,7 @@ namespace Purgatory.Impl
 
             if(_target!=null)
                 LaunchProjectile();
+            yield return new WaitForSeconds(_attackIntervalInSeconds);
 
             StartCoroutine(AttackCoroutine());
         }
