@@ -38,6 +38,8 @@ namespace Purgatory.Player
         private Transform _transform;
         private float _horizontalInput = 0f;
         private float _horizontalVelocity = 0f;
+        [SerializeField]
+        private float _targetVelocity = 0f;
 
         private float _originalSpeed;
 
@@ -87,20 +89,16 @@ namespace Purgatory.Player
         }
 
         private void FixedUpdate()
-        {            
-            _waveDisruptionObject.transform.localPosition = new Vector3(Mathf.Lerp(_waveDisruptionObject.transform.localPosition.x,-0.75f+(_horizontalInput*2), Time.deltaTime * 2), _waveDisruptionObject.transform.localPosition.y, _waveDisruptionObject.transform.localPosition.z);
+        {
+            _waveDisruptionObject.transform.localPosition = new Vector3(Mathf.Lerp(_waveDisruptionObject.transform.localPosition.x, -0.75f + (_horizontalInput * 2), Time.deltaTime * 2), _waveDisruptionObject.transform.localPosition.y, _waveDisruptionObject.transform.localPosition.z);
 
-            _horizontalVelocity += _speed * _horizontalInput * Time.fixedDeltaTime;
-
-
+            _targetVelocity = _speed * _horizontalInput;
+            _horizontalVelocity = Mathf.Lerp(_horizontalVelocity, _targetVelocity, Time.fixedDeltaTime * (_dashing ? _speed / _originalSpeed : 1) / _deceleration);
 
             if ((_horizontalVelocity > 0 && transform.position.x < _maximumLeft) || (_horizontalVelocity < 0 && transform.position.x > _minimumLeft))
                 _transform.position += new Vector3(_horizontalVelocity, 0, 0);
 
-            _horizontalVelocity *= _deceleration;
-
-            _transform.localEulerAngles = new Vector3(_transform.localEulerAngles.x, _transform.localEulerAngles.y, Mathf.LerpAngle(transform.localEulerAngles.z, _maximumHorizontalRotation * _horizontalInput * -1, Time.deltaTime*2));
-
+            _transform.localEulerAngles = new Vector3(_transform.localEulerAngles.x, _transform.localEulerAngles.y, Mathf.LerpAngle(transform.localEulerAngles.z, _maximumHorizontalRotation * _horizontalInput * -1, Time.deltaTime * 2));
         }
     }
 
