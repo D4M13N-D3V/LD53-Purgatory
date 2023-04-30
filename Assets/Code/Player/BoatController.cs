@@ -27,6 +27,8 @@ namespace Purgatory.Player
         [SerializeField]
         private float _dashLength = 1f;
         [SerializeField]
+        private float _dashCooldown = 1f;
+        [SerializeField]
         [Tooltip("Distance covered per second along X axis of Perlin plane.")]
         float _xScaleSpeed = 1.0f;
         [SerializeField] 
@@ -36,6 +38,8 @@ namespace Purgatory.Player
         private Transform _transform;
         private float _horizontalInput = 0f;
         private float _horizontalVelocity = 0f;
+
+        private float _originalSpeed;
 
         [SerializeField]
         public InputActionAsset actions;
@@ -49,8 +53,16 @@ namespace Purgatory.Player
             _originalY = _transform.position.y;
             _moveAction = actions.FindActionMap("gameplay").FindAction("move", true);
             actions.FindActionMap("gameplay").FindAction("dash").performed += Dash;
+            StartCoroutine(UpdateHud());
+            _originalSpeed = _speed;
         }
 
+        private IEnumerator UpdateHud()
+        {
+            HudController.instance.UpdateBoatStats(_speed, _originalSpeed*_dashMultiplier, _dashLength, !_dashing, _dashCooldown);
+            yield return new WaitForSeconds(0.1f);
+            StartCoroutine(UpdateHud());
+        }
         private void Dash(InputAction.CallbackContext obj)
         {
             if(!_dashing)
@@ -60,10 +72,11 @@ namespace Purgatory.Player
         IEnumerator DashCoroutine()
         {
             _dashing = true;
-            var originalSpeed = _speed;
+            _originalSpeed = _speed;
             _speed = _speed * _dashMultiplier;
             yield return new WaitForSeconds(_dashLength);
-            _speed = originalSpeed;
+            _speed = _originalSpeed;
+            yield return new WaitForSeconds(_dashCooldown-_dashLength);
             _dashing = false;
         }
 

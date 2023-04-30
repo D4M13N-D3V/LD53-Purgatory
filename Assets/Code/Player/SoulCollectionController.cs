@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 namespace Purgatory.Player
 {
@@ -8,10 +9,23 @@ namespace Purgatory.Player
         private int _soulCount = 0;
         [SerializeField]
         private float _collectionRadius = 10f;
-		
+
+        private void Start()
+        {
+            StartCoroutine(UpdateHud());
+        }
+
+
+        private IEnumerator UpdateHud()
+        {
+            HudController.instance.UpdateSoulStats(_soulCount);
+            yield return new WaitForSeconds(0.1f);
+            StartCoroutine(UpdateHud());
+        }
 
         public void AddSoul(int amount)
         {
+            HudController.instance.SoulCollected();
             _soulCount += amount;
         }
 
