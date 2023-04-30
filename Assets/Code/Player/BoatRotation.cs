@@ -8,25 +8,30 @@ public class BoatRotation : MonoBehaviour
     [SerializeField] private float waveFrequency = 1.0f;
     [SerializeField] private float wavePhaseOffset = 0.0f;
     [SerializeField] private Vector3 waveDirection = Vector3.forward;
-    
-    private Vector3 initialPosition;
+
     private Quaternion initialRotation;
+    private Purgatory.Player.BoatController boatController;
 
     void Start()
     {
-        initialPosition = transform.localPosition;
         initialRotation = transform.localRotation;
+        boatController = GetComponent<Purgatory.Player.BoatController>();
     }
 
     void Update()
     {
         float wavePhase = waveFrequency * Time.time + wavePhaseOffset;
-        float waveHeight = waveAmplitude * Mathf.Sin(wavePhase);
-        Vector3 wavePosition = waveHeight * waveDirection.normalized;
-        transform.localPosition = initialPosition + wavePosition;
-
         float rotationAngle = Mathf.Atan2(waveAmplitude * waveFrequency * Mathf.Cos(wavePhase), 1);
         Quaternion waveRotation = Quaternion.AngleAxis(rotationAngle * Mathf.Rad2Deg, Vector3.Cross(Vector3.up, waveDirection));
-        transform.localRotation = initialRotation * waveRotation;
+
+        if (boatController != null)
+        {
+            Quaternion boatControllerRotation = Quaternion.Euler(boatController.transform.localEulerAngles);
+            transform.localRotation = initialRotation * waveRotation * boatControllerRotation;
+        }
+        else
+        {
+            transform.localRotation = initialRotation * waveRotation;
+        }
     }
 }
