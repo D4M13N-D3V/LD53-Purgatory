@@ -17,6 +17,7 @@ namespace Purgatory.Levels
 		[SerializeField] private float levelScrollSpeed = 5f;
 		[SerializeField] private float segmentSize = 20f;
 
+		[SerializeField] private int cinematicSegmentsCount = 2;
 		[SerializeField] private int lookAheadCount = 2;
 		[SerializeField] private Environment[] environments;
 		[SerializeField] private int[] environmentLengths;
@@ -83,6 +84,12 @@ namespace Purgatory.Levels
 			if (currentEnvironmentSegment == environmentLengths[currentEnvironment] - 1)
 			{
 				return SegmentType.Transition;
+			}
+			
+			// If this is one of the first two segments in this environment, return a cinematic segment
+			if (currentEnvironmentSegment <= cinematicSegmentsCount - 1)
+			{
+				return SegmentType.Cinematic;
 			}
 			
 			// Otherwise, return a random weighted segment type

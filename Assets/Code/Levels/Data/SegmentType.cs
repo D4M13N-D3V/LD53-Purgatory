@@ -5,6 +5,7 @@ namespace Purgatory.Levels.Data
 		Generic,
 		Obstacle,
 		Dock,
-		Transition
+		Transition,
+		Cinematic,
 	}
 }
