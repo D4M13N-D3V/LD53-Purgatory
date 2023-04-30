@@ -10,6 +10,8 @@ namespace Purgatory.Enemy
 {
     public class EnemyController : TargetableAttacker
     {
+        [SerializeField]
+        public GameObject _enemySoul;
 
         public EnemyController() : base()
         {

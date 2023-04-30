@@ -11,7 +11,7 @@ namespace Purgatory.Impl
 
         public int Damage => _damage;
 
-        public void Impact()
+        public virtual void Impact()
         {
             Debug.Log("Obstacle impacted player.");
             Destroy(gameObject);
