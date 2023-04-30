@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Purgatory.Enemy
 {
-    public class BaseEnemyController : Targetable
+    public class BaseEnemyController : TargetableAttacker
     {
 
         public BaseEnemyController() : base()
@@ -17,11 +17,10 @@ namespace Purgatory.Enemy
             Destroy(this.gameObject);
         }
 
-        // Start is called before the first frame update
-        void Start()
+        public override void LaunchProjectile()
         {
+            Debug.Log("Enemy projectile launched!");
         }
-
         // Update is called once per frame
         void Update()
         {
