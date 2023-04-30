@@ -22,7 +22,10 @@ namespace Purgatory.Player
         private float _yawMaxRotation = 9f;
         [SerializeField]
         private float _maximumHorizontalRotation = 6f;
-
+        [SerializeField]
+        private float _dashMultiplier = 3f;
+        [SerializeField]
+        private float _dashLength = 1f;
         [SerializeField]
         [Tooltip("Distance covered per second along X axis of Perlin plane.")]
         float _xScaleSpeed = 1.0f;
@@ -38,6 +41,8 @@ namespace Purgatory.Player
         public InputActionAsset actions;
         private InputAction _moveAction;
 
+        private bool _dashing = false;
+
         void Start()
         {
             _transform = GetComponent<Transform>();
@@ -48,7 +53,18 @@ namespace Purgatory.Player
 
         private void Dash(InputAction.CallbackContext obj)
         {
-            throw new NotImplementedException();
+            if(!_dashing)
+                StartCoroutine(DashCoroutine());
+        }
+
+        IEnumerator DashCoroutine()
+        {
+            _dashing = true;
+            var originalSpeed = _speed;
+            _speed = _speed * _dashMultiplier;
+            yield return new WaitForSeconds(_dashLength);
+            _speed = originalSpeed;
+            _dashing = false;
         }
 
         void Update()

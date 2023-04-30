@@ -73,6 +73,7 @@ namespace Purgatory.Enemy
             StartCoroutine(GetTargetPosition());
         }
 
+
         // Update is called once per frame
         void Update()
         {
