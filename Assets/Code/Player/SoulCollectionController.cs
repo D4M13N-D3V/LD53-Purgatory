@@ -36,8 +36,8 @@ namespace Purgatory.Player
             Collider[] hitColliders = Physics.OverlapSphere(transform.position, _collectionRadius);
             var targets = hitColliders.Where(x=> x.GetComponent<DockSoul>()!=null).Select(x => x.GetComponent<DockSoul>()).ToList();
             _autoCollectionTargets.AddRange(targets);
-            StartCoroutine(AttackCoroutine());
             yield return new WaitForSeconds(1f);
+            StartCoroutine(AttackCoroutine());
         }
         private void Start()
         {
@@ -46,6 +46,7 @@ namespace Purgatory.Player
 
         private void Update()
         {
+            _autoCollectionTargets.RemoveAll(x => x == null);
             foreach(var target in _autoCollectionTargets)
             {
 
