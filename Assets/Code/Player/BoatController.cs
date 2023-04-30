@@ -39,19 +39,19 @@ namespace Purgatory.Player
 
         void Update()
         {
-            _horizontalInput = Input.GetAxis("Horizontal");
+            _horizontalInput = Input.GetAxis("Horizontal") * -1;
         }
 
         private void FixedUpdate()
         {
             _horizontalVelocity += _speed * _horizontalInput * Time.fixedDeltaTime;
 
-            if ((_horizontalVelocity > 0 && transform.localPosition.x < _maximumLeft) || (_horizontalVelocity < 0 && transform.localPosition.x > _minimumLeft))
+            if ((_horizontalVelocity > 0 && transform.position.x < _maximumLeft) || (_horizontalVelocity < 0 && transform.position.x > _minimumLeft))
                 _transform.position += new Vector3(_horizontalVelocity, 0, 0);
 
             _horizontalVelocity *= _deceleration;
 
-            _transform.localEulerAngles = new Vector3(_yawMaxRotation * _horizontalInput, _maximumHorizontalRotation * _horizontalInput, 0);
+            _transform.localEulerAngles = new Vector3(_transform.localEulerAngles.x, _transform.localEulerAngles.y, _maximumHorizontalRotation * _horizontalInput*-1);
 
             float height = _bobbingHeightRange * Mathf.PerlinNoise(Time.time * _xScaleSpeed, 0.0f);
             Vector3 pos = transform.position;
