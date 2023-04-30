@@ -1,27 +1,31 @@
+using Purgatory.Impl;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BaseEnemyController : Targetable
+namespace Purgatory.Enemy
 {
-
-    public BaseEnemyController():base()
+    public class BaseEnemyController : Targetable
     {
-    }
 
-    public override void DeathLogic()
-    {
-        Destroy(this.gameObject);
-    }
+        public BaseEnemyController() : base()
+        {
+        }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-    }
+        public override void DeathLogic()
+        {
+            Destroy(this.gameObject);
+        }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        // Start is called before the first frame update
+        void Start()
+        {
+        }
+
+        // Update is called once per frame
+        void Update()
+        {
+
+        }
     }
 }

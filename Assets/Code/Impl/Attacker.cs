@@ -1,7 +1,8 @@
-﻿using System.Collections;
+﻿using Purgatory.Interfaces;
+using System.Collections;
 using UnityEngine;
 
-namespace Assets.Code
+namespace Purgatory.Impl
 {
     public abstract class Attacker : MonoBehaviour, IAttacker
     {

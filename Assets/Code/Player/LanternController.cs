@@ -1,24 +1,28 @@
 using Assets.Code;
+using Purgatory.Impl;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LanternController : Attacker
+namespace Purgatory.Player
 {
-    void Start()
+    public class LanternController : Attacker
     {
-        
-    }
+        void Start()
+        {
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+        }
+
+        // Update is called once per frame
+        void Update()
+        {
+
+        }
 
 
-    public override void Attack()
-    {
+        public override void Attack()
+        {
 
+        }
     }
 }

@@ -1,13 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public interface IAttacker
+namespace Purgatory.Interfaces
 {
-    bool Hidden { get; }
-    float DistanceToShowSelf { get; }
-    float AttackInterval { get; }
-    float AttackRange { get; }
-    GameObject Projectile { get; }
-    void Attack();
+    public interface IAttacker
+    {
+        bool Hidden { get; }
+        float DistanceToShowSelf { get; }
+        float AttackInterval { get; }
+        float AttackRange { get; }
+        GameObject Projectile { get; }
+        void Attack();
+    }
 }
