@@ -1205,15 +1205,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7999543282534504989, guid: 4512e6885a2be0b45b7c9131e0a764d1, type: 3}
       propertyPath: segmentWeights.Array.data[0].Weight
-      value: 100
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 7999543282534504989, guid: 4512e6885a2be0b45b7c9131e0a764d1, type: 3}
       propertyPath: segmentWeights.Array.data[1].Weight
-      value: 0
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 7999543282534504989, guid: 4512e6885a2be0b45b7c9131e0a764d1, type: 3}
       propertyPath: segmentWeights.Array.data[2].Weight
-      value: 0
+      value: 30
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4512e6885a2be0b45b7c9131e0a764d1, type: 3}
