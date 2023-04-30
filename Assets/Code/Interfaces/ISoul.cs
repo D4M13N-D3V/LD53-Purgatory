@@ -7,7 +7,7 @@ namespace Purgatory.Interfaces
     public interface ISoul
     {
         public int Amount { get; }
-        public void Collected();
-        public void Reward(SoulCollectionController soulCollectionController);   
+        public void CleanupAfterCollection();
+        public void Collect(SoulCollectionController soulCollectionController);   
     }
 }
