@@ -38,7 +38,7 @@ namespace Purgatory.Enemy
         }
         private IEnumerator GetTargetPosition()
         {
-            if(_targetTransform!=null)
+            if (_targetTransform != null)
                 _cachedLocation = _targetTransform.position;
             yield return new WaitForSeconds(_targetRefreshRate);
             StartCoroutine(GetTargetPosition());
@@ -48,8 +48,8 @@ namespace Purgatory.Enemy
         {
             Collider[] hitColliders = Physics.OverlapSphere(transform.position, AttackRange);
             var target = hitColliders.Where(x => x.GetComponent<PlayerController>() != null).OrderBy(x => Guid.NewGuid()).FirstOrDefault();
-            
-            if(target!=null)
+
+            if (target != null)
                 Debug.Log($"Enemy {this.gameObject.name} targeting player");
 
             return target?.gameObject;
@@ -84,7 +84,7 @@ namespace Purgatory.Enemy
             }
             if (_isRusher)
             {
-                
+
                 transform.position = Vector3.MoveTowards(transform.position, _cachedLocation, Time.fixedDeltaTime * _speed);
             }
         }

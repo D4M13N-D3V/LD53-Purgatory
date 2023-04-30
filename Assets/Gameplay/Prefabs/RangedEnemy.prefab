@@ -212,21 +212,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _projectile: {fileID: 8640820544390293194, guid: 1f4e2ba77fdc1fd44a41cc9d559eda80, type: 3}
-  _attackIntervalInSeconds: 3
-  _currentHealth: 5
+  _attackIntervalInSeconds: 3.2
+  _currentHealth: 200000
   _hidden: 0
   _distanceToShowSelf: 10
-  _maximumHealth: 5
+  _maximumHealth: 200000
   _minimumHealth: 0
-  _attackRange: 30
-  _aimSpeed: 10
+  _attackRange: 45
+  _aimSpeed: 1
   _targetTransform: {fileID: 0}
   _enemySoul: {fileID: 7942292204207380944, guid: 6f2a6efe87d320c4690b1d7baaf77f1a, type: 3}
   _isRanged: 1
   _isRusher: 0
   _speed: 1
-  _turnSpeed: 4
-  _targetRefreshRate: 2
+  _turnSpeed: 100
+  _targetRefreshRate: 1
   _rusherDamage: 10
   _cachedLocation: {x: 0, y: 0, z: 0}
 --- !u!54 &758927670937107940

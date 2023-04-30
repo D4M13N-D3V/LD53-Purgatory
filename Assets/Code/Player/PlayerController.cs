@@ -8,6 +8,7 @@ namespace Purgatory.Player
 {
     public class PlayerController : Targetable
     {
+        public static PlayerController instance;
         public BoatController Boat = null;
         public LanternController Lantern = null;
         public CameraController Camera = null;
@@ -15,7 +16,8 @@ namespace Purgatory.Player
 
         public PlayerController()
         {
-
+            if (instance == null)
+                instance = this;
         }
         public override void DeathLogic()
         {
