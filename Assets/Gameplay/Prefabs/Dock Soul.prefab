@@ -60,6 +60,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _amount: 1
+  moveSpeed: 7.5
+  rotationSpeed: 7.5
+  collectionDistance: 1.5
+  collectionVfx: {fileID: 4561466716389567566, guid: 4e3f11d7440e9c947b5c3a26f30659c4, type: 3}
 --- !u!1001 &2537469847297074489
 PrefabInstance:
   m_ObjectHideFlags: 0
