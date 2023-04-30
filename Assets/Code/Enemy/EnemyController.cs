@@ -19,6 +19,7 @@ namespace Purgatory.Enemy
 
         public override void DeathLogic()
         {
+            GameObject.Instantiate(_enemySoul, transform.position, transform.rotation);
             Destroy(this.gameObject);
         }
 
