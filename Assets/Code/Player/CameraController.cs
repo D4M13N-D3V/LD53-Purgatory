@@ -6,8 +6,16 @@ namespace Purgatory.Player
 {
     public class CameraController : MonoBehaviour
     {
+        public static CameraController instance;
+
+        public CameraController()
+        {
+            if(instance==null)  
+                instance = this;
+        }
+
         [SerializeField]
-        private float _damageShakeIntensity = 0.2f;
+        private float _damageShakeForce = 0.2f;
         [SerializeField]
         private float _damageShakeDuration = 1.0f;
         [SerializeField]
@@ -22,25 +30,10 @@ namespace Purgatory.Player
         {
 
         }
-        public void DamageShake(int amount)
+
+        internal void CameraShake(CinemachineImpulseSource impulseSource)
         {
-            StartCoroutine(Shake(_damageShakeDuration, _damageShakeIntensity));
+            impulseSource.GenerateImpulseWithForce(_damageShakeForce);
         }
-
-        public IEnumerator Shake(float duration, float magnitude)
-        {
-            Noise(1, magnitude);
-            yield return new WaitForSeconds(duration);
-            Noise(0, 0);
-        }
-
-
-        public void Noise(float amplitudeGain, float frequencyGain)
-        {
-            CinemachineBasicMultiChannelPerlin cinemachineBasicMultiChannelPerlin = _camera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
-            cinemachineBasicMultiChannelPerlin.m_AmplitudeGain = amplitudeGain;
-            cinemachineBasicMultiChannelPerlin.m_FrequencyGain = frequencyGain;
-        }
-
     }
 }

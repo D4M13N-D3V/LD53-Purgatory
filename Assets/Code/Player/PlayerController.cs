@@ -23,7 +23,6 @@ namespace Purgatory.Player
 
         void Start()
         {
-            onDamaged += Camera.DamageShake;
         }
 
         void Update()

@@ -1,6 +1,8 @@
-﻿using Purgatory.Interfaces;
+﻿using Cinemachine;
+using Purgatory.Interfaces;
 using System.Collections;
 using UnityEngine;
+using Purgatory.Player;
 
 namespace Purgatory.Impl
 {
@@ -35,6 +37,7 @@ namespace Purgatory.Impl
             ITargetable target = collision.gameObject.GetComponent<Targetable>();
             if (target == null)
                 target = collision.gameObject.GetComponent<TargetableAttacker>();
+            CameraController.instance.CameraShake(GetComponent<CinemachineImpulseSource>());
             target.Damage(Damage);
             Impact();
         }
