@@ -12,6 +12,16 @@ namespace Purgatory.Enemy
     {
         [SerializeField]
         public GameObject _enemySoul;
+        [SerializeField]
+        private bool _isRusher = false;
+        [SerializeField]
+        private float _speed = 1f;
+        [SerializeField]
+        private float _turnSpeed = 4f;
+        [SerializeField]
+        private float _targetRefreshRate = 2f;
+        [SerializeField]
+        private Vector3 _cachedLocation;
 
         public EnemyController() : base()
         {
@@ -21,6 +31,13 @@ namespace Purgatory.Enemy
         {
             GameObject.Instantiate(_enemySoul, transform.position, transform.rotation);
             Destroy(this.gameObject);
+        }
+        private IEnumerator GetTargetPosition()
+        {
+            if(_targetTransform!=null)
+                _cachedLocation = _targetTransform.position;
+            yield return new WaitForSeconds(_targetRefreshRate);
+            StartCoroutine(GetTargetPosition());
         }
 
         public override GameObject GetTarget()
@@ -36,15 +53,33 @@ namespace Purgatory.Enemy
 
         public override void LaunchProjectile()
         {
-            var rotation = Quaternion.LookRotation(_targetTransform.position - transform.position);
-            var newProject = GameObject.Instantiate(Projectile, transform.position+(transform.forward*1.5f), rotation);
-            Debug.Log("Enemy projectile launched!");
+            if (_isRusher == false)
+            {
+                var rotation = Quaternion.LookRotation(_targetTransform.position - transform.position);
+                var newProject = GameObject.Instantiate(Projectile, transform.position + (transform.forward * 1.5f), rotation);
+                Debug.Log("Enemy projectile launched!");
+            }
         }
+
+        private void Awake()
+        {
+
+            StartCoroutine(GetTargetPosition());
+        }
+
         // Update is called once per frame
         void Update()
         {
             Quaternion _lookRotation = Quaternion.LookRotation((_targetTransform.position - transform.position).normalized);
             transform.rotation = Quaternion.Slerp(transform.rotation, _lookRotation, Time.deltaTime * _aimSpeed);
+
+            if (_isRusher)
+            {
+                if (_cachedLocation == null)
+                    _cachedLocation = _targetTransform.position;
+                
+                transform.position = Vector3.Lerp(transform.position, _cachedLocation, Time.deltaTime) * _speed;
+            }
         }
     }
 }
