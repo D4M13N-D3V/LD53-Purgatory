@@ -88,7 +88,7 @@ namespace Purgatory.Player
 
         private void FixedUpdate()
         {            
-            _waveDisruptionObject.transform.localPosition = new Vector3(-0.75f+(_horizontalInput*2), _waveDisruptionObject.transform.localPosition.y, _waveDisruptionObject.transform.localPosition.z);
+            _waveDisruptionObject.transform.localPosition = new Vector3(Mathf.Lerp(_waveDisruptionObject.transform.localPosition.x,-0.75f+(_horizontalInput*2), Time.deltaTime * 2), _waveDisruptionObject.transform.localPosition.y, _waveDisruptionObject.transform.localPosition.z);
 
             _horizontalVelocity += _speed * _horizontalInput * Time.fixedDeltaTime;
 
