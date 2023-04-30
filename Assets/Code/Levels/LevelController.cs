@@ -13,6 +13,7 @@ namespace Purgatory.Levels
 	{
 		public Action<Environment, Environment> EnvironmentChanged;
 
+		[SerializeField] private float levelStartOffset = 4f;
 		[SerializeField] private float levelScrollSpeed = 5f;
 		[SerializeField] private float segmentSize = 20f;
 
@@ -26,12 +27,13 @@ namespace Purgatory.Levels
 		private int currentEnvironment = 0;
 		private int currentEnvironmentSegment = 0;
 		private GameObject[] segmentInstances;
-		private float scrollDelta = -1f;
+		private float scrollDelta = 0f;
 
 		private LevelSegmentCollection segmentCollection;
 
 		private async void Start()
 		{
+			scrollDelta -= levelStartOffset;
 			segmentInstances = new GameObject[2 + lookAheadCount];
 			
 			segmentCollection = new LevelSegmentCollection(segments);
