@@ -1,0 +1,59 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5db10fce822340ca9c97c080f5a894a5, type: 3}
+  m_Name: Filler_Late_1
+  m_EditorClassIdentifier: 
+  LeftCharacter: {fileID: 11400000, guid: 8f3dc1de5a64bb14382ec03541c3d75a, type: 2}
+  RightCharacter: {fileID: 11400000, guid: ffe83b7b116f0ab4b973721e43d23531, type: 2}
+  Entries:
+  - LeftEmotion: 0
+    RightEmotion: 2
+    Speaker: 1
+    Text: Rokuro, do you ever miss working with Charon? I know we're becoming friends,
+      but I understand if it's not the same.
+    NextEntryDelayMS: 1000
+    Effects: 
+  - LeftEmotion: 5
+    RightEmotion: 0
+    Speaker: 0
+    Text: I do miss Charon, Yuki. We shared a deep bond and had many memorable moments
+      together.
+    NextEntryDelayMS: 1000
+    Effects: 
+  - LeftEmotion: 1
+    RightEmotion: 0
+    Speaker: 1
+    Text: I can imagine. But I promise to keep working hard and make new memories
+      with you, Rokuro.
+    NextEntryDelayMS: 1000
+    Effects: 
+  - LeftEmotion: 0
+    RightEmotion: 1
+    Speaker: 0
+    Text: You're right, Yuki. Life moves on, and we need to keep adapting. I believe
+      we can forge a strong bond too.
+    NextEntryDelayMS: 1000
+    Effects: 
+  - LeftEmotion: 1
+    RightEmotion: 1
+    Speaker: 1
+    Text: Thank you for believing in me, Rokuro. Let's make the most of our time
+      together and continue to help these lost souls.
+    NextEntryDelayMS: 1000
+    Effects: 
+  - LeftEmotion: 4
+    RightEmotion: 0
+    Speaker: 0
+    Text: Agreed. We have a lot of work ahead of us, and I'm starting to believe
+      that we can face these challenges together.
+    NextEntryDelayMS: 1000
+    Effects: 

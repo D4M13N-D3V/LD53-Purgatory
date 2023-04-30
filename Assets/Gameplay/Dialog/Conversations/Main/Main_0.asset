@@ -1,0 +1,92 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5db10fce822340ca9c97c080f5a894a5, type: 3}
+  m_Name: Main_0
+  m_EditorClassIdentifier: 
+  LeftCharacter: {fileID: 11400000, guid: 8f3dc1de5a64bb14382ec03541c3d75a, type: 2}
+  RightCharacter: {fileID: 11400000, guid: ffe83b7b116f0ab4b973721e43d23531, type: 2}
+  Entries:
+  - LeftEmotion: 2
+    RightEmotion: 0
+    Speaker: 0
+    Text: Yuki, is that you? What happened? You look... different.
+    NextEntryDelayMS: 1000
+    Effects: 00000000
+  - LeftEmotion: 5
+    RightEmotion: 1
+    Speaker: 1
+    Text: Oh, Rokuro... It's a long story, but I'm now the one responsible for ferrying
+      souls across the mythical river.
+    NextEntryDelayMS: 1000
+    Effects: 
+  - LeftEmotion: 6
+    RightEmotion: 2
+    Speaker: 0
+    Text: You? But... What about Charon? And how did this happen?
+    NextEntryDelayMS: 1000
+    Effects: 
+  - LeftEmotion: 0
+    RightEmotion: 5
+    Speaker: 1
+    Text: Charon is missing, and someone needed to take over. I didn't exactly choose
+      this role, but I'm determined to fulfill my duty.
+    NextEntryDelayMS: 1000
+    Effects: 
+  - LeftEmotion: 4
+    RightEmotion: 0
+    Speaker: 0
+    Text: Honestly, it's hard for me to imagine <i>you</i> in Charon's place. You've
+      always been a bit... clumsy, to say the least.
+    NextEntryDelayMS: 1000
+    Effects: 00000000
+  - LeftEmotion: 1
+    RightEmotion: 1
+    Speaker: 1
+    Text: I know it might seem that way, Rokuro, but I promise to do my best. I want
+      to help these lost souls find peace.
+    NextEntryDelayMS: 1000
+    Effects: 
+  - LeftEmotion: 4
+    RightEmotion: 0
+    Speaker: 0
+    Text: Well, if you're serious about this role, you'll need to prove yourself.
+      I'm not convinced that you're up to the task, Yuki.
+    NextEntryDelayMS: 1000
+    Effects: 
+  - LeftEmotion: 5
+    RightEmotion: 1
+    Speaker: 1
+    Text: I understand your doubts, Rokuro, but I won't let them hold me back. I'll
+      work hard to learn and grow in this new role.
+    NextEntryDelayMS: 1000
+    Effects: 
+  - LeftEmotion: 0
+    RightEmotion: 2
+    Speaker: 0
+    Text: Fine, but remember, Yuki, this job isn't all fun and games. You'll need
+      to learn from your mistakes and be serious when it's necessary.
+    NextEntryDelayMS: 1000
+    Effects: 
+  - LeftEmotion: 1
+    RightEmotion: 6
+    Speaker: 1
+    Text: You're right, Rokuro. I'll make sure to remember that. I may be inexperienced,
+      but I'll adapt and become the best ferrywoman I can be.
+    NextEntryDelayMS: 1000
+    Effects: 
+  - LeftEmotion: 4
+    RightEmotion: 1
+    Speaker: 0
+    Text: We'll see about that. But if you're truly committed to this path, I'll
+      offer my support. Just don't expect me to go easy on you.
+    NextEntryDelayMS: 1000
+    Effects: 
