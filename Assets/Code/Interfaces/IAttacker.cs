@@ -8,7 +8,6 @@ public interface IAttacker
     float DistanceToShowSelf { get; }
     float AttackInterval { get; }
     float AttackRange { get; }
-    int AttackDamage { get; }
     GameObject Projectile { get; }
     void Attack();
 }

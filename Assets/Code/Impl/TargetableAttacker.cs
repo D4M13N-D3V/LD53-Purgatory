@@ -10,8 +10,6 @@ namespace Assets.Code
         [SerializeField]
         private float _attackIntervalInSeconds = 3f;
         [SerializeField]
-        private int _attackDamage = 1;
-        [SerializeField]
         private int _currentHealth;
         [SerializeField]
         private bool _hidden = false;
@@ -28,12 +26,7 @@ namespace Assets.Code
         public bool Alive { get => _currentHealth <= _minimumHealth; }
         public bool Hidden => _hidden;
         public float DistanceToShowSelf => _distanceToShowSelf;
-
         public float AttackInterval => _attackIntervalInSeconds;
-
-        public int AttackDamage => _attackDamage;
-
-
         public float AttackRange => _attackRange;
         public GameObject Projectile => _projectile;
 

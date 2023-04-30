@@ -14,19 +14,12 @@ namespace Assets.Code
         [SerializeField]
         private float _attackIntervalInSeconds = 3f;
         [SerializeField]
-        private int _attackDamage = 1;
-        [SerializeField]
         private float _attackRange = 10;
 
         public bool Hidden => _hidden;
         public float DistanceToShowSelf => _distanceToShowSelf;
-
         public float AttackInterval => _attackIntervalInSeconds;
-
-        public int AttackDamage => _attackDamage;
-
         public float AttackRange => _attackRange;
-
         public GameObject Projectile => _projectile;
 
         public abstract void Attack();
