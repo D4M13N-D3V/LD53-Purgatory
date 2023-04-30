@@ -46,7 +46,7 @@ namespace Purgatory.Player
         {
             _horizontalVelocity += _speed * _horizontalInput * Time.fixedDeltaTime;
 
-            if ((_horizontalVelocity > 0 && transform.localPosition.z < _maximumLeft) || (_horizontalVelocity < 0 && transform.localPosition.z > _minimumLeft))
+            if ((_horizontalVelocity > 0 && transform.localPosition.x < _maximumLeft) || (_horizontalVelocity < 0 && transform.localPosition.x > _minimumLeft))
                 _transform.position += new Vector3(_horizontalVelocity, 0, 0);
 
             _horizontalVelocity *= _deceleration;

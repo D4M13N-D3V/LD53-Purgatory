@@ -33,12 +33,15 @@ namespace Purgatory.Enemy
 
         public override void LaunchProjectile()
         {
+            var rotation = Quaternion.LookRotation(_targetTransform.position - transform.position);
+            var newProject = GameObject.Instantiate(Projectile, transform.position+(transform.forward*1.5f), rotation);
             Debug.Log("Enemy projectile launched!");
         }
         // Update is called once per frame
         void Update()
         {
-
+            Quaternion _lookRotation = Quaternion.LookRotation((_targetTransform.position - transform.position).normalized);
+            transform.rotation = Quaternion.Slerp(transform.rotation, _lookRotation, Time.deltaTime * _aimSpeed);
         }
     }
 }

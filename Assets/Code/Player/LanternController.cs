@@ -20,7 +20,10 @@ namespace Purgatory.Player
 
         public override void LaunchProjectile()
         {
-            Debug.Log("Projectile launched!");
+            var rotation = Quaternion.LookRotation(_targetTransform.position - transform.position);
+            var newProject = GameObject.Instantiate(Projectile, transform.position, rotation);
+            newProject.transform.rotation = rotation;
+            Debug.Log("Player projectile launched!");
         }
 
         public override GameObject GetTarget()

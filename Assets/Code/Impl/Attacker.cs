@@ -17,16 +17,19 @@ namespace Purgatory.Impl
         [SerializeField]
         private float _attackIntervalInSeconds = 3f;
         [SerializeField]
-        private float _attackRange = 10;
+        private float _attackRange = 10f;
+        [SerializeField]
+        internal float _aimSpeed = 5f;
 
-        private ITargetable _target = null;
-        private Transform _targetTransform;
+        internal ITargetable _target = null;
+        internal Transform _targetTransform;
         internal Transform _transform;
 
         public bool Hidden => _hidden;
         public float DistanceToShowSelf => _distanceToShowSelf;
         public float AttackInterval => _attackIntervalInSeconds;
         public float AttackRange => _attackRange;
+        public float AimSpeed => _aimSpeed;
         public GameObject Projectile => _projectile;
 
         public abstract void LaunchProjectile();

@@ -6,8 +6,8 @@ namespace Purgatory.Interfaces
 {
     public interface IProjectile
     {
-        int Damage { get; set; }
-        float Speed { get; set; }
+        int Damage { get; }
+        float Speed { get; }
         void Impact();
         void Launch();
     }

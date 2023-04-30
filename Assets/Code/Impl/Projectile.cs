@@ -1,12 +1,31 @@
-﻿using System.Collections;
+﻿using Purgatory.Interfaces;
+using System.Collections;
 using UnityEngine;
 
 namespace Purgatory.Impl
 {
-    public class Projectile : MonoBehaviour
+    public class Projectile : MonoBehaviour, IProjectile
     {
+        [SerializeField]
+        private int _damage = 1;
+        [SerializeField]
+        private float _speed = 1.5f;
 
-        // Use this for initialization
+        public int Damage => _damage;
+        public float Speed => _speed;
+
+        public void Impact()
+        {
+            Debug.Log($"Projectile {gameObject.name} impacted");
+            Destroy(this.gameObject);
+        }
+
+        public void Launch()
+        {
+            Debug.Log($"Projectile {gameObject.name} launched");
+        }
+
+        // Start is called before the first frame update
         void Start()
         {
 
@@ -15,7 +34,16 @@ namespace Purgatory.Impl
         // Update is called once per frame
         void Update()
         {
+            transform.position += transform.forward * Time.deltaTime * _speed;
+        }
 
+        private void OnCollisionEnter(Collision collision)
+        {
+            ITargetable target = collision.gameObject.GetComponent<Targetable>();
+            if(target==null)
+                target = collision.gameObject.GetComponent<TargetableAttacker>();
+            target.Damage(_damage);
+            Impact();
         }
     }
 }

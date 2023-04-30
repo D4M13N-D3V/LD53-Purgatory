@@ -22,15 +22,18 @@ namespace Purgatory.Impl
         private int _minimumHealth = 0;
         [SerializeField]
         private float _attackRange = 10;
+        [SerializeField]
+        internal float _aimSpeed = 5f;
 
 
-        private ITargetable _target = null;
-        private Transform _targetTransform;
+        internal ITargetable _target = null;
+        internal Transform _targetTransform;
         internal Transform _transform;
 
         public int CurrentHP { get => _currentHealth; }
         public bool Alive { get => _currentHealth <= _minimumHealth; }
         public bool Hidden => _hidden;
+        public float AimSpeed => _aimSpeed;
         public float DistanceToShowSelf => _distanceToShowSelf;
         public float AttackInterval => _attackIntervalInSeconds;
         public float AttackRange => _attackRange;
