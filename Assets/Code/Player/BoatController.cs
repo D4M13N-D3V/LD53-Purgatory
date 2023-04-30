@@ -87,11 +87,12 @@ namespace Purgatory.Player
         }
 
         private void FixedUpdate()
-        {
+        {            
+            _waveDisruptionObject.transform.localPosition = new Vector3(-0.75f+(_horizontalInput*2), _waveDisruptionObject.transform.localPosition.y, _waveDisruptionObject.transform.localPosition.z);
+
             _horizontalVelocity += _speed * _horizontalInput * Time.fixedDeltaTime;
 
 
-            _waveDisruptionObject.transform.localPosition = new Vector3(-0.75f+(_horizontalInput*2), _waveDisruptionObject.transform.localPosition.y, _waveDisruptionObject.transform.localPosition.z);
 
             if ((_horizontalVelocity > 0 && transform.position.x < _maximumLeft) || (_horizontalVelocity < 0 && transform.position.x > _minimumLeft))
                 _transform.position += new Vector3(_horizontalVelocity, 0, 0);
