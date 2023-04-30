@@ -10,6 +10,7 @@ namespace Purgatory.Player
     {
         public BoatController Boat = null;
         public LanternController Lantern = null;
+        public CameraController Camera = null;
 
         public PlayerController() : base()
         {
@@ -21,6 +22,7 @@ namespace Purgatory.Player
 
         void Start()
         {
+            onDamaged += Camera.DamageShake;
         }
 
         void Update()

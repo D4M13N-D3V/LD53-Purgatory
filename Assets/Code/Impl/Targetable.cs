@@ -16,14 +16,14 @@ namespace Purgatory.Impl
         public int CurrentHP { get => _currentHealth; }
         public bool Alive { get => _currentHealth <= _minimumHealth; }
 
-        delegate void OnDamaged(int amount);
-        OnDamaged onDamaged;
+        internal delegate void OnDamaged(int amount);
+        internal OnDamaged onDamaged;
 
-        delegate void OnHealed(int amount);
-        OnHealed onHealed;
+        internal delegate void OnHealed(int amount);
+        internal OnHealed onHealed;
 
-        delegate void OnDeath();
-        OnDeath onDeath;
+        internal delegate void OnDeath();
+        internal OnDeath onDeath;
 
         public Targetable() : base()
         {
