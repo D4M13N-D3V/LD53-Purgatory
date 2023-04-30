@@ -23,6 +23,7 @@ namespace Purgatory.Impl
         [SerializeField]
         private float _attackRange = 10;
 
+        internal Transform _transform;
         public int CurrentHP { get => _currentHealth; }
         public bool Alive { get => _currentHealth <= _minimumHealth; }
         public bool Hidden => _hidden;
@@ -45,7 +46,19 @@ namespace Purgatory.Impl
             _currentHealth = _maximumHealth;
         }
 
-        public abstract void Attack();
+        private IEnumerator AttackCoroutine()
+        {
+            yield return new WaitForSeconds(_attackIntervalInSeconds);
+            LaunchProjectile();
+            StartCoroutine(AttackCoroutine());
+        }
+        void Start()
+        {
+            _transform = GetComponent<Transform>();
+            StartCoroutine(AttackCoroutine());
+        }
+
+        public abstract void LaunchProjectile();
         public abstract void DeathLogic();
 
         public void Damage(int amount)
