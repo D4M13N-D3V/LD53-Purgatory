@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace Purgatory.Player
 {
@@ -32,15 +34,27 @@ namespace Purgatory.Player
         private float _horizontalInput = 0f;
         private float _horizontalVelocity = 0f;
 
+        [SerializeField]
+        public InputActionAsset actions;
+        private InputAction _moveAction;
+
         void Start()
         {
             _transform = GetComponent<Transform>();
             _originalY = _transform.position.y;
+            _moveAction = actions.FindActionMap("gameplay").FindAction("move", true);
+            actions.FindActionMap("gameplay").FindAction("dash").performed += Dash;
+        }
+
+        private void Dash(InputAction.CallbackContext obj)
+        {
+            throw new NotImplementedException();
         }
 
         void Update()
         {
-            _horizontalInput = Input.GetAxis("Horizontal") * -1;
+            _horizontalInput = _moveAction.ReadValue<Vector2>().x * -1;
+            Debug.Log(_moveAction.ReadValue<Vector2>());
         }
 
         private void FixedUpdate()

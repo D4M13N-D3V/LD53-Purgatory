@@ -142,6 +142,7 @@ MonoBehaviour:
   _maximumHorizontalRotation: 14
   _xScaleSpeed: 1
   _waveDisruptionObject: {fileID: 5802694871707074543}
+  actions: {fileID: -944628639613478452, guid: e0ada3906a3fbbd4182ae7023c3c57dc, type: 3}
 --- !u!54 &4300754432355367829
 Rigidbody:
   m_ObjectHideFlags: 0
