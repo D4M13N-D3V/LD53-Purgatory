@@ -61,6 +61,8 @@ namespace Purgatory.Enemy
             {
                 var rotation = Quaternion.LookRotation(_targetTransform.position - transform.position);
                 var newProject = GameObject.Instantiate(Projectile, transform.position + (transform.forward * 1.5f), rotation);
+                var projectile = newProject.GetComponent<Projectile>();
+                projectile.TargetLocation = _targetTransform.position;
                 Debug.Log("Enemy projectile launched!");
             }
         }
