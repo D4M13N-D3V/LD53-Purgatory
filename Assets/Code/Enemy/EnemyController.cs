@@ -76,14 +76,17 @@ namespace Purgatory.Enemy
         {
             if (_targetTransform != null)
             {
-                Quaternion _lookRotation = Quaternion.LookRotation((_targetTransform.position - transform.position).normalized);
-                transform.rotation = Quaternion.RotateTowards(transform.rotation, _lookRotation, Time.fixedDeltaTime * _aimSpeed);
+                Quaternion _lookRotation = Quaternion.LookRotation((_targetTransform.position - transform.position));
+                transform.rotation = _lookRotation;
 
                 if (_cachedLocation == null)
                     _cachedLocation = _targetTransform.position;
             }
             if (_isRusher)
             {
+                
+                Quaternion _lookRotation = Quaternion.LookRotation((_cachedLocation - transform.position));
+                transform.rotation = _lookRotation;
 
                 transform.position = Vector3.MoveTowards(transform.position, _cachedLocation, Time.fixedDeltaTime * _speed);
             }
