@@ -1,4 +1,5 @@
 using Purgatory.Impl;
+using Purgatory.Interfaces;
 using Purgatory.Player;
 using System;
 using System.Collections;
@@ -20,6 +21,8 @@ namespace Purgatory.Enemy
         private float _turnSpeed = 4f;
         [SerializeField]
         private float _targetRefreshRate = 2f;
+        [SerializeField]
+        private int _rusherDamage = 10;
         [SerializeField]
         private Vector3 _cachedLocation;
 
@@ -79,6 +82,17 @@ namespace Purgatory.Enemy
                     _cachedLocation = _targetTransform.position;
                 
                 transform.position = Vector3.Lerp(transform.position, _cachedLocation, Time.deltaTime) * _speed;
+            }
+        }
+        private void OnCollisionEnter(Collision collision)
+        {
+            if (_isRusher)
+            {
+                ITargetable target = collision.gameObject.GetComponent<Targetable>();
+                if (target == null)
+                    target = collision.gameObject.GetComponent<TargetableAttacker>();
+                target.Damage(_rusherDamage);
+                Destroy(gameObject);
             }
         }
     }
