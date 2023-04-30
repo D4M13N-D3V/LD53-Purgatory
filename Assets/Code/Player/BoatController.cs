@@ -20,11 +20,12 @@ namespace Purgatory.Player
         private float _yawMaxRotation = 9f;
         [SerializeField]
         private float _maximumHorizontalRotation = 6f;
-        [SerializeField]
-        private float _bobbingHeightRange = 1.0f;
+
         [SerializeField]
         [Tooltip("Distance covered per second along X axis of Perlin plane.")]
         float _xScaleSpeed = 1.0f;
+        [SerializeField] 
+        private GameObject _waveDisruptionObject;
 
         private float _originalY = 0;
         private Transform _transform;
@@ -46,6 +47,9 @@ namespace Purgatory.Player
         {
             _horizontalVelocity += _speed * _horizontalInput * Time.fixedDeltaTime;
 
+
+            _waveDisruptionObject.transform.localPosition = new Vector3(-0.75f+(_horizontalInput*2), _waveDisruptionObject.transform.localPosition.y, _waveDisruptionObject.transform.localPosition.z);
+
             if ((_horizontalVelocity > 0 && transform.position.x < _maximumLeft) || (_horizontalVelocity < 0 && transform.position.x > _minimumLeft))
                 _transform.position += new Vector3(_horizontalVelocity, 0, 0);
 
@@ -53,10 +57,6 @@ namespace Purgatory.Player
 
             _transform.localEulerAngles = new Vector3(_transform.localEulerAngles.x, _transform.localEulerAngles.y, _maximumHorizontalRotation * _horizontalInput*-1);
 
-            float height = _bobbingHeightRange * Mathf.PerlinNoise(Time.time * _xScaleSpeed, 0.0f);
-            Vector3 pos = transform.position;
-            pos.y = _originalY + height;
-            transform.position = pos;
         }
     }
 
