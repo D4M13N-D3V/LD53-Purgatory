@@ -21,6 +21,8 @@ namespace Assets.Code
         private int _maximumHealth = 100;
         [SerializeField]
         private int _minimumHealth = 0;
+        [SerializeField]
+        private float _attackRange = 10;
 
         public int CurrentHP { get => _currentHealth; }
         public bool Alive { get => _currentHealth <= _minimumHealth; }
@@ -31,6 +33,8 @@ namespace Assets.Code
 
         public int AttackDamage => _attackDamage;
 
+
+        public float AttackRange => _attackRange;
         public GameObject Projectile => _projectile;
 
         delegate void OnDamaged(int amount);

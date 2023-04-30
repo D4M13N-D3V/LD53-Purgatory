@@ -15,6 +15,7 @@ namespace Assets.Code
         private float _attackIntervalInSeconds = 3f;
         [SerializeField]
         private int _attackDamage = 1;
+        [SerializeField]
         private float _attackRange = 10;
 
         public bool Hidden => _hidden;
@@ -24,7 +25,7 @@ namespace Assets.Code
 
         public int AttackDamage => _attackDamage;
 
-        public float Attackrange => _attackRange;
+        public float AttackRange => _attackRange;
 
         public GameObject Projectile => _projectile;
 
