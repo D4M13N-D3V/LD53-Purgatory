@@ -32,6 +32,10 @@ namespace Purgatory.Enemy
         {
         }
 
+        public virtual void RusherImpact()
+        {
+            Debug.Log("Rusher impacted!");
+        }
         public override void DeathLogic()
         {
             GameObject.Instantiate(_enemySoul, transform.position, transform.rotation);
@@ -94,6 +98,7 @@ namespace Purgatory.Enemy
                 if (target == null)
                     target = collision.gameObject.GetComponent<TargetableAttacker>();
                 target.Damage(_rusherDamage);
+                RusherImpact();
                 Destroy(gameObject);
             }
         }
