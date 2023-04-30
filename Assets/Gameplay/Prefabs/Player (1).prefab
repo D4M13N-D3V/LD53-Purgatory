@@ -152,7 +152,7 @@ MonoBehaviour:
   Boat: {fileID: 4300754432355367819}
   Lantern: {fileID: 4300754432421549953}
   Camera: {fileID: 0}
-  SoulCollector: {fileID: 0}
+  SoulCollector: {fileID: 4300754432355367828}
 --- !u!114 &4300754432355367819
 MonoBehaviour:
   m_ObjectHideFlags: 0

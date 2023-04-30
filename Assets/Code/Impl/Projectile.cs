@@ -16,7 +16,9 @@ namespace Purgatory.Impl
         private float _minimumArchHeight = 3.5f;
         [SerializeField]
         private float _maximummArchHeight = 5.5f;
-
+        [SerializeField]
+        private bool _horizontalCurve = false;
+        [SerializeField] float _timeToLive = 0f;
 
         public Vector3 TargetLocation;
         public Vector3 StartingLocation;
@@ -59,7 +61,21 @@ namespace Purgatory.Impl
         void Start()
         {
             StartingLocation = transform.position;
-            ControlLocation = Between(StartingLocation, TargetLocation, 0.5f) + transform.up*Random.Range(_minimumArchHeight, _maximummArchHeight);
+            if (_minimumArchHeight == 0f || _maximummArchHeight == 0f)
+                ControlLocation = Between(StartingLocation, TargetLocation, 0.5f);
+            else if (_horizontalCurve)
+                ControlLocation = Between(StartingLocation, TargetLocation, 0.5f) + transform.right * Random.Range(_minimumArchHeight, _maximummArchHeight);
+            else
+                ControlLocation = Between(StartingLocation, TargetLocation, 0.5f) + transform.up * Random.Range(_minimumArchHeight, _maximummArchHeight);
+
+            if (_timeToLive != 0f)
+                StartCoroutine(TimeToLive());
+        }
+
+        private IEnumerator TimeToLive()
+        {
+            yield return new WaitForSeconds(_timeToLive);
+            Destroy(gameObject);
         }
 
         Vector3 Between(Vector3 v1, Vector3 v2, float percentage)
