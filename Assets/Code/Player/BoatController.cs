@@ -11,6 +11,8 @@ namespace Purgatory.Player
         [SerializeField]
         private float _speed = 1f;
         [SerializeField]
+        private float _deceleration = 0.9f;
+        [SerializeField]
         private float _minimumLeft = -12f;
         [SerializeField]
         private float _maximumLeft = 12f;
@@ -27,6 +29,7 @@ namespace Purgatory.Player
         private float _originalY = 0;
         private Transform _transform;
         private float _horizontalInput = 0f;
+        private float _horizontalVelocity = 0f;
 
         void Start()
         {
@@ -41,13 +44,14 @@ namespace Purgatory.Player
 
         private void FixedUpdate()
         {
-            if (_horizontalInput > 0 && transform.localPosition.z < _maximumLeft)
-                _transform.position += new Vector3(_speed * _horizontalInput * Time.fixedDeltaTime, 0, 0);
-            else if (_horizontalInput < 0 && transform.localPosition.z > _minimumLeft)
-                _transform.position += new Vector3(_speed * _horizontalInput * Time.fixedDeltaTime, 0, 0);
+            _horizontalVelocity += _speed * _horizontalInput * Time.fixedDeltaTime;
+
+            if ((_horizontalVelocity > 0 && transform.localPosition.z < _maximumLeft) || (_horizontalVelocity < 0 && transform.localPosition.z > _minimumLeft))
+                _transform.position += new Vector3(_horizontalVelocity, 0, 0);
+
+            _horizontalVelocity *= _deceleration;
 
             _transform.localEulerAngles = new Vector3(_yawMaxRotation * _horizontalInput, _maximumHorizontalRotation * _horizontalInput, 0);
-
 
             float height = _bobbingHeightRange * Mathf.PerlinNoise(Time.time * _xScaleSpeed, 0.0f);
             Vector3 pos = transform.position;
