@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1087518346655501655}
   - component: {fileID: 7507008211127491153}
   - component: {fileID: 303217268842294811}
+  - component: {fileID: 5799192629846861165}
   m_Layer: 0
   m_Name: Cylinder (1)
   m_TagString: Untagged
@@ -98,6 +99,19 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
+--- !u!114 &5799192629846861165
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1755824584005039109}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d3a2dc01a2294c4fbed4882a2530183, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _damage: 25
 --- !u!1 &2287593822560090477
 GameObject:
   m_ObjectHideFlags: 0
@@ -110,6 +124,7 @@ GameObject:
   - component: {fileID: 6285772849417379713}
   - component: {fileID: 7050491518695104056}
   - component: {fileID: 6116411149239069634}
+  - component: {fileID: 1327732912403282897}
   m_Layer: 0
   m_Name: Cylinder
   m_TagString: Untagged
@@ -196,6 +211,19 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
+--- !u!114 &1327732912403282897
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2287593822560090477}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d3a2dc01a2294c4fbed4882a2530183, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _damage: 25
 --- !u!1 &3092698734827226542
 GameObject:
   m_ObjectHideFlags: 0
@@ -258,6 +286,7 @@ GameObject:
   - component: {fileID: 7349555302742026880}
   - component: {fileID: 1159926651825327034}
   - component: {fileID: 8939506541457782334}
+  - component: {fileID: 6121099764067188849}
   m_Layer: 0
   m_Name: Cylinder (2)
   m_TagString: Untagged
@@ -344,6 +373,19 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
+--- !u!114 &6121099764067188849
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5020970432173812663}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d3a2dc01a2294c4fbed4882a2530183, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _damage: 25
 --- !u!1001 &7209836387619043773
 PrefabInstance:
   m_ObjectHideFlags: 0

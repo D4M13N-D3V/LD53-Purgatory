@@ -4,28 +4,20 @@ using UnityEngine;
 
 namespace Purgatory.Impl
 {
-    public class Projectile : MonoBehaviour, IProjectile
+    public class Obstacle : MonoBehaviour, IObstacle
     {
         [SerializeField]
         private int _damage = 1;
-        [SerializeField]
-        private float _speed = 1.5f;
 
         public int Damage => _damage;
-        public float Speed => _speed;
 
         public void Impact()
         {
-            Debug.Log($"Projectile {gameObject.name} impacted");
-            Destroy(this.gameObject);
+            Debug.Log("Obstacle impacted player.");
+            Destroy(gameObject);
         }
 
-        public void Launch()
-        {
-            Debug.Log($"Projectile {gameObject.name} launched");
-        }
-
-        // Start is called before the first frame update
+        // Use this for initialization
         void Start()
         {
 
@@ -34,13 +26,14 @@ namespace Purgatory.Impl
         // Update is called once per frame
         void Update()
         {
-            transform.position += transform.forward * Time.deltaTime * _speed;
+
         }
 
         private void OnCollisionEnter(Collision collision)
         {
+
             ITargetable target = collision.gameObject.GetComponent<Targetable>();
-            if(target==null)
+            if (target == null)
                 target = collision.gameObject.GetComponent<TargetableAttacker>();
             target.Damage(Damage);
             Impact();
