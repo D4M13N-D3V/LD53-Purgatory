@@ -24,7 +24,10 @@ namespace Purgatory.Enemy
         {
             Collider[] hitColliders = Physics.OverlapSphere(_transform.position, AttackRange);
             var target = hitColliders.Where(x => x.GetComponent<PlayerController>() != null).OrderBy(x => Guid.NewGuid()).FirstOrDefault();
-            Debug.Log($"Enemy {this.gameObject.name} targeting player");
+            
+            if(target!=null)
+                Debug.Log($"Enemy {this.gameObject.name} targeting player");
+
             return target?.gameObject;
         }
 

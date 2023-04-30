@@ -27,7 +27,10 @@ namespace Purgatory.Player
         {
             Collider[] hitColliders = Physics.OverlapSphere(_transform.position, AttackRange);
             var target = hitColliders.Where(x=> x.GetComponent<EnemyController>()!=null).OrderBy(x => Guid.NewGuid()).FirstOrDefault();
-            Debug.Log($"Lantern targeting gameobject {target.gameObject.name}");
+
+            if (target != null)
+                Debug.Log($"Lantern targeting gameobject {target.gameObject.name}");
+
             return target?.gameObject;
         }
     }
