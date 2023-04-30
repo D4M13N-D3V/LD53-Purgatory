@@ -10,10 +10,6 @@ namespace Purgatory.Player
 {
     public class LanternController : Attacker
     {
-        private ITargetable _target = null;
-        private Transform _targetTransform;
-
-
         // Update is called once per frame
         void Update()
         {
