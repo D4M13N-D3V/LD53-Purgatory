@@ -22,23 +22,26 @@ namespace Purgatory.Levels
 		[SerializeField] private int lookAheadCount = 2;
 		[SerializeField] private Environment[] environments;
 		[SerializeField] private int[] environmentLengths;
+		[SerializeField] private EnemyData[] enemies;
 		[SerializeField] private List<SegmentWeight> segmentWeights;
 		[SerializeField] private LevelSegment[] segments;
 		[SerializeField] private LevelSegment fallbackSegment;
 		
 		private int currentEnvironment = 0;
 		private int currentEnvironmentSegment = 0;
-		private GameObject[] segmentInstances;
+		private LevelSegment[] segmentInstances;
 		private float scrollDelta = 0f;
-
+		private Vector3[] enemySpawnBuffer = new Vector3[16];
 		private LevelSegmentCollection segmentCollection;
+		private EnemyCollection enemyCollection;
 
 		private async void Start()
 		{
 			scrollDelta -= levelStartOffset;
-			segmentInstances = new GameObject[2 + lookAheadCount];
+			segmentInstances = new LevelSegment[2 + lookAheadCount];
 			
 			segmentCollection = new LevelSegmentCollection(segments);
+			enemyCollection = new EnemyCollection(enemies.ToArray());
 
 			for (int i = 0; i < 2 + lookAheadCount; i++)
 			{
@@ -140,13 +143,35 @@ namespace Purgatory.Levels
 				segmentInstances[i - 1] = segmentInstances[i];
 			}
 
-			segmentInstances[^1] = instance;
+			segmentInstances[^1] = instance.GetComponent<LevelSegment>();
 
+			SpawnEnemiesForSegment(segmentInstances[^1]);
+			
 			currentEnvironmentSegment++;
 			if (currentEnvironmentSegment > environmentLengths[currentEnvironment])
 			{
 				currentEnvironment++;
 				currentEnvironmentSegment = 0;
+			}
+		}
+
+		private void SpawnEnemiesForSegment(LevelSegment instance)
+		{
+			if (!instance || instance.MaximumEnemies == 0)
+				return;
+			
+			var enemyList = enemyCollection.GetEnemies(instance.Environment);
+			if (enemyList.Count == 0)
+				return;
+			int count = instance.GetEnemySpawns(ref enemySpawnBuffer);
+			for (int i = 0; i < count; i++)
+			{
+				var enemy = enemyList[Random.Range(0, enemyList.Count - 1)];
+				var prefab = enemy.Prefab;
+				var pos = enemySpawnBuffer[i];
+				
+				var enemyInstance = Instantiate(prefab, instance.transform.position + pos, Quaternion.identity, instance.transform);
+				
 			}
 		}
 		
@@ -156,6 +181,5 @@ namespace Purgatory.Levels
 			public SegmentType Type;
 			public float Weight;
 		}
-
 	}
 }
