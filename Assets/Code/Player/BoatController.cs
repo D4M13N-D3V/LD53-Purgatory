@@ -99,7 +99,7 @@ namespace Purgatory.Player
 
             _horizontalVelocity *= _deceleration;
 
-            _transform.localEulerAngles = new Vector3(_transform.localEulerAngles.x, _transform.localEulerAngles.y, _maximumHorizontalRotation * _horizontalInput*-1);
+            _transform.localEulerAngles = new Vector3(_transform.localEulerAngles.x, _transform.localEulerAngles.y, Mathf.LerpAngle(transform.localEulerAngles.z, _maximumHorizontalRotation * _horizontalInput * -1, Time.deltaTime*2));
 
         }
     }
