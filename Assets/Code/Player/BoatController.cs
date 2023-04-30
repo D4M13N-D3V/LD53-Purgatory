@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace Purgatory.Player
 {
@@ -21,30 +23,75 @@ namespace Purgatory.Player
         [SerializeField]
         private float _maximumHorizontalRotation = 6f;
         [SerializeField]
-        private float _bobbingHeightRange = 1.0f;
+        private float _dashMultiplier = 3f;
+        [SerializeField]
+        private float _dashLength = 1f;
+        [SerializeField]
+        private float _dashCooldown = 1f;
         [SerializeField]
         [Tooltip("Distance covered per second along X axis of Perlin plane.")]
         float _xScaleSpeed = 1.0f;
+        [SerializeField] 
+        private GameObject _waveDisruptionObject;
 
         private float _originalY = 0;
         private Transform _transform;
         private float _horizontalInput = 0f;
         private float _horizontalVelocity = 0f;
 
+        private float _originalSpeed;
+
+        [SerializeField]
+        public InputActionAsset actions;
+        private InputAction _moveAction;
+
+        private bool _dashing = false;
+
         void Start()
         {
             _transform = GetComponent<Transform>();
             _originalY = _transform.position.y;
+            _moveAction = actions.FindActionMap("gameplay").FindAction("move", true);
+            actions.FindActionMap("gameplay").FindAction("dash").performed += Dash;
+            StartCoroutine(UpdateHud());
+            _originalSpeed = _speed;
+        }
+
+        private IEnumerator UpdateHud()
+        {
+            HudController.instance.UpdateBoatStats(_speed, _originalSpeed*_dashMultiplier, _dashLength, !_dashing, _dashCooldown);
+            yield return new WaitForSeconds(0.1f);
+            StartCoroutine(UpdateHud());
+        }
+        private void Dash(InputAction.CallbackContext obj)
+        {
+            if(!_dashing)
+                StartCoroutine(DashCoroutine());
+        }
+
+        IEnumerator DashCoroutine()
+        {
+            _dashing = true;
+            _originalSpeed = _speed;
+            _speed = _speed * _dashMultiplier;
+            yield return new WaitForSeconds(_dashLength);
+            _speed = _originalSpeed;
+            yield return new WaitForSeconds(_dashCooldown-_dashLength);
+            _dashing = false;
         }
 
         void Update()
         {
-            _horizontalInput = Input.GetAxis("Horizontal") * -1;
+            _horizontalInput = _moveAction.ReadValue<Vector2>().x * -1;
+            Debug.Log(_moveAction.ReadValue<Vector2>());
         }
 
         private void FixedUpdate()
         {
             _horizontalVelocity += _speed * _horizontalInput * Time.fixedDeltaTime;
+
+
+            _waveDisruptionObject.transform.localPosition = new Vector3(-0.75f+(_horizontalInput*2), _waveDisruptionObject.transform.localPosition.y, _waveDisruptionObject.transform.localPosition.z);
 
             if ((_horizontalVelocity > 0 && transform.position.x < _maximumLeft) || (_horizontalVelocity < 0 && transform.position.x > _minimumLeft))
                 _transform.position += new Vector3(_horizontalVelocity, 0, 0);
@@ -53,10 +100,6 @@ namespace Purgatory.Player
 
             _transform.localEulerAngles = new Vector3(_transform.localEulerAngles.x, _transform.localEulerAngles.y, _maximumHorizontalRotation * _horizontalInput*-1);
 
-            float height = _bobbingHeightRange * Mathf.PerlinNoise(Time.time * _xScaleSpeed, 0.0f);
-            Vector3 pos = transform.position;
-            pos.y = _originalY + height;
-            transform.position = pos;
         }
     }
 

@@ -17,6 +17,18 @@ namespace Purgatory.Player
 
         }
 
+        private void Awake()
+        {
+            StartCoroutine(UpdateHud());
+        }
+
+        private IEnumerator UpdateHud()
+        {
+            HudController.instance.UpdatePlayerStats(AttackInterval, AttackRange);
+            yield return new WaitForSeconds(0.1f);
+            StartCoroutine(UpdateHud());
+        }
+
 
         public override void LaunchProjectile()
         {
