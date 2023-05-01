@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: ImpactExplosion
   m_EditorClassIdentifier: 
   appliesToChildren: 1
-  prefab: {fileID: 0}
+  prefab: {fileID: 6348502658777865545, guid: a4559031717cd4e419ae756db2f58c3e, type: 3}

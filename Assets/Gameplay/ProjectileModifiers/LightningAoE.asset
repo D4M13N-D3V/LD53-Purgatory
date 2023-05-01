@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb6d31619a8740659a4f41c9d52b47e6, type: 3}
   m_Name: LightningAoE
   m_EditorClassIdentifier: 
-  Radius: 3
-  Damage: 2
-  AttackRate: 1
-  prefab: {fileID: 0}
+  Radius: 6
+  Damage: 1
+  AttackRate: 0.1
+  childRadiusDivider: 2
+  childDamageDivider: 2
+  prefab: {fileID: 5885933331027135771, guid: 7296979f7da21d34683bec01108dc48c, type: 3}
