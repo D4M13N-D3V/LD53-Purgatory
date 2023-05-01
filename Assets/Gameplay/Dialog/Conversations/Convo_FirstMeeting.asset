@@ -18,7 +18,7 @@ MonoBehaviour:
   - LeftEmotion: 1
     RightEmotion: 1
     Speaker: 0
-    Text: Be safe!
+    Text: Welcome!
     NextEntryDelayMS: 1000
     Effects: 
   - LeftEmotion: 5

@@ -6,7 +6,9 @@ namespace Purgatory.Impl
 {
     public abstract class Targetable : MonoBehaviour, ITargetable
     {
+        [SerializeField]
         internal int _currentHealth = 1;
+        [SerializeField]
         internal int _maximumHealth = 1;
         internal int _minimumHealth = 0;
 

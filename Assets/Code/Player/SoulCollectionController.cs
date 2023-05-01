@@ -9,10 +9,10 @@ namespace Purgatory.Player
 
         public SoulCollectionController()
         {
-            if (instance == null)
-                instance = this;
+            instance = this;
         }
 
+        public float SoulRetentionRate = 0.8f;
         [SerializeField]
         public int Souls = 0;
         [SerializeField]
@@ -31,9 +31,13 @@ namespace Purgatory.Player
             else
                 Souls = 0;
         }
+        private void Start()
+        {
+            Souls = GameManager.instance.SoulAmount;
+        }
 
-		#if UNITY_EDITOR
-		private void OnDrawGizmos()
+#if UNITY_EDITOR
+        private void OnDrawGizmos()
         {
             UnityEditor.Handles.color = Color.yellow;
             UnityEditor.Handles.DrawWireDisc(GetComponent<Transform>().position - Vector3.down, Vector3.up, CollectionRadius);

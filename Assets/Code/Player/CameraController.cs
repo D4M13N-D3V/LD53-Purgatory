@@ -10,8 +10,8 @@ namespace Purgatory.Player
 
         public CameraController()
         {
-            if(instance==null)  
-                instance = this;
+            instance = this;
+
         }
 
         [SerializeField]

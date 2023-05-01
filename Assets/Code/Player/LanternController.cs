@@ -27,8 +27,7 @@ namespace Purgatory.Player
 
         public LanternController()
         {
-            if(instance==null)
-                instance = this;
+            instance = this;
         }
 
         public void SetAvailableProjectiles(List<GameObject> projectiles)

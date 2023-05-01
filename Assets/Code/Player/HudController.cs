@@ -21,11 +21,13 @@ namespace Purgatory.Player
         public TextMeshProUGUI DashCooldownText;
         public TextMeshProUGUI DecelerationCooldownText;
         public TextMeshProUGUI CurrentProjectileText;
+        public TextMeshProUGUI SoulConversionText;
+        public TextMeshProUGUI SoulRetentionText;
+        public TextMeshProUGUI CurrencyText;
 
 
         public HudController()
         {
-            if(instance==null)
                 instance = this;
         }
 
@@ -36,7 +38,6 @@ namespace Purgatory.Player
 
         public void Damage(int amount)
         {
-            GameManager.instance.SaveGame();
             Debug.Log("Obstacle damage recieved on HUD.");
         }
 
@@ -64,7 +65,10 @@ namespace Purgatory.Player
             DashLengthText.text = $"DASH LENGTH : {BoatController.instance.DashLength}";
             DashCooldownText.text = $"DASH COOLDOWN : {BoatController.instance.DashCooldown}";
             DecelerationCooldownText.text = $"DECELERATION : {BoatController.instance.Deceleration}";
-            if(_currentProjectile!=null)
+            SoulRetentionText.text = $"SOUL RETENTION : {SoulCollectionController.instance.SoulRetentionRate}x";
+            SoulConversionText.text = $"SOUL CONVERSION : {CurrencyController.Instance.SoulConversionRate*100}%";
+            CurrencyText.text = $"CURRENCY : {CurrencyController.Instance.CurrencyAmount}";
+            if (_currentProjectile!=null)
                 CurrentProjectileText.text = $"CURRENT PROJECTILE : {_currentProjectile?.gameObject.name}";
         }
     }

@@ -7,5 +7,6 @@ namespace Purgatory.Levels.Data
 		Dock,
 		Transition,
 		Cinematic,
+		End
 	}
 }

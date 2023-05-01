@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Purgatory.Enums;
 using Purgatory.Levels.Data;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Environment = Purgatory.Levels.Data.Environment;
 using Random = UnityEngine.Random;
 
@@ -28,7 +28,7 @@ namespace Purgatory.Levels
 		[SerializeField] private LevelSegment[] segments;
 		[SerializeField] private LevelSegment fallbackSegment;
 		
-		private int currentEnvironment = 0;
+		public int currentEnvironment = 0;
 		private int currentEnvironmentSegment = 0;
 		private LevelSegment[] segmentInstances;
 		private float scrollDelta = 0f;
@@ -38,13 +38,11 @@ namespace Purgatory.Levels
 
 		private async void Start()
 		{
-			GameManager.instance.SetGameState(EnumGameState.GAME);
 			scrollDelta -= levelStartOffset;
 			segmentInstances = new LevelSegment[2 + lookAheadCount];
-			
+			currentEnvironment = GameManager.instance.CurrentLevel;
 			segmentCollection = new LevelSegmentCollection(segments);
 			enemyCollection = new EnemyCollection(enemies.ToArray());
-
 			for (int i = 0; i < 2 + lookAheadCount; i++)
 			{
 				await CreateNextSegment();
@@ -86,10 +84,14 @@ namespace Purgatory.Levels
 
 		private SegmentType GetNextSegmentType()
 		{
+
 			// If this is the last segment in this environment, return a transition segment
 			if (currentEnvironmentSegment == environmentLengths[currentEnvironment] - 1)
 			{
-				return SegmentType.Transition;
+				if(environments.Length == currentEnvironment)
+					return SegmentType.End;
+				else
+					return SegmentType.Transition;
 			}
 			
 			// If this is one of the first two segments in this environment, return a cinematic segment
@@ -152,7 +154,6 @@ namespace Purgatory.Levels
 			currentEnvironmentSegment++;
 			if (currentEnvironmentSegment > environmentLengths[currentEnvironment])
 			{
-				currentEnvironment++;
 				currentEnvironmentSegment = 0;
 			}
 		}

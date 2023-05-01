@@ -17,18 +17,20 @@ namespace Purgatory.Player
 
         public PlayerController()
         {
-            if (instance == null)
-                instance = this;
+            instance = this;
+
         }
 
         public override void DeathLogic()
         {
+            GameManager.instance.GameOver();
         }
 
         void Start()
         {
             onDamaged += HudController.instance.Damage;
             onHealed += HudController.instance.Heal;
+            Upgrades.UpgradeController.instance.RefreshStats();
         }
 
         void Update()

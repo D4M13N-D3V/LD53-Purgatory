@@ -35,6 +35,9 @@ namespace Purgatory.Dialog
 		{
 			GameManager.instance.SetGameState(EnumGameState.DIALOGUE);
 			await BeginConversation(TEMP_CONVO);
+
+			if(loadScene)
+				GameManager.instance.LoadScene(sceneToLoad);
 		}
 
 
@@ -46,7 +49,6 @@ namespace Purgatory.Dialog
 				await DoEntry(conversation, conversation.Entries[idx]);
 				idx++;
 			}
-			SceneManager.LoadScene(sceneToLoad, LoadSceneMode.Single);
 		}
 
 		public async Task DoEntry(Conversation conversation, Conversation.DialogEntry entry)

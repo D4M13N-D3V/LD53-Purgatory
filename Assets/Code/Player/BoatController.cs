@@ -14,8 +14,7 @@ namespace Purgatory.Player
 
         public BoatController()
         {
-            if(instance==null)
-                instance = this;
+             instance = this;
         }
 
         [SerializeField]
