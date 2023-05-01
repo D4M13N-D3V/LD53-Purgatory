@@ -78,13 +78,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc003d49a53f45d7a0096949503dd75d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  VisualTransform: {fileID: 6389631678836819450}
+  MainVisuals: {fileID: 4114432225380733501}
+  ExtraVisuals: {fileID: 6389631678836819450}
   IsChild: 0
   Stats:
     Damage: 10
     IsHoming: 0
     PierceCount: 0
-    BounceCount: 0
+    BounceCount: 4
     Speed: 20
     HomingRange: 5
     HomingStrength: 1
@@ -140,15 +141,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4633245406131702, guid: 96c17464079df6346a614bfd615684e2, type: 3}
       propertyPath: m_LocalScale.x
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4633245406131702, guid: 96c17464079df6346a614bfd615684e2, type: 3}
       propertyPath: m_LocalScale.y
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4633245406131702, guid: 96c17464079df6346a614bfd615684e2, type: 3}
       propertyPath: m_LocalScale.z
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4633245406131702, guid: 96c17464079df6346a614bfd615684e2, type: 3}
       propertyPath: m_LocalPosition.x
