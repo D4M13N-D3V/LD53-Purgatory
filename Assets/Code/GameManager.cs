@@ -87,7 +87,7 @@ public class GameManager : MonoBehaviour
         _playerSave.Upgrades = StartingUpgrades;
         _playerSave.Souls = 0;
         _playerSave.CurrencyAmount = 0;
-        _playerSave.CurrentLevel = CurrentLevel;
+        _playerSave.CurrentLevel = 0;
         UpgradeController.instance.Upgrades = _playerSave.Upgrades;
         LoadScene(IntroductionSceneName);
     }
