@@ -26,7 +26,7 @@ namespace Purgatory.Player.Projectiles
 
 		protected virtual void OnProjectileRegistered(ProjectileBehavior projectile) { }
 		protected virtual void OnProjectileRemoved(ProjectileBehavior projectile) { }
-		protected virtual void Update() {}
+		public virtual void Update() {}
 		
 	}
 }

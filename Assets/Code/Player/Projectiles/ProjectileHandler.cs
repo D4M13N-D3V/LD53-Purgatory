@@ -65,6 +65,11 @@ namespace Purgatory.Player.Projectiles
 					break;
 				}
 			}
+			
+			foreach (var modifier in Modifiers)
+			{
+				modifier.Update();
+			}
 		}
 
 		private void CheckForEnemies()
