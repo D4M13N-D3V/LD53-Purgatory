@@ -11,8 +11,7 @@ GameObject:
   - component: {fileID: 758927670628946743}
   - component: {fileID: 758927670628946730}
   - component: {fileID: 758927670628946741}
-  - component: {fileID: 758927670628946740}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -84,19 +83,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &758927670628946740
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 758927670628946742}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &758927670937107938
 GameObject:
   m_ObjectHideFlags: 0
@@ -113,7 +99,7 @@ GameObject:
   - component: {fileID: 758927670937107940}
   - component: {fileID: -6180849270466113815}
   - component: {fileID: -3055485229734351661}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: RangedEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -213,10 +199,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _projectile: {fileID: 8640820544390293194, guid: 1f4e2ba77fdc1fd44a41cc9d559eda80, type: 3}
   _attackIntervalInSeconds: 3.2
-  _currentHealth: 200000
+  _currentHealth: 40
   _hidden: 0
   _distanceToShowSelf: 10
-  _maximumHealth: 200000
+  _maximumHealth: 40
   _minimumHealth: 0
   _attackRange: 45
   _aimSpeed: 1

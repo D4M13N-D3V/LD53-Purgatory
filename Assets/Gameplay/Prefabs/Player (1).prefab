@@ -1326,6 +1326,59 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!1 &3408469301299047
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5397000289944623271}
+  - component: {fileID: 3343774814377547374}
+  m_Layer: 0
+  m_Name: ProjectileHandler
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5397000289944623271
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3408469301299047}
+  m_LocalRotation: {x: -0, y: -1, z: -0, w: 0}
+  m_LocalPosition: {x: -0.75000006, y: 1.7, z: 10.05}
+  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4300754432355367816}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3343774814377547374
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3408469301299047}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a3a1baa7859439ba21a239c6832c602, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Modifiers: []
+  projectilePrefab: {fileID: 8200497281472281888, guid: 212a901204ad9064b9b28085507cddd9, type: 3}
+  enemyLayerMask:
+    serializedVersion: 2
+    m_Bits: 64
+  checkCenter: {x: 0, y: 15, z: -30}
+  checkExtents: {x: 30, y: 30, z: 15}
+  attackCooldown: 1
+  projectileSpawnOffset: {x: 0, y: 0, z: 0}
 --- !u!1 &1528781275303101145
 GameObject:
   m_ObjectHideFlags: 0
@@ -1583,6 +1636,7 @@ Transform:
   - {fileID: 4300754433303646069}
   - {fileID: 1727778820678368590}
   - {fileID: 2097833617}
+  - {fileID: 5397000289944623271}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
@@ -1602,6 +1656,7 @@ MonoBehaviour:
   _maximumLeft: 10
   _yawMaxRotation: 9
   _maximumHorizontalRotation: 14
+  Dashing: 0
   Speed: 1
   Deceleration: 0.9
   DashMultiplier: 3
@@ -1638,7 +1693,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b1f43fba3feb714c9f6ffc5c96d6ec4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _soulCount: 0
+  Souls: 0
   CollectionRadius: 10
 --- !u!65 &1661039352
 BoxCollider:
@@ -1846,12 +1901,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4300754432421549954}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 71f58def06f8be441ab97c2ca80a931e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _hidden: 0
+  AvailableProjectiles: []
   actions: {fileID: 0}
   _currentProjectile: {fileID: 0}
 --- !u!1 &4300754433303646070
