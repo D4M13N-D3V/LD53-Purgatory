@@ -78,6 +78,11 @@ namespace Purgatory.Enemy
         // Update is called once per frame
         void Update()
         {
+            // Hack to get rushers to die after passing the player.
+            if(this.transform.position.z >= -3) {
+                GameObject.Destroy(this.gameObject);
+            }
+
             if (_targetTransform != null)
             {
                 Quaternion _lookRotation = Quaternion.LookRotation((_targetTransform.position - transform.position));
