@@ -66,8 +66,8 @@ namespace Purgatory.Player
             DashLengthText.text = $"DASH LENGTH : {BoatController.instance.DashLength}";
             DashCooldownText.text = $"DASH COOLDOWN : {BoatController.instance.DashCooldown}";
             DecelerationCooldownText.text = $"DECELERATION : {BoatController.instance.Deceleration}";
-            SoulRetentionText.text = $"SOUL RETENTION : {SoulCollectionController.instance.SoulRetentionRate}x";
-            SoulConversionText.text = $"SOUL CONVERSION : {CurrencyController.Instance.SoulConversionRate*100}%";
+            SoulRetentionText.text = $"SOUL RETENTION : {SoulCollectionController.instance.SoulRetentionRate*100}%";
+            SoulConversionText.text = $"SOUL CONVERSION : {CurrencyController.Instance.SoulConversionRate}x";
             CurrencyText.text = $"CURRENCY : {CurrencyController.Instance.CurrencyAmount}";
             if (_currentProjectile!=null)
                 CurrentProjectileText.text = $"CURRENT PROJECTILE : {ProjectileHandler.instance._currentProjectile.name}";

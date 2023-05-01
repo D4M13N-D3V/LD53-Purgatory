@@ -58,7 +58,6 @@ public class GameManager : MonoBehaviour
     {
         SoulAmount = SoulCollectionController.instance.Souls;
         CurrencyAmount = CurrencyController.Instance.CurrencyAmount;
-        UpgradeController.instance.RefreshStats();
     }
 
     public void GameOver()
@@ -89,6 +88,12 @@ public class GameManager : MonoBehaviour
         _playerSave.CurrencyAmount = 0;
         _playerSave.CurrentLevel = 0;
         UpgradeController.instance.Upgrades = _playerSave.Upgrades;
+        LoadScene(IntroductionSceneName);
+    }
+
+    public void NextRun()
+    {
+        CurrentLevel = 0;
         LoadScene(IntroductionSceneName);
     }
 

@@ -42,6 +42,7 @@ namespace Purgatory.Player
 
         private void Start()
         {
+            GameManager.instance.CurrentLevel++;
             ShopInterface.SetActive(false);
             _currentPool = Upgrades;
         }

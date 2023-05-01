@@ -23,7 +23,6 @@ public class SceneTransition : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
         {
-            GameManager.instance.CurrentLevel++;
             GameManager.instance.CompleteLevel();
             GameManager.instance.LoadScene(SceneName);
         }

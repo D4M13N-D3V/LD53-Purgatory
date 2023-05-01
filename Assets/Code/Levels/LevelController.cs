@@ -88,7 +88,7 @@ namespace Purgatory.Levels
 			// If this is the last segment in this environment, return a transition segment
 			if (currentEnvironmentSegment == environmentLengths[currentEnvironment] - 1)
 			{
-				if(environments.Length == currentEnvironment)
+				if(environments.Length-1 == currentEnvironment)
 					return SegmentType.End;
 				else
 					return SegmentType.Transition;
