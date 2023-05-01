@@ -6,12 +6,12 @@ namespace Purgatory.Interfaces
     public interface IAttacker
     {
         bool Hidden { get; }
-        float DistanceToShowSelf { get; set; }
-        float AttackInterval { get; set;  }
-        float AttackRange { get; set; }
-        float AimSpeed { get; set; }
+        float DistanceToShowSelf { get; }
+        float AttackInterval { get;  }
+        float AttackRange { get; }
+        float AimSpeed { get; }
         GameObject Target { get; }
-        GameObject Projectile { get; set; }
+        GameObject Projectile { get; }
         void LaunchProjectile();
         GameObject GetTarget();
     }

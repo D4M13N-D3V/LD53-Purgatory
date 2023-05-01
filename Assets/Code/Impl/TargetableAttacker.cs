@@ -9,19 +9,22 @@ namespace Purgatory.Impl
         [SerializeField]
         private GameObject _projectile = null;
         [SerializeField]
+        private float _attackIntervalInSeconds = 3f;
+        [SerializeField]
         private int _currentHealth;
         [SerializeField]
         private bool _hidden = false;
         [SerializeField]
+        private float _distanceToShowSelf = 10f;
+        [SerializeField]
         private int _maximumHealth = 100;
         [SerializeField]
         private int _minimumHealth = 0;
+        [SerializeField]
+        private float _attackRange = 10;
+        [SerializeField]
+        internal float _aimSpeed = 5f;
 
-        public float DistanceToShowSelf { get; set; }
-        public GameObject Projectile { get; set; }
-        public float AttackInterval { get; set; }
-        public float AttackRange { get; set; }
-        public float AimSpeed { get; set; }
 
         internal ITargetable _target = null;
         [SerializeField]
@@ -30,6 +33,11 @@ namespace Purgatory.Impl
         public int CurrentHP { get => _currentHealth; }
         public bool Alive { get => _currentHealth <= _minimumHealth; }
         public bool Hidden => _hidden;
+        public float AimSpeed => _aimSpeed;
+        public float DistanceToShowSelf => _distanceToShowSelf;
+        public float AttackInterval => _attackIntervalInSeconds;
+        public float AttackRange => _attackRange;
+        public GameObject Projectile => _projectile;
         public GameObject Target => _targetTransform.gameObject;
 
         delegate void OnDamaged(int amount);
@@ -49,7 +57,7 @@ namespace Purgatory.Impl
         private void OnDrawGizmos()
         {
             UnityEditor.Handles.color = Color.magenta;
-            UnityEditor.Handles.DrawWireDisc(GetComponent<Transform>().position - Vector3.down * -2, Vector3.up, AttackRange);
+            UnityEditor.Handles.DrawWireDisc(GetComponent<Transform>().position - Vector3.down * -2, Vector3.up, _attackRange);
         }
         private IEnumerator AttackCoroutine()
         {
@@ -65,7 +73,7 @@ namespace Purgatory.Impl
             if (_target != null)
                 LaunchProjectile();
 
-            yield return new WaitForSeconds(AttackInterval);
+            yield return new WaitForSeconds(_attackIntervalInSeconds);
 
             StartCoroutine(AttackCoroutine());
         }
