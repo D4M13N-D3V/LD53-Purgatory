@@ -81,7 +81,7 @@ public class GameManager : MonoBehaviour
 
     public void NextRun()
     {
-        CurrentLevel = 0;
+        CurrentLevel = 0;   
         LoadScene(IntroductionSceneName);
     }
 
