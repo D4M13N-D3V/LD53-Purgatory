@@ -125,7 +125,7 @@ MonoBehaviour:
   _aimSpeed: 10
   _targetTransform: {fileID: 0}
   _enemySoul: {fileID: 7942292204207380944, guid: 6f2a6efe87d320c4690b1d7baaf77f1a, type: 3}
-  _isRanged: 1
+  _isRanged: 0
   _isRusher: 1
   _speed: 5
   _turnSpeed: 4
