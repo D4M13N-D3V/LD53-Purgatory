@@ -33,7 +33,18 @@ namespace Purgatory.Impl
 
         private void OnCollisionEnter(Collision collision)
         {
-            ITargetable target = collision.gameObject.GetComponent<Targetable>();
+            ITargetable target = collision.gameObject.GetComponent<PlayerController>();
+
+            if (target != null)
+            {
+                CameraController.instance.CameraShake(GetComponent<CinemachineImpulseSource>());
+                PlayerController.instance?.Damage(Damage);
+                Impact();
+            }
+
+
+            if (target == null)
+                target = collision.gameObject.GetComponent<Targetable>();
             if (target == null)
                 target = collision.gameObject.GetComponent<TargetableAttacker>();
             if (target != null)
