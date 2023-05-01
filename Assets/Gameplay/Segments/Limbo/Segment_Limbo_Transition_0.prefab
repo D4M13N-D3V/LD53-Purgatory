@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7701036944101844905}
   - component: {fileID: 4891721849398459612}
   - component: {fileID: 2990876992300471770}
+  - component: {fileID: 4940864408420442808}
   m_Layer: 0
   m_Name: Scene_Transition
   m_TagString: Untagged
@@ -58,6 +59,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66c86d354a1ec3a4ab9b34057b0dbfe4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!54 &4940864408420442808
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1637251886247273165}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!1 &5629503636844466203
 GameObject:
   m_ObjectHideFlags: 0

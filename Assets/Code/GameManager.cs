@@ -83,10 +83,10 @@ public class GameManager : MonoBehaviour
     public void IncrementLevel()
     {
         if (CurrentEnviroment < 2)
-            {
-                CurrentEnviroment++;
-                musicManager.ChangeTrack(CurrentEnviroment);
-            }
+        {
+            CurrentEnviroment++;
+            musicManager.ChangeTrack(CurrentEnviroment);
+        }
     }
     
     public void NewGame()

@@ -49,12 +49,6 @@ namespace Purgatory.Player.Projectiles
 		
 		private void Update()
 		{
-			if (CurrentModifier == null)
-			{
-				CurrentModifier = AvailableModifiers.FirstOrDefault();
-				_currentModifierIndex = 0;
-			}
-
 
 			// Check for new enemies every N frames. Probably a micro-optimization but whatever.
 			colliderCheckFrame--;
