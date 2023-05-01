@@ -59,6 +59,7 @@ namespace Purgatory.Impl
             UnityEditor.Handles.color = Color.magenta;
             UnityEditor.Handles.DrawWireDisc(GetComponent<Transform>().position - Vector3.down * -2, Vector3.up, _attackRange);
         }
+
         private IEnumerator AttackCoroutine()
         {
             if (_target == null || _targetTransform == null || _targetTransform != null && Vector3.Distance(transform.position, _targetTransform.position) > AttackRange)
