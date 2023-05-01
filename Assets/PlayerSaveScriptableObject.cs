@@ -8,5 +8,6 @@ namespace Assets
     {
         public List<Purgatory.Upgrades.UpgradeSciptableObject> Upgrades = new List<Purgatory.Upgrades.UpgradeSciptableObject>();
         public int Souls = 0;
+        public string CurrentLevel = "Level 1";
     }
 }

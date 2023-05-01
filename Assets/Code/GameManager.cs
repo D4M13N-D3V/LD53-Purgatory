@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     public EnumGameState GameState = EnumGameState.MENU;
     public string IntroductionSceneName = "Intro_Dialogue";
     public string ReturnSceneName = "Return_Dialogue";
+    public string CurrentLevel = "Level_1";
     public List<Purgatory.Upgrades.UpgradeSciptableObject> StartingUpgrades = new List<UpgradeSciptableObject>();
     private PlayerSaveScriptableObject _playerSave;
 
@@ -49,9 +50,7 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator AutoSave()
     {
-        _playerSave.Upgrades = UpgradeController.instance.Upgrades;
-        _playerSave.Souls = SoulCollectionController.instance.Souls;
-        AssetDatabase.SaveAssets();
+        SaveGame();
         yield return new WaitForSeconds(5f);
         StartCoroutine(AutoSave());
     }
@@ -60,6 +59,7 @@ public class GameManager : MonoBehaviour
     {
         _playerSave.Upgrades = UpgradeController.instance.Upgrades;
         _playerSave.Souls = SoulCollectionController.instance.Souls;
+        _playerSave.CurrentLevel = SceneManager.GetActiveScene().name;
         AssetDatabase.SaveAssets();
     }
 
