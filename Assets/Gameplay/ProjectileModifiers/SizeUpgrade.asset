@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: SizeUpgrade
   m_EditorClassIdentifier: 
   Mod: 0
-  TargetStat: 0
-  Value: 0
+  TargetStat: 6
+  Value: 2

@@ -9,12 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb6d31619a8740659a4f41c9d52b47e6, type: 3}
-  m_Name: LightningAoE
+  m_Script: {fileID: 11500000, guid: ff1c1e761ef649e5bd0ad9bdded5f899, type: 3}
+  m_Name: ImpactExplosion
   m_EditorClassIdentifier: 
-  Radius: 6
-  Damage: 1
-  AttackRate: 0.1
-  childRadiusDivider: 2
-  childDamageDivider: 2
-  prefab: {fileID: 5885933331027135771, guid: 7296979f7da21d34683bec01108dc48c, type: 3}
+  appliesToChildren: 1
+  prefab: {fileID: 6348502658777865545, guid: a4559031717cd4e419ae756db2f58c3e, type: 3}
