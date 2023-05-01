@@ -6,28 +6,32 @@ namespace Purgatory.Impl
 {
     public abstract class Targetable : MonoBehaviour, ITargetable
     {
-        [SerializeField]
-        private int _currentHealth;
-        [SerializeField]
-        private int _maximumHealth = 1;
-        [SerializeField]
-        private int _minimumHealth = 0;
- 
-        public int CurrentHP { get => _currentHealth; }
+        internal int _currentHealth = 1;
+        internal int _maximumHealth = 1;
+        internal int _minimumHealth = 0;
+
+        public int CurrentHP => _currentHealth;
         public bool Alive { get => _currentHealth <= _minimumHealth; }
 
         public delegate void OnDamaged(int amount);
         public OnDamaged onDamaged;
-
+            
         public delegate void OnHealed(int amount);
         public OnHealed onHealed;
 
         public delegate void OnDeath();
         public OnDeath onDeath;
 
-        public Targetable() : base()
+
+        public void SetMaximumHealth(int amount)
         {
-            _currentHealth = _maximumHealth;
+            
+            _maximumHealth = amount;
+        }
+
+        public int GetMaximumHealth()
+        {
+            return _maximumHealth;
         }
 
         public void Damage(int amount)

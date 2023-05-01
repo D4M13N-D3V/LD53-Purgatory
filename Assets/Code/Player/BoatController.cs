@@ -10,10 +10,14 @@ namespace Purgatory.Player
     [RequireComponent(typeof(Transform))]
     public class BoatController : MonoBehaviour
     {
-        [SerializeField]
-        private float _speed = 1f;
-        [SerializeField]
-        private float _deceleration = 0.9f;
+        public static BoatController instance;
+
+        public BoatController()
+        {
+            if(instance==null)
+                instance = this;
+        }
+
         [SerializeField]
         private float _minimumLeft = -12f;
         [SerializeField]
@@ -22,15 +26,20 @@ namespace Purgatory.Player
         private float _yawMaxRotation = 9f;
         [SerializeField]
         private float _maximumHorizontalRotation = 6f;
+
+
         [SerializeField]
-        private float _dashMultiplier = 3f;
+        public float Speed = 1f;
         [SerializeField]
-        private float _dashLength = 1f;
+        public float Deceleration = 0.9f;
         [SerializeField]
-        private float _dashCooldown = 1f;
+        public float DashMultiplier = 3f;
         [SerializeField]
-        [Tooltip("Distance covered per second along X axis of Perlin plane.")]
-        float _xScaleSpeed = 1.0f;
+        public float DashLength = 1f;
+        [SerializeField]
+        public float DashCooldown = 1f;
+
+
         [SerializeField] 
         private GameObject _waveDisruptionObject;
 
@@ -54,12 +63,12 @@ namespace Purgatory.Player
             _moveAction = actions.FindActionMap("gameplay").FindAction("move", true);
             actions.FindActionMap("gameplay").FindAction("dash").performed += Dash;
             StartCoroutine(UpdateHud());
-            _originalSpeed = _speed;
+            _originalSpeed = Speed;
         }
 
         private IEnumerator UpdateHud()
         {
-            HudController.instance.UpdateBoatStats(_speed, _originalSpeed*_dashMultiplier, _dashLength, !_dashing, _dashCooldown);
+            HudController.instance.UpdateBoatStats(Speed, _originalSpeed*DashMultiplier, DashLength, !_dashing, DashCooldown, Deceleration);
             yield return new WaitForSeconds(0.1f);
             StartCoroutine(UpdateHud());
         }
@@ -72,11 +81,11 @@ namespace Purgatory.Player
         IEnumerator DashCoroutine()
         {
             _dashing = true;
-            _originalSpeed = _speed;
-            _speed = _speed * _dashMultiplier;
-            yield return new WaitForSeconds(_dashLength);
-            _speed = _originalSpeed;
-            yield return new WaitForSeconds(_dashCooldown-_dashLength);
+            _originalSpeed = Speed;
+            Speed = Speed * DashMultiplier;
+            yield return new WaitForSeconds(DashLength);
+            Speed = _originalSpeed;
+            yield return new WaitForSeconds(DashCooldown-DashLength);
             _dashing = false;
         }
 
@@ -90,14 +99,14 @@ namespace Purgatory.Player
         {            
             _waveDisruptionObject.transform.localPosition = new Vector3(Mathf.Lerp(_waveDisruptionObject.transform.localPosition.x,-0.75f+(_horizontalInput*2), Time.deltaTime * 2), _waveDisruptionObject.transform.localPosition.y, _waveDisruptionObject.transform.localPosition.z);
 
-            _horizontalVelocity += _speed * _horizontalInput * Time.fixedDeltaTime;
+            _horizontalVelocity += Speed * _horizontalInput * Time.fixedDeltaTime;
 
 
 
             if ((_horizontalVelocity > 0 && transform.position.x < _maximumLeft) || (_horizontalVelocity < 0 && transform.position.x > _minimumLeft))
                 _transform.position += new Vector3(_horizontalVelocity, 0, 0);
 
-            _horizontalVelocity *= _deceleration;
+            _horizontalVelocity *= Deceleration;
 
             _transform.localEulerAngles = new Vector3(_transform.localEulerAngles.x, _transform.localEulerAngles.y, Mathf.LerpAngle(transform.localEulerAngles.z, _maximumHorizontalRotation * _horizontalInput * -1, Time.deltaTime*2));
 

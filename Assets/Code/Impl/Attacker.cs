@@ -10,26 +10,16 @@ namespace Purgatory.Impl
     {
         [SerializeField]
         private bool _hidden = false;
-        [SerializeField]
-        private float _distanceToShowSelf = 10f;
-        [SerializeField]
-        private GameObject _projectile = null;
-        [SerializeField]
-        private float _attackIntervalInSeconds = 3f;
-        [SerializeField]
-        private float _attackRange = 10f;
-        [SerializeField]
-        internal float _aimSpeed = 5f;
+        public float DistanceToShowSelf { get; set; }
+        public GameObject Projectile { get; set; }
+        public float AttackInterval { get; set; }
+        public float AttackRange { get; set; }
+        public float AimSpeed { get; set; }
 
         internal ITargetable _target = null;
         internal Transform _targetTransform;
 
         public bool Hidden => _hidden;
-        public float DistanceToShowSelf => _distanceToShowSelf;
-        public float AttackInterval => _attackIntervalInSeconds;
-        public float AttackRange => _attackRange;
-        public float AimSpeed => _aimSpeed;
-        public GameObject Projectile => _projectile;
         public GameObject Target => _targetTransform.gameObject;
         public abstract void LaunchProjectile();
 
@@ -48,7 +38,7 @@ namespace Purgatory.Impl
             if(_target!=null)
                 LaunchProjectile();
 
-            yield return new WaitForSeconds(_attackIntervalInSeconds);
+            yield return new WaitForSeconds(AttackInterval);
 
             StartCoroutine(AttackCoroutine());
         }
@@ -60,7 +50,7 @@ namespace Purgatory.Impl
         private void OnDrawGizmos()
         {
             UnityEditor.Handles.color = Color.red;
-            UnityEditor.Handles.DrawWireDisc(GetComponent<Transform>().position - Vector3.down * -2, Vector3.up, _attackRange);
+            UnityEditor.Handles.DrawWireDisc(GetComponent<Transform>().position - Vector3.down * -2, Vector3.up, AttackRange);
         }
     }
 }

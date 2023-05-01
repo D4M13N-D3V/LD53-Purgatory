@@ -23,10 +23,9 @@ namespace Purgatory.Player
 
         private IEnumerator UpdateHud()
         {
-            HudController.instance.UpdateHealth(CurrentHP);
+            HudController.instance.UpdateHealth(instance.CurrentHP);
             yield return new WaitForSeconds(0.1f);
             StartCoroutine(UpdateHud());
-            onDamaged += HudController.instance.Damage;
         }
 
         public override void DeathLogic()
@@ -35,7 +34,8 @@ namespace Purgatory.Player
 
         void Start()
         {
-
+            onDamaged += HudController.instance.Damage;
+            onHealed += HudController.instance.Heal;
             StartCoroutine(UpdateHud());
         }
 

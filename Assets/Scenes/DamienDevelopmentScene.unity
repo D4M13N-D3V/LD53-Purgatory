@@ -855,6 +855,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1387031524 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4300754432355367826, guid: ca432e760dab5244fb7eb997a2d57eb5, type: 3}
+  m_PrefabInstance: {fileID: 4300754432875497851}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1489569039
 GameObject:
   m_ObjectHideFlags: 0
@@ -955,6 +960,31 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4300754432355367816, guid: ca432e760dab5244fb7eb997a2d57eb5, type: 3}
   m_PrefabInstance: {fileID: 4300754432875497851}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1661039357
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1387031524}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0dde0f8e33bd4a149a3e4486081a31e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Upgrades:
+  - {fileID: 11400000, guid: e3c016e5dc58456469125d015c698b6a, type: 2}
+--- !u!114 &2012752733 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3298341748166611286, guid: ca432e760dab5244fb7eb997a2d57eb5, type: 3}
+  m_PrefabInstance: {fileID: 4300754432875497851}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2064457218
 GameObject:
   m_ObjectHideFlags: 0
@@ -1077,10 +1107,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 251205155, guid: ca432e760dab5244fb7eb997a2d57eb5, type: 3}
+      propertyPath: m_Name
+      value: DashCooldown
+      objectReference: {fileID: 0}
+    - target: {fileID: 251205157, guid: ca432e760dab5244fb7eb997a2d57eb5, type: 3}
+      propertyPath: m_text
+      value: 'DASH COOLDOWN :'
+      objectReference: {fileID: 0}
     - target: {fileID: 1661039353, guid: ca432e760dab5244fb7eb997a2d57eb5, type: 3}
       propertyPath: Camera
       value: 
       objectReference: {fileID: 911088852}
+    - target: {fileID: 1661039356, guid: ca432e760dab5244fb7eb997a2d57eb5, type: 3}
+      propertyPath: DecelerationCooldownText
+      value: 
+      objectReference: {fileID: 2012752733}
     - target: {fileID: 4300754432355367816, guid: ca432e760dab5244fb7eb997a2d57eb5, type: 3}
       propertyPath: m_RootOrder
       value: 2

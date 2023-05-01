@@ -18,6 +18,8 @@ namespace Purgatory.Player
         private float _dashSpeed = 0f;
         private float _dashLength = 0f;
         private float _dashCooldown = 0f;
+        private float _deceleration = 0f;
+        private GameObject _currentProjectile;
 
         public TextMeshProUGUI HealthText;
         public TextMeshProUGUI SoulsText;
@@ -28,6 +30,8 @@ namespace Purgatory.Player
         public TextMeshProUGUI DashSpeedText;
         public TextMeshProUGUI DashLengthText;
         public TextMeshProUGUI DashCooldownText;
+        public TextMeshProUGUI DecelerationCooldownText;
+        public TextMeshProUGUI CurrentProjectileText;
 
 
         public HudController()
@@ -41,8 +45,9 @@ namespace Purgatory.Player
             _totalSouls = totalSouls;
         }
 
-        public void UpdateBoatStats(float speed, float dashSpeed, float dashLength, bool canDash, float dashCooldown)
+        public void UpdateBoatStats(float speed, float dashSpeed, float dashLength, bool canDash, float dashCooldown, float deceleration)
         {
+            _deceleration = deceleration;
             _currentSpeed = speed;
             _dashSpeed = dashSpeed;
             _canDash = canDash;
@@ -61,8 +66,9 @@ namespace Purgatory.Player
             _attackRange = attackRange;
         }
 
-        public void UpdatePlayerStats(float speed, float range)
+        public void UpdatePlayerStats(float speed, float range, GameObject currentProjectile)
         {
+            _currentProjectile = currentProjectile;
             _attackRange = range;
             _attackSpeed = speed;
         }
@@ -75,6 +81,11 @@ namespace Purgatory.Player
         public void Damage(int amount)
         {
             Debug.Log("Obstacle damage recieved on HUD.");
+        }
+
+        public void Heal(int amount)
+        {
+            Debug.Log("Healed recieved on HUD");
         }
 
         // Use this for initialization
@@ -95,6 +106,8 @@ namespace Purgatory.Player
             DashSpeedText.text = $"DASH SPEED : {_dashSpeed}";
             DashLengthText.text = $"DASH LENGTH : {_dashLength}";
             DashCooldownText.text = $"DASH COOLDOWN : {_dashCooldown}";
+            DecelerationCooldownText.text = $"DECELERATION : {_deceleration}";
+            CurrentProjectileText.text = $"CURRENT PROJECTILE : {_currentProjectile.gameObject.name}";
         }
     }
 }

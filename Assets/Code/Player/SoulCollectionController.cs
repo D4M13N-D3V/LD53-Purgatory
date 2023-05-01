@@ -5,10 +5,18 @@ namespace Purgatory.Player
 {
     public class SoulCollectionController : MonoBehaviour
     {
+        public static SoulCollectionController instance;
+
+        public SoulCollectionController()
+        {
+            if (instance == null)
+                instance = this;
+        }
+
         [SerializeField]
         private int _soulCount = 0;
         [SerializeField]
-        private float _collectionRadius = 10f;
+        public float CollectionRadius = 10f;
 
         private void Start()
         {
@@ -41,7 +49,7 @@ namespace Purgatory.Player
 		private void OnDrawGizmos()
         {
             UnityEditor.Handles.color = Color.yellow;
-            UnityEditor.Handles.DrawWireDisc(GetComponent<Transform>().position - Vector3.down, Vector3.up, _collectionRadius);
+            UnityEditor.Handles.DrawWireDisc(GetComponent<Transform>().position - Vector3.down, Vector3.up, CollectionRadius);
         }
 		#endif
     }

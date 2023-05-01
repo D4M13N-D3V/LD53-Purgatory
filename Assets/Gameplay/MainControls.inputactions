@@ -22,6 +22,24 @@
                     "processors": "",
                     "interactions": "Press",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "previous_projectile",
+                    "type": "Button",
+                    "id": "635fb300-7b2d-4eb7-9559-4ea9b2927c31",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "next_projectile",
+                    "type": "Button",
+                    "id": "6b52651c-dbca-4846-860a-7e8dd4c77106",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -61,7 +79,7 @@
                 {
                     "name": "up",
                     "id": "c51b56f7-3986-4f6f-85f4-ab8192c3d67a",
-                    "path": "<Keyboard>/w",
+                    "path": "<Keyboard>/k",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -72,7 +90,7 @@
                 {
                     "name": "down",
                     "id": "fb3ac9a1-3108-417f-9fe9-f8ffd8fbbdc2",
-                    "path": "<Keyboard>/s",
+                    "path": "<Keyboard>/k",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -116,7 +134,7 @@
                 {
                     "name": "up",
                     "id": "d2560f3f-cfb8-421f-9afc-d679f1efe13a",
-                    "path": "<Keyboard>/upArrow",
+                    "path": "<Keyboard>/k",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -127,7 +145,7 @@
                 {
                     "name": "down",
                     "id": "33e0bb0b-62b6-400f-b952-cfa27dde0169",
-                    "path": "<Keyboard>/downArrow",
+                    "path": "<Keyboard>/k",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -220,6 +238,50 @@
                     "processors": "",
                     "groups": "",
                     "action": "dash",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "49d7d6bf-edec-47ed-9ce2-b3308a25c008",
+                    "path": "<Keyboard>/w",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "previous_projectile",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "014486c6-7c08-4636-863d-00528b73ba33",
+                    "path": "<Keyboard>/upArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "previous_projectile",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e95bcb3c-2c54-4e3f-a41b-b232e5f183f0",
+                    "path": "<Keyboard>/s",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "next_projectile",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "cc46cc22-4e56-48bb-93f6-6b1088f010eb",
+                    "path": "<Keyboard>/downArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "next_projectile",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
