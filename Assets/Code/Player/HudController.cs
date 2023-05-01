@@ -8,17 +8,6 @@ namespace Purgatory.Player
     public class HudController : MonoBehaviour
     {
         public static HudController instance;
-
-        private int _totalSouls = 0;
-        private int _health = 0;
-        private bool _canDash = false;    
-        private float _attackSpeed = 0f;
-        private float _attackRange = 0f;
-        private float _currentSpeed = 0f;
-        private float _dashSpeed = 0f;
-        private float _dashLength = 0f;
-        private float _dashCooldown = 0f;
-        private float _deceleration = 0f;
         private GameObject _currentProjectile;
 
         public TextMeshProUGUI HealthText;
@@ -40,39 +29,6 @@ namespace Purgatory.Player
                 instance = this;
         }
 
-        public void UpdateSoulStats(int totalSouls)
-        {
-            _totalSouls = totalSouls;
-        }
-
-        public void UpdateBoatStats(float speed, float dashSpeed, float dashLength, bool canDash, float dashCooldown, float deceleration)
-        {
-            _deceleration = deceleration;
-            _currentSpeed = speed;
-            _dashSpeed = dashSpeed;
-            _canDash = canDash;
-            _dashLength = dashLength;
-            _dashCooldown = dashCooldown;
-        }
-
-        public void UpdateHealth(int health)
-        {
-            _health = health;
-        }
-
-        public void UpdateLanternStats(float attackRange, float attackSpeed)
-        {
-            _attackSpeed = attackSpeed;
-            _attackRange = attackRange;
-        }
-
-        public void UpdatePlayerStats(float speed, float range, GameObject currentProjectile)
-        {
-            _currentProjectile = currentProjectile;
-            _attackRange = range;
-            _attackSpeed = speed;
-        }
-
         public void SoulCollected()
         {
             Debug.Log("Soul collected recieved on HUD.");
@@ -80,6 +36,7 @@ namespace Purgatory.Player
 
         public void Damage(int amount)
         {
+            GameManager.instance.SaveGame();
             Debug.Log("Obstacle damage recieved on HUD.");
         }
 
@@ -97,17 +54,18 @@ namespace Purgatory.Player
         // Update is called once per frame
         void Update()
         {
-            HealthText.text = $"HEALTH : {_health}";
-            SoulsText.text = $"SOULS : {_totalSouls}";
-            DashStatusText.text = $"DASH ENABLED : {_canDash}";
-            AttackSpeedText.text = $"ATTACK SPEED : {_attackSpeed}";
-            AttackRangeText.text = $"ATTACK RANGE : {_attackRange}";
-            CurrentSpeedText.text = $"SPEED : {_currentSpeed}";
-            DashSpeedText.text = $"DASH SPEED : {_dashSpeed}";
-            DashLengthText.text = $"DASH LENGTH : {_dashLength}";
-            DashCooldownText.text = $"DASH COOLDOWN : {_dashCooldown}";
-            DecelerationCooldownText.text = $"DECELERATION : {_deceleration}";
-            CurrentProjectileText.text = $"CURRENT PROJECTILE : {_currentProjectile.gameObject.name}";
+            HealthText.text = $"HEALTH : {PlayerController.instance.CurrentHP}";
+            SoulsText.text = $"SOULS : {SoulCollectionController.instance.Souls}";
+            DashStatusText.text = $"DASHING : {BoatController.instance.Dashing}";
+            AttackSpeedText.text = $"ATTACK SPEED : {LanternController.instance.AttackInterval}";
+            AttackRangeText.text = $"ATTACK RANGE : {LanternController.instance.AttackRange}";
+            CurrentSpeedText.text = $"SPEED : {BoatController.instance.Speed}";
+            DashSpeedText.text = $"DASH SPEED : {BoatController.instance.DashMultiplier}";
+            DashLengthText.text = $"DASH LENGTH : {BoatController.instance.DashLength}";
+            DashCooldownText.text = $"DASH COOLDOWN : {BoatController.instance.DashCooldown}";
+            DecelerationCooldownText.text = $"DECELERATION : {BoatController.instance.Deceleration}";
+            if(_currentProjectile!=null)
+                CurrentProjectileText.text = $"CURRENT PROJECTILE : {_currentProjectile?.gameObject.name}";
         }
     }
 }

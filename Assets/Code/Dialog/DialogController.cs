@@ -1,9 +1,11 @@
-﻿using System;
+﻿using Purgatory.Enums;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using SpeakerSide = Purgatory.Dialog.Conversation.DialogEntry.SpeakerSide;
 
@@ -26,12 +28,16 @@ namespace Purgatory.Dialog
 		[SerializeField] private TextMeshProUGUI text;
 		[SerializeField] private List<TextEffectReference> textEffects = new();
 
+		[SerializeField] private bool loadScene = false;
+		[SerializeField] private string sceneToLoad;
+
 		private async void Start()
 		{
+			GameManager.instance.SetGameState(EnumGameState.DIALOGUE);
 			await BeginConversation(TEMP_CONVO);
 		}
-		
-		
+
+
 		public async Task BeginConversation(Conversation conversation)
 		{
 			int idx = 0;
@@ -40,6 +46,7 @@ namespace Purgatory.Dialog
 				await DoEntry(conversation, conversation.Entries[idx]);
 				idx++;
 			}
+			SceneManager.LoadScene(sceneToLoad, LoadSceneMode.Single);
 		}
 
 		public async Task DoEntry(Conversation conversation, Conversation.DialogEntry entry)

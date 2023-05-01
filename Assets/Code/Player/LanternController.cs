@@ -15,7 +15,7 @@ namespace Purgatory.Player
         public static LanternController instance;
         
         
-        internal List<GameObject> _availableProjectiles = new List<GameObject>();
+        public List<GameObject> AvailableProjectiles = new List<GameObject>();
 
         [SerializeField]
         public InputActionAsset actions;
@@ -33,27 +33,27 @@ namespace Purgatory.Player
 
         public void SetAvailableProjectiles(List<GameObject> projectiles)
         {
-            _availableProjectiles = projectiles;
-            if (_currentProjectile == null && _availableProjectiles.Any())
+            AvailableProjectiles = projectiles;
+            if (_currentProjectile == null && AvailableProjectiles.Any())
             {
                 _currentProjectileIndex = 0;
-                _currentProjectile = _availableProjectiles.First();
+                _currentProjectile = AvailableProjectiles.First();
             }
 
         }
 
         private void NextProjectile(InputAction.CallbackContext obj)
         {
-            if (_currentProjectileIndex == _availableProjectiles.Count()-1)
+            if (_currentProjectileIndex == AvailableProjectiles.Count()-1)
             {
-                var first = _availableProjectiles.First();
+                var first = AvailableProjectiles.First();
                 _currentProjectileIndex = 0;
                 _currentProjectile = first;
             }
             else
             {
                 _currentProjectileIndex++;
-                _currentProjectile = _availableProjectiles[_currentProjectileIndex];
+                _currentProjectile = AvailableProjectiles[_currentProjectileIndex];
             }
         }
 
@@ -61,14 +61,14 @@ namespace Purgatory.Player
         {
             if (_currentProjectileIndex == 0)
             {
-                var last = _availableProjectiles.Last();
-                _currentProjectileIndex = _availableProjectiles.IndexOf(last);
+                var last = AvailableProjectiles.Last();
+                _currentProjectileIndex = AvailableProjectiles.IndexOf(last);
                 _currentProjectile = last;
             }
             else
             {
                 _currentProjectileIndex--;
-                _currentProjectile = _availableProjectiles[_currentProjectileIndex];
+                _currentProjectile = AvailableProjectiles[_currentProjectileIndex];
             }
         }
 
@@ -82,16 +82,7 @@ namespace Purgatory.Player
             _moveAction = actions.FindActionMap("gameplay").FindAction("move", true);
             actions.FindActionMap("gameplay").FindAction("previous_projectile").performed += PreviousProjectile;
             actions.FindActionMap("gameplay").FindAction("next_projectile").performed += NextProjectile;
-            StartCoroutine(UpdateHud());
         }
-
-        private IEnumerator UpdateHud()
-        {
-            HudController.instance.UpdatePlayerStats(AttackInterval, AttackRange, _currentProjectile);
-            yield return new WaitForSeconds(0.1f);
-            StartCoroutine(UpdateHud());
-        }
-
 
         public override void LaunchProjectile()
         {

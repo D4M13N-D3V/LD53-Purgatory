@@ -16,35 +16,14 @@ MonoBehaviour:
   RightCharacter: {fileID: 11400000, guid: ffe83b7b116f0ab4b973721e43d23531, type: 2}
   Entries:
   - LeftEmotion: 1
-    RightEmotion: 5
-    Speaker: 1
-    Text: Hey, Rokuro. I'm back... <#a5e7f0><i>again</i></color>.
-    NextEntryDelayMS: 1000
-    Effects: 
-  - LeftEmotion: 1
-    RightEmotion: 5
+    RightEmotion: 1
     Speaker: 0
-    Text: Ah, Yuki-chan, I see you've had another rough day on the river. How many
-      souls have you collected this time?
+    Text: Be safe!
     NextEntryDelayMS: 1000
     Effects: 
-  - LeftEmotion: 0
-    RightEmotion: 6
+  - LeftEmotion: 5
+    RightEmotion: 1
     Speaker: 1
-    Text: Um, well... I accidentally capsized the boat, and... I ended up with <i>seven</i>
-      souls.
-    NextEntryDelayMS: 1000
-    Effects: 00000000
-  - LeftEmotion: 4
-    RightEmotion: 5
-    Speaker: 0
-    Text: Seven souls? Quite the bounty you've brought me today, perhaps you should
-      capsize more often!
+    Text: Thanks!
     NextEntryDelayMS: 1000
     Effects: 
-  - LeftEmotion: 4
-    RightEmotion: 2
-    Speaker: 1
-    Text: Hey, that's not funny! I'm trying my best here.
-    NextEntryDelayMS: 1000
-    Effects: 00000000
