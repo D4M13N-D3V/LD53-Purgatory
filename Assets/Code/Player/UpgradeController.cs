@@ -123,9 +123,9 @@ namespace Purgatory.Upgrades
             SoulCollectionController.instance.CollectionRadius = baseCollectionRadius * totalSoulCollectionRadius;
 
 
-            var projectiles = Upgrades.Where(x => x.Projectile != null).Select(x => x.Projectile).ToList(); ;
-            ProjectileHandler.instance.AvailableProjectiles = projectiles;
-            GameManager.instance.AvailableProjectiles = projectiles;
+            var projectiles = Upgrades.Where(x => x.Modifier != null).Select(x => x.Modifier).ToList(); ;
+            ProjectileHandler.instance.AvailableModifiers = projectiles;
+            GameManager.instance.AvailableModifiers = projectiles;
         }
     }
 }

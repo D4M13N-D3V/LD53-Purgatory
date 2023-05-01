@@ -26,7 +26,7 @@ public class GameManager : MonoBehaviour
 
     public MusicManager musicManager;
     private bool fading = false;
-    internal List<GameObject> AvailableProjectiles;
+    internal List<ProjectileModifier> AvailableModifiers;
 
     private LevelController levelController;
 
@@ -48,9 +48,6 @@ public class GameManager : MonoBehaviour
     }
     public void SetGameState(EnumGameState state)
     {
-        GameState = state;
-        if(state != EnumGameState.MENU && state != EnumGameState.DIALOGUE && state != EnumGameState.STORE)
-             UpgradeController.instance.RefreshStats();
     }
 
     public void CompleteLevel()
@@ -99,7 +96,7 @@ public class GameManager : MonoBehaviour
         CurrentEnviroment = 0;
         UpgradeController.instance.Upgrades = StartingUpgrades;
         LoadScene(IntroductionSceneName);
-        UpgradeController.instance.WipeNonPermanantUpgrades();
+//        UpgradeController.instance.WipeNonPermanantUpgrades();
     }
 
     public void NextRun()

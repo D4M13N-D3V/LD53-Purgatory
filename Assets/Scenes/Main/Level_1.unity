@@ -1931,6 +1931,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: -944628639613478452, guid: e0ada3906a3fbbd4182ae7023c3c57dc, type: 3}
     - target: {fileID: 3343774814377547374, guid: ca432e760dab5244fb7eb997a2d57eb5, type: 3}
+      propertyPath: projectilePrefab
+      value: 
+      objectReference: {fileID: 2178018784985968032, guid: 3c2de18cc8b0a3741b84d7964a44c15e, type: 3}
+    - target: {fileID: 3343774814377547374, guid: ca432e760dab5244fb7eb997a2d57eb5, type: 3}
       propertyPath: Modifiers.Array.size
       value: 0
       objectReference: {fileID: 0}

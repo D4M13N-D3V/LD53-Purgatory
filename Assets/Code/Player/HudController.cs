@@ -69,8 +69,7 @@ namespace Purgatory.Player
             SoulRetentionText.text = $"SOUL RETENTION : {SoulCollectionController.instance.SoulRetentionRate*100}%";
             SoulConversionText.text = $"SOUL CONVERSION : {CurrencyController.Instance.SoulConversionRate}x";
             CurrencyText.text = $"CURRENCY : {CurrencyController.Instance.CurrencyAmount}";
-            if (_currentProjectile!=null)
-                CurrentProjectileText.text = $"CURRENT PROJECTILE : {ProjectileHandler.instance._currentProjectile.name}";
+            CurrentProjectileText.text = $"CURRENT PROJECTILE : {ProjectileHandler.instance.CurrentModifier?.name}";
         }
     }
 }

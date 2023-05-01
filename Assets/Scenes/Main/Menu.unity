@@ -2927,15 +2927,9 @@ MonoBehaviour:
   CurrencyAmount: 0
   SoulAmount: 0
   StartingUpgrades:
-  - {fileID: 11400000, guid: 1a3f8fdf84bbd0344a096297c2e5b029, type: 2}
-  - {fileID: 11400000, guid: 46a0837e00fe714428d8aeec2dd7b85f, type: 2}
-  - {fileID: 11400000, guid: b3e87f91e47d26c44a4a1e77bd3c76b2, type: 2}
-  - {fileID: 11400000, guid: 5aac89b3257693f44824c7b3419894a6, type: 2}
-  - {fileID: 11400000, guid: 4f00133cc95ffaa4f82fa13e52fbd87e, type: 2}
-  - {fileID: 11400000, guid: cdec904cdd3d81c428fb823c372269ea, type: 2}
   - {fileID: 11400000, guid: 69adc62595a322342b006d0ed94b2ad8, type: 2}
-  - {fileID: 11400000, guid: e96ebe7e5894b8e47b767f5bb4824ebb, type: 2}
-  - {fileID: 11400000, guid: 1fa3b6dc490071a4c83a7219b523e913, type: 2}
+  - {fileID: 11400000, guid: 15dc6e8949566c84881d675826d369a3, type: 2}
+  - {fileID: 11400000, guid: 0d631924d68ff96428c9d0a67fe85718, type: 2}
   musicManager: {fileID: 864139670}
 --- !u!4 &2045962539
 Transform:

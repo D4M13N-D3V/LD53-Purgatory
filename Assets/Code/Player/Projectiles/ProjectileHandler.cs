@@ -12,7 +12,7 @@ namespace Purgatory.Player.Projectiles
 	{
 		private const int CHECK_FRAMES = 4;
 		
-		public List<ProjectileModifier> Modifiers;
+		public ProjectileModifier CurrentModifier;
 		
 		[SerializeField] private GameObject projectilePrefab;
 		[SerializeField] private LayerMask enemyLayerMask;
@@ -22,10 +22,10 @@ namespace Purgatory.Player.Projectiles
 		[SerializeField] public float attackRange = 2f;
 		[SerializeField] private Vector3 projectileSpawnOffset = Vector3.zero;
 		[SerializeField] private InputActionAsset actions;
-		[SerializeField] public List<GameObject> AvailableProjectiles = new List<GameObject>();
-		[SerializeField] public GameObject _currentProjectile;
-		
-		private int _currentProjectileIndex = 0;
+		[SerializeField] public List<ProjectileModifier> AvailableModifiers = new List<ProjectileModifier>();
+		[SerializeField] public ProjectileModifier projectileModifier;
+		private GameObject _currentModifierObject;
+		private int _currentModifierIndex = 0;
 		private InputAction _moveAction;
 		private float attackTimer;
 		private int colliderCheckFrame;
@@ -40,24 +40,19 @@ namespace Purgatory.Player.Projectiles
 		}
 		private void Start()
 		{
-			AvailableProjectiles = GameManager.instance.AvailableProjectiles;
+			AvailableModifiers = GameManager.instance.AvailableModifiers;
 			_moveAction = actions.FindActionMap("gameplay").FindAction("move", true);
 			actions.FindActionMap("gameplay").FindAction("previous_projectile").performed += PreviousProjectile;
-			actions.FindActionMap("gameplay").FindAction("next_projectile").performed += NextProjectile;
+			actions.FindActionMap("gameplay").FindAction("next_projectile").performed += NextModifier;
 			colliderComparer = new ColliderDistanceComparer(transform);
-			// Unity fix so that playmode doesn't wreck shit
-			for (int i = 0; i < Modifiers.Count; i++)
-			{
-				Modifiers[i] = Instantiate(Modifiers[i]);
-			}
 		}
 		
 		private void Update()
 		{
-			if (_currentProjectile == null)
+			if (CurrentModifier == null)
 			{
-				_currentProjectile = AvailableProjectiles.FirstOrDefault();
-				_currentProjectileIndex = 0;
+				CurrentModifier = AvailableModifiers.FirstOrDefault();
+				_currentModifierIndex = 0;
 			}
 
 
@@ -84,45 +79,31 @@ namespace Purgatory.Player.Projectiles
 					// Ignore player
 					if (enemy is PlayerController)
 						continue;
-
-					ShootAtEnemy(colliderBuffer[i]);
+					if(colliderBuffer[i]!=null)	
+						ShootAtEnemy(colliderBuffer[i]);
 					break;
 				}
 			}
-			
-			foreach (var modifier in Modifiers)
-			{
-				modifier.Update();
-			}
-		}
 
-		private void NextProjectile(InputAction.CallbackContext obj)
+			CurrentModifier?.Update();
+		}
+		private void NextModifier(InputAction.CallbackContext obj)
 		{
-			if (_currentProjectileIndex == AvailableProjectiles.Count() - 1)
+			if (_currentModifierIndex < AvailableModifiers.Count - 1)
 			{
-				var first = AvailableProjectiles.First();
-				_currentProjectileIndex = 0;
-				_currentProjectile = first;
-			}
-			else
-			{
-				_currentProjectileIndex++;
-				_currentProjectile = AvailableProjectiles[_currentProjectileIndex];
+				_currentModifierIndex++;
+				Destroy(CurrentModifier);
+				CurrentModifier = Instantiate(AvailableModifiers[_currentModifierIndex]);
 			}
 		}
 
 		private void PreviousProjectile(InputAction.CallbackContext obj)
 		{
-			if (_currentProjectileIndex == 0)
+			if (_currentModifierIndex > 0)
 			{
-				var last = AvailableProjectiles.Last();
-				_currentProjectileIndex = AvailableProjectiles.IndexOf(last);
-				_currentProjectile = last;
-			}
-			else
-			{
-				_currentProjectileIndex--;
-				_currentProjectile = AvailableProjectiles[_currentProjectileIndex];
+				_currentModifierIndex--;
+				Destroy(CurrentModifier);
+				CurrentModifier = Instantiate(AvailableModifiers[_currentModifierIndex]);
 			}
 		}
 
@@ -138,13 +119,12 @@ namespace Purgatory.Player.Projectiles
 
 		private void ShootAtEnemy(Collider col)
 		{
-			if (_currentProjectile == null)
-				return;
 			// Instantiate a new projectile, facing collider/enemy
 			Vector3 spawnPos = transform.position + projectileSpawnOffset;
 			Quaternion spawnRot = Quaternion.LookRotation(col.transform.position - transform.position, Vector3.up);
-			var projectileInstance = Instantiate(_currentProjectile, spawnPos, spawnRot);
-			projectileInstance.GetComponent<ProjectileBehavior>().Initialize(this, col);
+			var projectileInstance = Instantiate(projectilePrefab, spawnPos, spawnRot);
+			var projectile = projectileInstance.GetComponent<ProjectileBehavior>();
+			projectile.Initialize(this, col);
 		}
 		
 		private class ColliderDistanceComparer : IComparer<Collider>

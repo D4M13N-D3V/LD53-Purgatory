@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b2c3cf6a29e1e774a8b0722fdfd0ac21, type: 3}
-  m_Name: Pew
+  m_Name: SizeModifier
   m_EditorClassIdentifier: 
-  Name: Projectile
+  Name: Size Modifier
   Cost: 0
   HealthModifier: 0
   AttackSpeedModifier: 0
@@ -23,6 +23,6 @@ MonoBehaviour:
   DashLengthModifier: 0
   DashCooldownModifier: 0
   SoulCollectionRadius: 0
-  Projectile: {fileID: 2178018784985968032, guid: dfaa7276a7d513d4c9252a242ca9bb13, type: 3}
-  Type: 2
+  Modifier: {fileID: 11400000, guid: 93c00bb498d73b34eae4f87e89335ea4, type: 2}
+  Type: 0
   IsPermanant: 0

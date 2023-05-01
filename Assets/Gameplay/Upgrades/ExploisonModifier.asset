@@ -10,19 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b2c3cf6a29e1e774a8b0722fdfd0ac21, type: 3}
-  m_Name: MovDeceleration_Medium
+  m_Name: ExploisonModifier
   m_EditorClassIdentifier: 
-  Name: Medium Deceleration
-  Cost: 5
+  Name: Projectile
+  Cost: 0
   HealthModifier: 0
   AttackSpeedModifier: 0
   AttackRangeModifier: 0
   MovementSpeedModifier: 0
-  MovementDecelerationModifier: 0.05
+  MovementDecelerationModifier: 0
   DashSpeedModifier: 0
   DashLengthModifier: 0
   DashCooldownModifier: 0
   SoulCollectionRadius: 0
-  Projectile: {fileID: 0}
-  Type: 1
+  Modifier: {fileID: 11400000, guid: 8de10cb858461df4297030e5f6d570ec, type: 2}
+  Type: 2
   IsPermanant: 1

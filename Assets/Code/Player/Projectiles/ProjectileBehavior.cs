@@ -40,12 +40,8 @@ namespace Purgatory.Player.Projectiles
 		{
 			ResetValues();
 			Handler = handler;
+			Handler.CurrentModifier.RegisterProjectile(this);
 
-			foreach (var mod in Handler.Modifiers)
-			{
-				mod.RegisterProjectile(this);
-			}
-			
 			// Apply visual scaling
 			MainVisuals.localScale = Vector3.one * (Stats.Size * 1.5f);	// A little extra for the main visuals
 
@@ -86,13 +82,7 @@ namespace Purgatory.Player.Projectiles
 
 		protected void OnDisable()
 		{
-			if (Handler != null && Handler.Modifiers != null)
-			{
-				foreach (var mod in Handler.Modifiers)
-				{
-					mod.RemoveProjectile(this);
-				}
-			}
+			Handler.CurrentModifier.RemoveProjectile(this);
 		}
 
 		protected void OnDestroy() => OnDisable();
