@@ -27,7 +27,7 @@ namespace Purgatory.Player.Projectiles
 		{
 			var instance = Instantiate(prefab);
 			instance.transform.position = projectile.transform.position;
-			instance.transform.parent = projectile.VisualTransform;
+			instance.transform.parent = projectile.ExtraVisuals;
 			instance.transform.localScale = Vector3.one * GetRadius(projectile.IsChild);
 		}
 

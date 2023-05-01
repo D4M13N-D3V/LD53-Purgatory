@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Purgatory.Interfaces;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Object = UnityEngine.Object;
 
 namespace Purgatory.Player.Projectiles
@@ -15,14 +16,17 @@ namespace Purgatory.Player.Projectiles
 		public Action<ITargetable, RaycastHit> EnemyHit;
 		public Action<ITargetable, RaycastHit> Impact;
 
-		public Transform VisualTransform;
+		public Transform MainVisuals;
+		public Transform ExtraVisuals;
 		public ProjectileHandler Handler { get; private set; }
 		public bool IsChild = false;
 		public ProjectileStats Stats = new();
 		private ProjectileStats cachedStats;
 
+		[SerializeField] private float maxLifetime = 10;
 		[SerializeField] private LayerMask enemyLayer;
-		
+
+		private float creationTime;
 		private int timesPierced = 0;
 		private int timesBounced = 0;
 		private Collider homingTarget;
@@ -41,6 +45,9 @@ namespace Purgatory.Player.Projectiles
 				mod.RegisterProjectile(this);
 			}
 			
+			// Apply visual scaling
+			MainVisuals.localScale = Vector3.one * (Stats.Size * 1.5f);	// A little extra for the main visuals
+
 			// Look at enemy
 			var pos = transform.position;
 			var enemyPos = enemy.transform.position;
@@ -51,6 +58,8 @@ namespace Purgatory.Player.Projectiles
 			var dir = (predictedPos - pos).normalized;
 			var rot = Quaternion.LookRotation(dir, Vector3.up);
 			transform.rotation = rot;
+
+			creationTime = Time.time;
 		}
 
 		protected void ResetValues()
@@ -61,6 +70,12 @@ namespace Purgatory.Player.Projectiles
 			timesBounced = 0;
 			homingTarget = null;
 			homingUpdateTimer = 0;
+			MainVisuals.localScale = Vector3.one;
+			// Destroy all children of visualTransform
+			for (int i = ExtraVisuals.childCount; i > 0; i--)
+			{
+				Destroy(ExtraVisuals.GetChild(i).gameObject);
+			}
 		}
 		
 		protected void Awake()
@@ -81,12 +96,39 @@ namespace Purgatory.Player.Projectiles
 
 		protected void Update()
 		{
+			if(creationTime + maxLifetime < Time.time)
+			{
+				ProcessImpact(null, new RaycastHit());
+				return;
+			}
+			
 			// Movement Processing
 			Vector3 before = transform.position;
-			Vector3 after = ProcessMovement();
+			Vector3 movement = transform.forward * (Stats.Speed * Time.deltaTime);
+			ProcessMovement(movement);
+			Vector3 after = before + movement;
 
+			// Check if we would hit the edge of the map (-15..15 on X axis)
+			if (after.x < -15f || after.x > 15f)
+			{
+				Vector3 normal = after.x < -15f ? Vector3.right : Vector3.left;
+				
+				if (timesBounced < Stats.BounceCount)
+				{
+					timesBounced++;
+					transform.rotation = Quaternion.LookRotation(Vector3.Reflect(transform.forward, normal));
+				}
+				else
+				{
+					ProcessImpact(null, new RaycastHit(){point = after, distance = Vector3.Distance(after, before), normal = normal});
+					return;
+				}
+			}
+
+			Debug.DrawLine(before, before + Vector3.up * 2f, Color.red);
+			Debug.DrawLine(after, after + Vector3.up * 2f, Color.green);
 			// Hit Processing
-			int hitCount = Physics.CapsuleCastNonAlloc(before, after, Stats.Size, (after - before).normalized, hitBuffer, Vector3.Distance(before, after), enemyLayer);
+			int hitCount = Physics.SphereCastNonAlloc(before, Stats.Size, (after - before).normalized, hitBuffer, 0.05f, enemyLayer);
 			for (int i = 0; i < hitCount; i++)
 			{
 				var hit = hitBuffer[i];
@@ -128,7 +170,7 @@ namespace Purgatory.Player.Projectiles
 			Destroy(gameObject);
 		}
 		
-		protected Vector3 ProcessMovement()
+		protected void ProcessMovement(Vector3 movement)
 		{
 			if (Stats.IsHoming)
 			{
@@ -161,8 +203,7 @@ namespace Purgatory.Player.Projectiles
 				}
 			}
 
-			transform.position += transform.forward * (Stats.Speed * Time.deltaTime);
-			return transform.position;
+			transform.position += movement;
 		}
 	}
 }
