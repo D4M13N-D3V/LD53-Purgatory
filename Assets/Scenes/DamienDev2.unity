@@ -955,6 +955,52 @@ MonoBehaviour:
     m_FrequencyGain: 1
     m_Duration: 1
     m_NoiseOffsets: {x: 0, y: 0, z: 0}
+--- !u!1 &1633184890
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1633184892}
+  - component: {fileID: 1633184891}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1633184891
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1633184890}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd1f9722395180a4284baa04a62ce4fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GameState: 0
+  StartingUpgrades: []
+--- !u!4 &1633184892
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1633184890}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 255.28304, y: 167.65918, z: 0.0000009536743}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1661039349 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4300754432355367816, guid: ca432e760dab5244fb7eb997a2d57eb5, type: 3}
@@ -972,10 +1018,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0dde0f8e33bd4a149a3e4486081a31e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Upgrades:
-  - {fileID: 11400000, guid: e3c016e5dc58456469125d015c698b6a, type: 2}
-  - {fileID: 11400000, guid: 69247f40d4f588e43953b23a0a2f72f5, type: 2}
-  - {fileID: 11400000, guid: 0405c46af307e1241b963816777e7a17, type: 2}
+  Upgrades: []
 --- !u!114 &2012752733 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3298341748166611286, guid: ca432e760dab5244fb7eb997a2d57eb5, type: 3}

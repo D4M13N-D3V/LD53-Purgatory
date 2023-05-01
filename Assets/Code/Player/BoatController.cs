@@ -26,6 +26,8 @@ namespace Purgatory.Player
         private float _yawMaxRotation = 9f;
         [SerializeField]
         private float _maximumHorizontalRotation = 6f;
+        [HideInInspector]
+        public bool Dashing = false;
 
 
         [SerializeField]
@@ -56,7 +58,6 @@ namespace Purgatory.Player
         public InputActionAsset actions;
         private InputAction _moveAction;
 
-        private bool _dashing = false;
 
         void Start()
         {
@@ -64,37 +65,29 @@ namespace Purgatory.Player
             _originalY = _transform.position.y;
             _moveAction = actions.FindActionMap("gameplay").FindAction("move", true);
             actions.FindActionMap("gameplay").FindAction("dash").performed += Dash;
-            StartCoroutine(UpdateHud());
             _originalSpeed = Speed;
         }
 
-        private IEnumerator UpdateHud()
-        {
-            HudController.instance.UpdateBoatStats(Speed, _originalSpeed*DashMultiplier, DashLength, !_dashing, DashCooldown, Deceleration);
-            yield return new WaitForSeconds(0.1f);
-            StartCoroutine(UpdateHud());
-        }
         private void Dash(InputAction.CallbackContext obj)
         {
-            if(!_dashing)
+            if(!Dashing)
                 StartCoroutine(DashCoroutine());
         }
 
         IEnumerator DashCoroutine()
         {
-            _dashing = true;
+            Dashing = true;
             _originalSpeed = Speed;
             Speed = Speed * DashMultiplier;
             yield return new WaitForSeconds(DashLength);
             Speed = _originalSpeed;
             yield return new WaitForSeconds(DashCooldown-DashLength);
-            _dashing = false;
+            Dashing = false;
         }
 
         void Update()
         {
             _horizontalInput = _moveAction.ReadValue<Vector2>().x * -1;
-            Debug.Log(_moveAction.ReadValue<Vector2>());
         }
 
         private void FixedUpdate()
@@ -102,7 +95,7 @@ namespace Purgatory.Player
             _waveDisruptionObject.transform.localPosition = new Vector3(Mathf.Lerp(_waveDisruptionObject.transform.localPosition.x,-0.75f+(_horizontalInput*2), Time.deltaTime * 2), _waveDisruptionObject.transform.localPosition.y, _waveDisruptionObject.transform.localPosition.z);
 
             _targetVelocity = Speed * _horizontalInput;
-            _horizontalVelocity = Mathf.Lerp(_horizontalVelocity, _targetVelocity, Time.fixedDeltaTime * (_dashing ? Speed / _originalSpeed : 1) / Deceleration);
+            _horizontalVelocity = Mathf.Lerp(_horizontalVelocity, _targetVelocity, Time.fixedDeltaTime * (Dashing ? Speed / _originalSpeed : 1) / Deceleration);
 
             if ((_horizontalVelocity > 0 && transform.position.x < _maximumLeft) || (_horizontalVelocity < 0 && transform.position.x > _minimumLeft))
                 _transform.position += new Vector3(_horizontalVelocity, 0, 0);

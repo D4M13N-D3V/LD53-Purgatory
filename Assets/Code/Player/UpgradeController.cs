@@ -10,7 +10,13 @@ namespace Purgatory.Upgrades
     {
         public List<UpgradeSciptableObject> Upgrades = new List<UpgradeSciptableObject>();
 
+        public static UpgradeController instance;
 
+        public UpgradeController()
+        {
+            if (instance == null)
+                instance = this;
+        }
 
         public void AddUpgrade(UpgradeSciptableObject upgrade)
         {

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Purgatory.Enums;
 using Purgatory.Levels.Data;
 using UnityEngine;
 using Environment = Purgatory.Levels.Data.Environment;
@@ -37,6 +38,7 @@ namespace Purgatory.Levels
 
 		private async void Start()
 		{
+			GameManager.instance.SetGameState(EnumGameState.GAME);
 			scrollDelta -= levelStartOffset;
 			segmentInstances = new LevelSegment[2 + lookAheadCount];
 			
