@@ -50,7 +50,7 @@ namespace Purgatory.Levels
 				await CreateNextSegment();
 			}
 
-			ProjectileHandler.instance.AvailableProjectiles = GameManager.instance.AvailableProjectiles;
+			ProjectileHandler.instance.AvailableModifiers = GameManager.instance.AvailableModifiers;
 			UpgradeController.instance.RefreshStats();
 		}
 
