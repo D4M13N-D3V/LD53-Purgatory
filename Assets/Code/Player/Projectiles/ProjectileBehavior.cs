@@ -16,13 +16,14 @@ namespace Purgatory.Player.Projectiles
 		public Action<ITargetable, RaycastHit> EnemyHit;
 		public Action<ITargetable, RaycastHit> Impact;
 
+		public GameObject HitVFXPrefab;
 		public Transform MainVisuals;
 		public Transform ExtraVisuals;
 		public ProjectileHandler Handler { get; private set; }
 		public bool IsChild = false;
 		public ProjectileStats Stats = new();
 		private ProjectileStats cachedStats;
-
+		
 		[SerializeField] private float maxLifetime = 10;
 		[SerializeField] private LayerMask enemyLayer;
 
@@ -93,6 +94,8 @@ namespace Purgatory.Player.Projectiles
 				}
 			}
 		}
+
+		protected void OnDestroy() => OnDisable();
 
 		protected void Update()
 		{
@@ -167,6 +170,8 @@ namespace Purgatory.Player.Projectiles
 		protected void ProcessImpact(ITargetable target, RaycastHit hit)
 		{
 			Impact?.Invoke(target, hit);
+			var hitVFX = Instantiate(HitVFXPrefab, transform.position, Quaternion.LookRotation(transform.forward));
+			hitVFX.transform.localScale = Vector3.one * Stats.Size;
 			Destroy(gameObject);
 		}
 		

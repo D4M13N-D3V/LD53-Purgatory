@@ -78,6 +78,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc003d49a53f45d7a0096949503dd75d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  HitVFXPrefab: {fileID: 1347560723486874, guid: 5172340b6b4220a4892d08410294b3fc, type: 3}
   MainVisuals: {fileID: 4114432225380733501}
   ExtraVisuals: {fileID: 6389631678836819450}
   IsChild: 0
@@ -85,11 +86,12 @@ MonoBehaviour:
     Damage: 10
     IsHoming: 0
     PierceCount: 0
-    BounceCount: 4
+    BounceCount: 0
     Speed: 20
     HomingRange: 5
     HomingStrength: 1
     Size: 0.25
+  maxLifetime: 10
   enemyLayer:
     serializedVersion: 2
     m_Bits: 64
