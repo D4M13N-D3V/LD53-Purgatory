@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3138144219432557419}
   m_Layer: 0
-  m_Name: Extra_Land_Forest
+  m_Name: Extra_Land_Limbo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
