@@ -1,4 +1,5 @@
 ﻿using Purgatory.Player;
+using Purgatory.Player.Projectiles;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -50,8 +51,8 @@ namespace Purgatory.Upgrades
 
             PlayerController.instance.SetMaximumHealth(1);
             
-            LanternController.instance.AttackInterval = 0;
-            LanternController.instance.AttackRange = 0;
+            ProjectileHandler.instance.attackCooldown = 0;
+            ProjectileHandler.instance.attackRangeModifier = 0;
 
             SoulCollectionController.instance.CollectionRadius = 0;
 
@@ -67,14 +68,15 @@ namespace Purgatory.Upgrades
                 PlayerController.instance.SetMaximumHealth(maximumhealth);
                 PlayerController.instance.Heal(maximumhealth);
 
-                LanternController.instance.AttackInterval += upgrade.AttackSpeedModifier;
-                LanternController.instance.AttackRange += upgrade.AttackRangeModifier;
+                ProjectileHandler.instance.attackCooldown += upgrade.AttackSpeedModifier;
+                ProjectileHandler.instance.attackRangeModifier += upgrade.AttackRangeModifier;
 
                 SoulCollectionController.instance.CollectionRadius += upgrade.SoulCollectionRadius;
             }
 
             var projectiles = Upgrades.Where(x => x.Projectile != null).Select(x => x.Projectile).ToList(); ;
-            LanternController.instance.SetAvailableProjectiles(projectiles);
+            ProjectileHandler.instance.AvailableProjectiles = projectiles;
+            GameManager.instance.AvailableProjectiles = projectiles;
         }
 
         // Use this for initialization

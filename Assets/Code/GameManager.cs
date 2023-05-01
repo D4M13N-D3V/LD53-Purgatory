@@ -9,6 +9,7 @@ using System;
 using Purgatory.Player;
 using UnityEngine.SceneManagement;
 using Purgatory.Levels;
+using Purgatory.Player.Projectiles;
 
 public class GameManager : MonoBehaviour
 {
@@ -23,6 +24,8 @@ public class GameManager : MonoBehaviour
 
     public static GameManager instance;
     private bool fading = false;
+    internal List<GameObject> AvailableProjectiles;
+
     public GameManager()
     {
         if (instance == null)
@@ -55,6 +58,7 @@ public class GameManager : MonoBehaviour
     {
         SoulAmount = SoulCollectionController.instance.Souls;
         CurrencyAmount = CurrencyController.Instance.CurrencyAmount;
+        UpgradeController.instance.RefreshStats();
     }
 
     public void GameOver()
@@ -63,6 +67,8 @@ public class GameManager : MonoBehaviour
         CurrencyAmount = CurrencyController.Instance.CurrencyAmount;
         var soulsToRemove = SoulAmount-Mathf.RoundToInt(SoulAmount * SoulCollectionController.instance.SoulRetentionRate);
         SoulCollectionController.instance.RemoveSoul(soulsToRemove);
+        UpgradeController.instance.RefreshStats();
+        _playerSave.Upgrades = UpgradeController.instance.Upgrades;
         LoadScene("Death_Shop");
     }
 
@@ -82,19 +88,16 @@ public class GameManager : MonoBehaviour
         _playerSave.Souls = 0;
         _playerSave.CurrencyAmount = 0;
         _playerSave.CurrentLevel = CurrentLevel;
-        ContinueGame();
+        UpgradeController.instance.Upgrades = _playerSave.Upgrades;
+        LoadScene(IntroductionSceneName);
     }
 
     public void StartGame()
     {
-        LoadScene(IntroductionSceneName);
+        LoadScene("Level_1");
+        UpgradeController.instance.RefreshStats();
     }
 
-    public void ContinueGame()
-    {
-        UpgradeController.instance.Upgrades = _playerSave.Upgrades;
-        StartGame();
-    }
 
     public void Credits()
     {

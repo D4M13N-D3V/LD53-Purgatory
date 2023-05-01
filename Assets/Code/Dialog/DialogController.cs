@@ -1,4 +1,5 @@
 ﻿using Purgatory.Enums;
+using Purgatory.Player;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,7 +30,9 @@ namespace Purgatory.Dialog
 		[SerializeField] private List<TextEffectReference> textEffects = new();
 
 		[SerializeField] private bool loadScene = false;
+		[SerializeField] private bool openShop = false;
 		[SerializeField] private string sceneToLoad;
+
 
 		private async void Start()
 		{
@@ -38,6 +41,11 @@ namespace Purgatory.Dialog
 
 			if(loadScene)
 				GameManager.instance.LoadScene(sceneToLoad);
+
+			if (openShop)
+				ShopController.Instance.OpenShop();
+
+			textBackground.gameObject.SetActive(false);
 		}
 
 

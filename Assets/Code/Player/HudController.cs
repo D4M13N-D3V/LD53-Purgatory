@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Purgatory.Player.Projectiles;
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using static Purgatory.Impl.Targetable;
@@ -58,8 +59,8 @@ namespace Purgatory.Player
             HealthText.text = $"HEALTH : {PlayerController.instance.CurrentHP}";
             SoulsText.text = $"SOULS : {SoulCollectionController.instance.Souls}";
             DashStatusText.text = $"DASHING : {BoatController.instance.Dashing}";
-            AttackSpeedText.text = $"ATTACK SPEED : {LanternController.instance.AttackInterval}";
-            AttackRangeText.text = $"ATTACK RANGE : {LanternController.instance.AttackRange}";
+            AttackSpeedText.text = $"ATTACK SPEED : {ProjectileHandler.instance.attackCooldown}";
+            AttackRangeText.text = $"ATTACK RANGE : {ProjectileHandler.instance.attackCooldown}";
             CurrentSpeedText.text = $"SPEED : {BoatController.instance.Speed}";
             DashSpeedText.text = $"DASH SPEED : {BoatController.instance.DashMultiplier}";
             DashLengthText.text = $"DASH LENGTH : {BoatController.instance.DashLength}";
@@ -69,7 +70,7 @@ namespace Purgatory.Player
             SoulConversionText.text = $"SOUL CONVERSION : {CurrencyController.Instance.SoulConversionRate*100}%";
             CurrencyText.text = $"CURRENCY : {CurrencyController.Instance.CurrencyAmount}";
             if (_currentProjectile!=null)
-                CurrentProjectileText.text = $"CURRENT PROJECTILE : {_currentProjectile?.gameObject.name}";
+                CurrentProjectileText.text = $"CURRENT PROJECTILE : {ProjectileHandler.instance._currentProjectile.name}";
         }
     }
 }

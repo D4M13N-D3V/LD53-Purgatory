@@ -1,4 +1,5 @@
 using Purgatory.Impl;
+using Purgatory.Player.Projectiles;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -11,7 +12,7 @@ namespace Purgatory.Player
     {
         public static PlayerController instance;
         public BoatController Boat = null;
-        public LanternController Lantern = null;
+        public ProjectileHandler Lantern = null;
         public CameraController Camera = null;
         public SoulCollectionController SoulCollector = null;
 

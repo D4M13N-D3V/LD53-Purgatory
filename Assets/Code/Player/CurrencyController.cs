@@ -20,6 +20,7 @@ namespace Purgatory.Player
             if (CurrencyAmount >= amount)
             {
                 CurrencyAmount -= amount;
+                GameManager.instance.CurrencyAmount = CurrencyAmount;
                 return true;
             }
             return false;
@@ -28,6 +29,7 @@ namespace Purgatory.Player
         public void AddCurrency(int amount)
         {
             CurrencyAmount += amount;
+            GameManager.instance.CurrencyAmount = CurrencyAmount;
         }
 
         // Use this for initialization

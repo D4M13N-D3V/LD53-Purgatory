@@ -1,4 +1,5 @@
 ﻿using Purgatory.Enums;
+using Purgatory.Player.Projectiles;
 using System.Collections;
 using UnityEngine;
 
@@ -8,6 +9,7 @@ namespace Purgatory.Upgrades
     public class UpgradeSciptableObject : ScriptableObject
     {
         public string Name;
+        public int Cost;
         public int HealthModifier;
         public float AttackSpeedModifier;
         public float AttackRangeModifier;
