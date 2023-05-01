@@ -23,7 +23,7 @@ MonoBehaviour:
     Effects: 
   - LeftEmotion: 5
     RightEmotion: 1
-    Speaker: 0
+    Speaker: 1
     Text: Thanks!
     NextEntryDelayMS: 1000
     Effects: 

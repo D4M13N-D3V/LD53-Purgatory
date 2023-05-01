@@ -36,6 +36,7 @@ namespace Purgatory.Player
 
         public void Damage(int amount)
         {
+            GameManager.instance.SaveGame();
             Debug.Log("Obstacle damage recieved on HUD.");
         }
 

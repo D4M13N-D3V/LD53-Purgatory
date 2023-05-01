@@ -80,7 +80,6 @@ namespace Purgatory.Upgrades
         // Use this for initialization
         void Start()
         {
-            RefreshStats();
         }
 
         // Update is called once per frame

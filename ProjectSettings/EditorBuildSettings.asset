@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Main/Intro_Dialogue.unity
     guid: 17648842738bcf04ebcbeb9610af8e57
   - enabled: 1
+    path: Assets/Scenes/Main/Return_Dialogue.unity
+    guid: 0e309b03af8c982469520b3e3d98433a
+  - enabled: 1
     path: Assets/Scenes/Main/Level_1.unity
     guid: 1467e6f2dcc0e0549b6c1767e2ba5cd6
   m_configObjects:

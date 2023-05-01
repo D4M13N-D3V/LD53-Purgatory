@@ -12,6 +12,8 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public EnumGameState GameState = EnumGameState.MENU;
+    public string IntroductionSceneName = "Intro_Dialogue";
+    public string ReturnSceneName = "Return_Dialogue";
     public List<Purgatory.Upgrades.UpgradeSciptableObject> StartingUpgrades = new List<UpgradeSciptableObject>();
     private PlayerSaveScriptableObject _playerSave;
 
@@ -41,7 +43,8 @@ public class GameManager : MonoBehaviour
     public void SetGameState(EnumGameState state)
     {
         GameState = state;
-        UpgradeController.instance.RefreshStats();
+        if(state != EnumGameState.MENU && state != EnumGameState.DIALOGUE && state != EnumGameState.STORE)
+             UpgradeController.instance.RefreshStats();
     }
 
     private IEnumerator AutoSave()
@@ -76,13 +79,13 @@ public class GameManager : MonoBehaviour
 
     public void StartGame()
     {
-        SceneManager.LoadScene("Intro_Dialogue", LoadSceneMode.Single);
+        SceneManager.LoadScene(IntroductionSceneName, LoadSceneMode.Single);
     }
 
     public void ContinueGame()
     {
         UpgradeController.instance.Upgrades = _playerSave.Upgrades;
-        StartGame();
+        SceneManager.LoadScene(ReturnSceneName, LoadSceneMode.Single);
     }
 
     public void Credits()
