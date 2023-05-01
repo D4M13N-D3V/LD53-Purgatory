@@ -1206,7 +1206,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7999543282534504989, guid: 4512e6885a2be0b45b7c9131e0a764d1, type: 3}
       propertyPath: enemies.Array.size
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7999543282534504989, guid: 4512e6885a2be0b45b7c9131e0a764d1, type: 3}
       propertyPath: segments.Array.size
@@ -1275,19 +1275,19 @@ PrefabInstance:
     - target: {fileID: 7999543282534504989, guid: 4512e6885a2be0b45b7c9131e0a764d1, type: 3}
       propertyPath: enemies.Array.data[1].Prefab
       value: 
-      objectReference: {fileID: 758927670937107938, guid: 210f1407810f9494ebd12cfb1313b85e, type: 3}
+      objectReference: {fileID: 1460617413575823351, guid: 93b667de97c60f441bc147477d549ab6, type: 3}
     - target: {fileID: 7999543282534504989, guid: 4512e6885a2be0b45b7c9131e0a764d1, type: 3}
       propertyPath: enemies.Array.data[2].Prefab
       value: 
-      objectReference: {fileID: 758927670937107938, guid: 210f1407810f9494ebd12cfb1313b85e, type: 3}
+      objectReference: {fileID: 1460617413575823351, guid: 2e6e6240c63556849b8ca356d49eb61d, type: 3}
     - target: {fileID: 7999543282534504989, guid: 4512e6885a2be0b45b7c9131e0a764d1, type: 3}
       propertyPath: enemies.Array.data[3].Prefab
       value: 
-      objectReference: {fileID: 758927670937107938, guid: 210f1407810f9494ebd12cfb1313b85e, type: 3}
+      objectReference: {fileID: 1460617413575823351, guid: 11d5239d178faf540afc5b1fdfbaf494, type: 3}
     - target: {fileID: 7999543282534504989, guid: 4512e6885a2be0b45b7c9131e0a764d1, type: 3}
       propertyPath: enemies.Array.data[4].Prefab
       value: 
-      objectReference: {fileID: 1460617413575823351, guid: 93b667de97c60f441bc147477d549ab6, type: 3}
+      objectReference: {fileID: 1460617413575823351, guid: 2e6e6240c63556849b8ca356d49eb61d, type: 3}
     - target: {fileID: 7999543282534504989, guid: 4512e6885a2be0b45b7c9131e0a764d1, type: 3}
       propertyPath: enemies.Array.data[5].Prefab
       value: 
@@ -1314,15 +1314,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7999543282534504989, guid: 4512e6885a2be0b45b7c9131e0a764d1, type: 3}
       propertyPath: segmentWeights.Array.data[0].Weight
-      value: 50
+      value: 70
       objectReference: {fileID: 0}
     - target: {fileID: 7999543282534504989, guid: 4512e6885a2be0b45b7c9131e0a764d1, type: 3}
       propertyPath: segmentWeights.Array.data[1].Weight
-      value: 25
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 7999543282534504989, guid: 4512e6885a2be0b45b7c9131e0a764d1, type: 3}
       propertyPath: segmentWeights.Array.data[2].Weight
-      value: 25
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 7999543282534504989, guid: 4512e6885a2be0b45b7c9131e0a764d1, type: 3}
       propertyPath: segmentWeights.Array.data[3].Weight
@@ -1330,7 +1330,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7999543282534504989, guid: 4512e6885a2be0b45b7c9131e0a764d1, type: 3}
       propertyPath: segmentWeights.Array.data[4].Weight
-      value: 0
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4512e6885a2be0b45b7c9131e0a764d1, type: 3}

@@ -72,8 +72,11 @@ public class GameManager : MonoBehaviour
 
     public void NewGame()
     {
+        SoulAmount = 0;
+        CurrencyAmount = 0;
+        CurrentLevel = 0;
+        UpgradeController.instance.Upgrades = StartingUpgrades;
         LoadScene(IntroductionSceneName);
-        ProjectileHandler.instance.AvailableProjectiles = AvailableProjectiles;
     }
 
     public void NextRun()
@@ -85,7 +88,6 @@ public class GameManager : MonoBehaviour
     public void StartGame()
     {
         LoadScene("Level_1");
-        UpgradeController.instance.RefreshStats();
     }
 
 

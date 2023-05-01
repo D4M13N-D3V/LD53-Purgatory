@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Purgatory.Levels.Data;
+using Purgatory.Player.Projectiles;
+using Purgatory.Upgrades;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Environment = Purgatory.Levels.Data.Environment;
@@ -47,6 +49,9 @@ namespace Purgatory.Levels
 			{
 				await CreateNextSegment();
 			}
+
+			ProjectileHandler.instance.AvailableProjectiles = GameManager.instance.AvailableProjectiles;
+			UpgradeController.instance.RefreshStats();
 		}
 
 		private async void Update()
