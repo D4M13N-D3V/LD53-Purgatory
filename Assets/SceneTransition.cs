@@ -18,7 +18,7 @@ namespace Purgatory
         void Update()
         {
 
-        }
+        }   
 
         private void OnCollisionEnter(Collision collision)
         {

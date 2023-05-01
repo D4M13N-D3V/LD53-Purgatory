@@ -2928,8 +2928,6 @@ MonoBehaviour:
   SoulAmount: 0
   StartingUpgrades:
   - {fileID: 11400000, guid: 69adc62595a322342b006d0ed94b2ad8, type: 2}
-  - {fileID: 11400000, guid: 15dc6e8949566c84881d675826d369a3, type: 2}
-  - {fileID: 11400000, guid: 0d631924d68ff96428c9d0a67fe85718, type: 2}
   musicManager: {fileID: 864139670}
 --- !u!4 &2045962539
 Transform:
