@@ -16,7 +16,7 @@ public class GameManager : MonoBehaviour
     public EnumGameState GameState = EnumGameState.MENU;
     public string IntroductionSceneName = "Intro_Dialogue";
     public string ReturnSceneName = "Return_Dialogue";
-    public int CurrentLevel = 0;
+    public int CurrentEnviroment = 0;
     public int CurrencyAmount = 0;
     public int SoulAmount = 0;
     public List<Purgatory.Upgrades.UpgradeSciptableObject> StartingUpgrades = new List<UpgradeSciptableObject>();
@@ -24,6 +24,10 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
     private bool fading = false;
     internal List<GameObject> AvailableProjectiles;
+
+    private LevelController levelController;
+
+    private bool inLevel = false;
 
     public GameManager()
     {
@@ -58,11 +62,14 @@ public class GameManager : MonoBehaviour
         SoulCollectionController.instance.RemoveSoul(soulsToRemove);
         UpgradeController.instance.RefreshStats();
         LoadScene("Death_Shop");
+        CurrentEnviroment = 0;
+
     }
 
     public void LoadScene(string scene)
     {
         Initiate.Fade(scene, Color.black, 1.0f);
+        CurrentEnviroment = 0;
     }
 
     public void Exit()
@@ -70,24 +77,34 @@ public class GameManager : MonoBehaviour
             Application.Quit();
     }
 
+
+    public void IncrementLevel()
+    {
+        if (CurrentEnviroment < 2)
+            CurrentEnviroment++;
+    }
+    
     public void NewGame()
     {
         SoulAmount = 0;
         CurrencyAmount = 0;
-        CurrentLevel = 0;
+        CurrentEnviroment = 0;
         UpgradeController.instance.Upgrades = StartingUpgrades;
         LoadScene(IntroductionSceneName);
+        UpgradeController.instance.WipeNonPermanantUpgrades();
     }
 
     public void NextRun()
     {
-        CurrentLevel = 0;   
+        CurrentEnviroment = 0;   
         LoadScene(IntroductionSceneName);
     }
 
     public void StartGame()
     {
         LoadScene("Level_1");
+        UpgradeController.instance.WipeNonPermanantUpgrades();
+        inLevel = true;
     }
 
 

@@ -42,7 +42,7 @@ namespace Purgatory.Levels
 		{
 			scrollDelta -= levelStartOffset;
 			segmentInstances = new LevelSegment[2 + lookAheadCount];
-			currentEnvironment = GameManager.instance.CurrentLevel;
+			currentEnvironment = GameManager.instance.CurrentEnviroment;
 			segmentCollection = new LevelSegmentCollection(segments);
 			enemyCollection = new EnemyCollection(enemies.ToArray());
 			for (int i = 0; i < 2 + lookAheadCount; i++)
@@ -56,6 +56,7 @@ namespace Purgatory.Levels
 
 		private async void Update()
 		{
+			currentEnvironment = GameManager.instance.CurrentEnviroment;
 			scrollDelta += Time.deltaTime * levelScrollSpeed;
 
 			if (scrollDelta > 1f)

@@ -6,25 +6,29 @@ using Purgatory.Levels;
 namespace Purgatory
 {
 
-public class SceneTransition : MonoBehaviour
-{
-    public string SceneName = "Shop_1";
-    // Start is called before the first frame update
-    void Start()
+    public class SceneTransition : MonoBehaviour
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    private void OnCollisionEnter(Collision collision)
+        public string SceneName = "Shop_1";
+        // Start is called before the first frame update
+        void Start()
         {
-            GameManager.instance.CompleteLevel();
-            GameManager.instance.LoadScene(SceneName);
+
+        }
+
+        // Update is called once per frame
+        void Update()
+        {
+
+        }
+
+        private void OnCollisionEnter(Collision collision)
+        {
+            //GameManager.instance.CompleteLevel();
+            //GameManager.instance.LoadScene(SceneName);
+
+            GameManager.instance.IncrementLevel();
+
+            this.gameObject.SetActive(false);
         }
     }
 

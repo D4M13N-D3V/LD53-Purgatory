@@ -55,6 +55,13 @@ namespace Purgatory.Impl
 					CleanupAfterCollection();
 				}
 			}
+
+			ExtraUpdateLogic();
+		}
+
+		public virtual void ExtraUpdateLogic()
+		{
+			// Do nothing
 		}
 		
 		public void Collect(SoulCollectionController soulCollectionController)

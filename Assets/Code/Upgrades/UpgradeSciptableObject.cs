@@ -21,5 +21,6 @@ namespace Purgatory.Upgrades
         public float SoulCollectionRadius;
         public GameObject Projectile;
         public EnumUpgradeType Type;
+        public bool IsPermanant = false;
     }
 }

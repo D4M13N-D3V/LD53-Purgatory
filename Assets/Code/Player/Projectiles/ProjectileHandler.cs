@@ -19,7 +19,7 @@ namespace Purgatory.Player.Projectiles
 		[SerializeField] private Vector3 checkCenter = new(15f, 15f, 15f);
 		[SerializeField] private Vector3 checkExtents = new(30f, 30f, 30f);
 		[SerializeField] public float attackCooldown = 5f;
-		[SerializeField] public float attackRangeModifier = 2f;
+		[SerializeField] public float attackRange = 2f;
 		[SerializeField] private Vector3 projectileSpawnOffset = Vector3.zero;
 		[SerializeField] private InputActionAsset actions;
 		[SerializeField] public List<GameObject> AvailableProjectiles = new List<GameObject>();
@@ -128,7 +128,7 @@ namespace Purgatory.Player.Projectiles
 
 		private void CheckForEnemies()
 		{
-			activeColliderCount = Physics.OverlapBoxNonAlloc(checkCenter, checkExtents * attackRangeModifier, colliderBuffer, Quaternion.identity, enemyLayerMask);
+			activeColliderCount = Physics.OverlapBoxNonAlloc(checkCenter, checkExtents * attackRange, colliderBuffer, Quaternion.identity, enemyLayerMask);
 			if (activeColliderCount <= 0)
 				return;
 			
@@ -170,7 +170,7 @@ namespace Purgatory.Player.Projectiles
 		#if UNITY_EDITOR
 		private void OnDrawGizmosSelected()
 		{
-			Gizmos.DrawWireCube(checkCenter, checkExtents * attackRangeModifier * 2);
+			Gizmos.DrawWireCube(checkCenter, checkExtents * attackRange * 2);
 		}
 		#endif
 	}

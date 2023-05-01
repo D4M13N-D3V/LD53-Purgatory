@@ -111,3 +111,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _amount: 1
+  moveSpeed: 5
+  rotationSpeed: 5
+  collectionDistance: 0.3
+  collectionVfx: {fileID: 0}

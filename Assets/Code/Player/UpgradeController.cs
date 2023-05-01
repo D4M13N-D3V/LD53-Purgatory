@@ -41,52 +41,91 @@ namespace Purgatory.Upgrades
             }
         }
 
+
+        /// <summary>
+        /// Removes all non-permanant upgrades from the player.
+        /// </summary>
+        public void WipeNonPermanantUpgrades()
+        {
+            var upgradesToRemove = Upgrades.Where(x => !x.IsPermanant).ToList();
+            foreach (var upgrade in upgradesToRemove)
+            {
+                Upgrades.Remove(upgrade);
+            }
+            RefreshStats();
+        }
+
+        /// <summary>
+        /// Removes all upgrades from the player.
+        /// </summary>
         public void RefreshStats()
         {
-            BoatController.instance.Speed = 0;
-            BoatController.instance.DashCooldown = 0;
-            BoatController.instance.DashLength = 0;
-            BoatController.instance.Deceleration = 0;
-            BoatController.instance.DashMultiplier = 0;
+            // hard code base stats lol
+            var baseSpeed = 2f;
+            var baseDashCooldown = 3f;
+            var baseDashLength = 2f;
+            var baseDeceleration = 0.7f;
+            var baseDashMultiplier = 1.5f;
 
-            PlayerController.instance.SetMaximumHealth(1);
+            var baseMaximumHealth = 1;
             
-            ProjectileHandler.instance.attackCooldown = 0;
-            ProjectileHandler.instance.attackRangeModifier = 0;
+            var baseAttackCooldown = 1f;
+            var baseAttackRangeModifier = 2f;
 
-            SoulCollectionController.instance.CollectionRadius = 0;
+            var baseCollectionRadius = 1f;
+
+
+            // Make temp vars for total stat multipliers
+            var totalHealthModifier = 0;
+            var totalMovementSpeedModifier = 0f;
+            var totalDashCooldownModifier = 0f;
+            var totalDashLengthModifier = 0f;
+            var totalMovementDecelerationModifier = 0f;
+            var totalDashSpeedModifier = 0f;
+            var totalAttackSpeedModifier = 0f;
+            var totalAttackRangeModifier = 0f;
+            var totalSoulCollectionRadius = 0f;
+
+
+
+            //modify stats
 
             foreach(var upgrade in Upgrades)
             {
-                BoatController.instance.Speed += upgrade.MovementSpeedModifier;
-                BoatController.instance.DashCooldown += upgrade.DashCooldownModifier;
-                BoatController.instance.DashLength += upgrade.DashLengthModifier;
-                BoatController.instance.Deceleration += upgrade.MovementDecelerationModifier;
-                BoatController.instance.DashMultiplier += upgrade.DashSpeedModifier;
-
-                var maximumhealth = PlayerController.instance.GetMaximumHealth() + upgrade.HealthModifier;
-                PlayerController.instance.SetMaximumHealth(maximumhealth);
-                PlayerController.instance.Heal(maximumhealth);
-
-                ProjectileHandler.instance.attackCooldown += upgrade.AttackSpeedModifier;
-                ProjectileHandler.instance.attackRangeModifier += upgrade.AttackRangeModifier;
-
-                SoulCollectionController.instance.CollectionRadius += upgrade.SoulCollectionRadius;
+                totalHealthModifier += upgrade.HealthModifier;
+                totalMovementSpeedModifier += upgrade.MovementSpeedModifier;
+                totalDashCooldownModifier += upgrade.DashCooldownModifier;
+                totalDashLengthModifier += upgrade.DashLengthModifier;
+                totalMovementDecelerationModifier += upgrade.MovementDecelerationModifier;
+                totalDashSpeedModifier += upgrade.DashSpeedModifier;
+                totalAttackSpeedModifier += upgrade.AttackSpeedModifier;
+                totalAttackRangeModifier += upgrade.AttackRangeModifier;
+                totalSoulCollectionRadius += upgrade.SoulCollectionRadius;
             }
+
+            // Apply stat multipliers
+            
+            //boat stats
+            BoatController.instance.Speed =  baseSpeed *  totalMovementSpeedModifier;
+            BoatController.instance.DashCooldown = baseDashCooldown * totalDashCooldownModifier;
+            BoatController.instance.DashLength = baseDashLength * totalDashLengthModifier;
+            BoatController.instance.Deceleration = baseDeceleration * totalMovementDecelerationModifier;
+            BoatController.instance.DashMultiplier = baseDashMultiplier * totalDashSpeedModifier;
+
+            //projectile stats
+            ProjectileHandler.instance.attackCooldown = baseAttackCooldown * totalAttackSpeedModifier;
+            ProjectileHandler.instance.attackRange = baseAttackRangeModifier * totalAttackRangeModifier;
+            
+            //player stats
+            PlayerController.instance.SetMaximumHealth(baseMaximumHealth * totalHealthModifier);
+
+            //soul stats
+            SoulCollectionController.instance.CollectionRadius = baseCollectionRadius * totalSoulCollectionRadius;
+
 
             var projectiles = Upgrades.Where(x => x.Projectile != null).Select(x => x.Projectile).ToList(); ;
             ProjectileHandler.instance.AvailableProjectiles = projectiles;
             GameManager.instance.AvailableProjectiles = projectiles;
-        }
-
-        // Use this for initialization
-        void Start()
-        {
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
         }
     }
 }

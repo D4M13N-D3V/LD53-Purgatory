@@ -24,4 +24,5 @@ MonoBehaviour:
   DashCooldownModifier: 0
   SoulCollectionRadius: 25
   Projectile: {fileID: 0}
-  Type: 0
+  Type: 1
+  IsPermanant: 1
