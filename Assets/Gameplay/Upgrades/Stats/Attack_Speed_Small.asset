@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Attack_Speed_Small
   m_EditorClassIdentifier: 
   Name: Attack Speed Small
-  Cost: 0
+  Cost: 5
   HealthModifier: 0
   AttackSpeedModifier: 0.25
   AttackRangeModifier: 0
@@ -23,6 +23,7 @@ MonoBehaviour:
   DashLengthModifier: 0
   DashCooldownModifier: 0
   SoulCollectionRadius: 0
-  Projectile: {fileID: 0}
+  Tier: 0
+  Modifier: {fileID: 0}
   Type: 2
   IsPermanant: 1

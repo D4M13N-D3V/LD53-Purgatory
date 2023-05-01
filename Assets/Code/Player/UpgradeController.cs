@@ -41,6 +41,13 @@ namespace Purgatory.Upgrades
             }
         }
 
+        public void ResetTiers()
+        {
+            foreach(var upgrade in Upgrades)
+            {
+                upgrade.Tier = 0;
+            }
+        }
 
         /// <summary>
         /// Removes all non-permanant upgrades from the player.
@@ -92,15 +99,15 @@ namespace Purgatory.Upgrades
 
             foreach(var upgrade in Upgrades)
             {
-                totalHealthModifier += upgrade.HealthModifier;
-                totalMovementSpeedModifier += upgrade.MovementSpeedModifier;
-                totalDashCooldownModifier += upgrade.DashCooldownModifier;
-                totalDashLengthModifier += upgrade.DashLengthModifier;
-                totalMovementDecelerationModifier += upgrade.MovementDecelerationModifier;
-                totalDashSpeedModifier += upgrade.DashSpeedModifier;
-                totalAttackSpeedModifier += upgrade.AttackSpeedModifier;
-                totalAttackRangeModifier += upgrade.AttackRangeModifier;
-                totalSoulCollectionRadius += upgrade.SoulCollectionRadius;
+                totalHealthModifier += upgrade.HealthModifier * upgrade.Tier;
+                totalMovementSpeedModifier += upgrade.MovementSpeedModifier * (upgrade.Tier);
+                totalDashCooldownModifier += upgrade.DashCooldownModifier * (upgrade.Tier);
+                totalDashLengthModifier += upgrade.DashLengthModifier * (upgrade.Tier);
+                totalMovementDecelerationModifier += upgrade.MovementDecelerationModifier * (upgrade.Tier);
+                totalDashSpeedModifier += upgrade.DashSpeedModifier * (upgrade.Tier);
+                totalAttackSpeedModifier += upgrade.AttackSpeedModifier * (upgrade.Tier);
+                totalAttackRangeModifier += upgrade.AttackRangeModifier * (upgrade.Tier);
+                totalSoulCollectionRadius += upgrade.SoulCollectionRadius * (upgrade.Tier);
             }
 
             // Apply stat multipliers
