@@ -8,7 +8,6 @@ namespace Purgatory
 
     public class SceneTransition : MonoBehaviour
     {
-        public string SceneName = "Shop_1";
         // Start is called before the first frame update
         void Start()
         {
@@ -19,7 +18,7 @@ namespace Purgatory
         void Update()
         {
 
-        }
+        }   
 
         private void OnCollisionEnter(Collision collision)
         {
@@ -27,7 +26,6 @@ namespace Purgatory
             //GameManager.instance.LoadScene(SceneName);
 
             GameManager.instance.IncrementLevel();
-
             this.gameObject.SetActive(false);
         }
     }

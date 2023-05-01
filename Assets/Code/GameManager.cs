@@ -19,7 +19,9 @@ public class GameManager : MonoBehaviour
     public int CurrentEnviroment = 0;
     public int CurrencyAmount = 0;
     public int SoulAmount = 0;
-    
+
+    private PlayerSaveScriptableObject _playerSave;
+
     public List<Purgatory.Upgrades.UpgradeSciptableObject> StartingUpgrades = new List<UpgradeSciptableObject>();
 
     public static GameManager instance;
@@ -43,12 +45,37 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    private void Start(){
+    private void Start()
+    {
+        if (AssetDatabase.LoadAssetAtPath("Assets/PlayerSave.asset", typeof(PlayerSaveScriptableObject)) == null)
+        {
+            AssetDatabase.CreateAsset(new PlayerSaveScriptableObject(), "Assets/PlayerSave.asset");
+        }
+        _playerSave = AssetDatabase.LoadAssetAtPath("Assets/PlayerSave.asset", typeof(PlayerSaveScriptableObject)) as PlayerSaveScriptableObject;
+
         musicManager.PlayShopMusic();
     }
     public void SetGameState(EnumGameState state)
     {
     }
+
+    public void Save()
+    {
+        _playerSave.CurrencyAmount = CurrencyAmount;
+        _playerSave.CurrentLevel = CurrentEnviroment;
+        _playerSave.SoulAmount = SoulAmount;
+        _playerSave.Upgrades = UpgradeController.instance.Upgrades;
+        AssetDatabase.SaveAssets();
+    }
+
+    public void Load()
+    {
+        CurrencyAmount = _playerSave.CurrencyAmount;
+        CurrentEnviroment = _playerSave.CurrentLevel;
+        SoulAmount = _playerSave.SoulAmount;
+        UpgradeController.instance.Upgrades = _playerSave.Upgrades;
+        StartGame();
+     }
 
     public void CompleteLevel()
     {
@@ -59,11 +86,10 @@ public class GameManager : MonoBehaviour
     public void GameOver()
     {
         SoulAmount = SoulCollectionController.instance.Souls;
-        CurrencyAmount = CurrencyController.Instance.CurrencyAmount;
         var soulsToRemove = SoulAmount-Mathf.RoundToInt(SoulAmount * SoulCollectionController.instance.SoulRetentionRate);
         SoulCollectionController.instance.RemoveSoul(soulsToRemove);
         UpgradeController.instance.RefreshStats();
-        LoadScene("Death_Shop");
+        LoadScene("Menu");
         CurrentEnviroment = 0;
         musicManager.StopMusic();
     }
@@ -76,17 +102,19 @@ public class GameManager : MonoBehaviour
 
     public void Exit()
     {
-            Application.Quit();
+        Save();
+        Application.Quit();
     }
 
 
     public void IncrementLevel()
     {
+        Save();
         if (CurrentEnviroment < 2)
-            {
-                CurrentEnviroment++;
-                musicManager.ChangeTrack(CurrentEnviroment);
-            }
+        {
+            CurrentEnviroment++;
+            musicManager.ChangeTrack(CurrentEnviroment);
+        }
     }
     
     public void NewGame()
@@ -94,15 +122,12 @@ public class GameManager : MonoBehaviour
         SoulAmount = 0;
         CurrencyAmount = 0;
         CurrentEnviroment = 0;
+        CurrencyAmount = 0;
+        CurrencyController.Instance.CurrencyAmount = 0;
         UpgradeController.instance.Upgrades = StartingUpgrades;
+        UpgradeController.instance.ResetTiers();
         LoadScene(IntroductionSceneName);
 //        UpgradeController.instance.WipeNonPermanantUpgrades();
-    }
-
-    public void NextRun()
-    {
-        CurrentEnviroment = 0;   
-        LoadScene(IntroductionSceneName);
     }
 
     public void StartGame()

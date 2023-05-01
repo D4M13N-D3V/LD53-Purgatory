@@ -16,8 +16,7 @@ namespace Purgatory.Impl
 		protected float moveSpeed = 5f;
 		[SerializeField]
 		protected float rotationSpeed = 5f;
-		[SerializeField]
-		protected float collectionDistance = 0.2f;
+		protected float collectionDistance = 4f;
 
 		[SerializeField]
 		protected GameObject collectionVfx;

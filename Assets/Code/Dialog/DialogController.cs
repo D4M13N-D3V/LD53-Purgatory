@@ -46,8 +46,6 @@ namespace Purgatory.Dialog
 			if(loadScene)
 				GameManager.instance.LoadScene(sceneToLoad);
 
-			if (openShop)
-				ShopController.Instance.OpenShop();
 
 			textBackground.gameObject.SetActive(false);
 

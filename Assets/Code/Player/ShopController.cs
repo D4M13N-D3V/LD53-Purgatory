@@ -5,28 +5,25 @@ using System.Linq;
 using UnityEngine;
 using TMPro;
 using Purgatory.Upgrades;
+using UnityEngine.UI;
 
 namespace Purgatory.Player
 {
     public class ShopController : MonoBehaviour
     {
         public List<Upgrades.UpgradeSciptableObject> Upgrades = new List<Upgrades.UpgradeSciptableObject>();
-        private List<Upgrades.UpgradeSciptableObject> _currentPool;
-        public GameObject ShopInterface;
-
-
-        private Upgrades.UpgradeSciptableObject ItemOne;
-        private Upgrades.UpgradeSciptableObject ItemTwo;
-        private Upgrades.UpgradeSciptableObject ItemThree;
-
-        public TextMeshProUGUI ItemOneText;
-        public TextMeshProUGUI ItemTwoText;
-        public TextMeshProUGUI ItemThreeText;
-
         public TextMeshProUGUI SoulsText;
         public TextMeshProUGUI CurrencyText;
-
+        public Transform Souls;
+        public Transform Currency;
+        public GameObject ShopItemPrefab;
+        public Button BackButton;
         public static ShopController Instance;
+        public Transform ShopScrollView;
+        public Transform Menu;
+        public float xOffset = 16.0f;
+        public float yOffset = 0f;
+        public float ySpacing = 65f;
 
         public ShopController()
         {
@@ -40,82 +37,37 @@ namespace Purgatory.Player
             CurrencyText.text = GameManager.instance.CurrencyAmount.ToString();
         }
 
-        private void Start()
+        public void CloseShop()
         {
-            ShopInterface.SetActive(false);
-            GameManager.instance.musicManager.PlayShopMusic();
-            _currentPool = Upgrades;
-        }
-
-        public void BuyItemOne()
-        {
-            if (ItemOne != null)
-            {
-                if (CurrencyController.Instance.RemoveCurrency(ItemOne.Cost))
-                {
-                    UpgradeController.instance.Upgrades.Add(ItemOne);
-                    LeaveShop();
-                }
-            }
-        }
-
-        public void BuyItemTwo()
-        {
-            if (ItemTwo != null)
-            {
-                if (CurrencyController.Instance.RemoveCurrency(ItemTwo.Cost))
-                {
-                    UpgradeController.instance.Upgrades.Add(ItemTwo);
-                    LeaveShop();
-                }
-            }
-        }
-
-
-        public void BuyItemThree()
-        {
-            if (ItemThree != null)
-            {
-                if (CurrencyController.Instance.RemoveCurrency(ItemThree.Cost))
-                {
-                    UpgradeController.instance.Upgrades.Add(ItemThree);
-                    LeaveShop();
-                }
-            }
-        }
-
-        public void LeaveShop()
-        {
-            GameManager.instance.StartGame();
+            BackButton.gameObject.SetActive(false);
+            Souls.gameObject.SetActive(false);
+            Currency.gameObject.SetActive(false);
+            ShopScrollView.gameObject.SetActive(false);
+            Menu.gameObject.SetActive(true);
         }
 
         public void OpenShop()
         {
-            var threeItems = Upgrades.OrderBy(x => Guid.NewGuid()).Take(3).ToArray();
-
-            for(var i = 0; i<3; i++)
-            {
-                if (threeItems[i] != null)
-                {
-                    Upgrades.Remove(threeItems[i]);
-                    switch (i)
-                    {
-                        case 0:
-                            ItemOne = threeItems[i];
-                            ItemOneText.text = $"{ItemOne.Name} - ${ItemOne.Cost}";
-                            break;
-                        case 1:
-                            ItemTwo = threeItems[i];
-                            ItemTwoText.text = $"{ItemTwo.Name} - ${ItemTwo.Cost}";
-                            break;
-                        case 2:
-                            ItemThree = threeItems[i];
-                            ItemThreeText.text = $"{ItemThree.Name} - ${ItemThree.Cost}";
-                            break;
-                    }
-                }
-            }
-            ShopInterface.SetActive(true);
+            BackButton.gameObject.SetActive(true);
+            Souls.gameObject.SetActive(true);
+            Currency.gameObject.SetActive(true);
+            ShopScrollView.gameObject.SetActive(true);
+            Menu.gameObject.SetActive(false);
         }
+        private void Start()
+        {
+            CloseShop();
+            var total = 0;
+            foreach(var upgrade in Upgrades)
+            {
+                var name = $"{upgrade.name} ({upgrade.Tier})";
+                var gameObj = Instantiate(ShopItemPrefab, ShopScrollView);
+                gameObj.GetComponent<ShopItem>().Upgrade = upgrade;
+                gameObj.name = name;
+                gameObj.transform.position = new Vector3(xOffset, yOffset + (total * ySpacing), 0);
+                total++;
+            }
+        }
+
     }
 }

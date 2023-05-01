@@ -40,7 +40,7 @@ namespace Purgatory.Player.Projectiles
 		{
 			ResetValues();
 			Handler = handler;
-			Handler.CurrentModifier.RegisterProjectile(this);
+			Handler.CurrentModifier?.RegisterProjectile(this);
 
 			// Apply visual scaling
 			MainVisuals.localScale = Vector3.one * (Stats.Size * 1.5f);	// A little extra for the main visuals

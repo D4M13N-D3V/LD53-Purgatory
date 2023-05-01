@@ -19,6 +19,9 @@ namespace Purgatory.Upgrades
         public float DashLengthModifier;
         public float DashCooldownModifier;
         public float SoulCollectionRadius;
+
+        public int Tier = 0;
+
         public ProjectileModifier Modifier;
         public EnumUpgradeType Type;
         public bool IsPermanant = false;
