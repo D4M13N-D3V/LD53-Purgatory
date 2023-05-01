@@ -1812,6 +1812,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a2f836cba55df7541853ff80d64e038a, type: 2}
   SoulsText: {fileID: 888633385}
   CurrencyText: {fileID: 1220747702}
+  Souls: {fileID: 1755612501}
+  Currency: {fileID: 1579167769}
   ShopItemPrefab: {fileID: 8365815493720163142, guid: 3ec81233360193e4bb61d5abff631192, type: 3}
   BackButton: {fileID: 72985501}
   ShopScrollView: {fileID: 1954858328}
@@ -3971,7 +3973,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 807785aa8f1fb174b91f0ecab7c5a252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CurrencyAmount: 100
+  CurrencyAmount: 0
   SoulConversionRate: 1
 --- !u!4 &1734825483
 Transform:

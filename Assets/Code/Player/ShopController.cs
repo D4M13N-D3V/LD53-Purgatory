@@ -14,6 +14,8 @@ namespace Purgatory.Player
         public List<Upgrades.UpgradeSciptableObject> Upgrades = new List<Upgrades.UpgradeSciptableObject>();
         public TextMeshProUGUI SoulsText;
         public TextMeshProUGUI CurrencyText;
+        public Transform Souls;
+        public Transform Currency;
         public GameObject ShopItemPrefab;
         public Button BackButton;
         public static ShopController Instance;
@@ -38,8 +40,8 @@ namespace Purgatory.Player
         public void CloseShop()
         {
             BackButton.gameObject.SetActive(false);
-            SoulsText.gameObject.SetActive(false);
-            CurrencyText.gameObject.SetActive(false);
+            Souls.gameObject.SetActive(false);
+            Currency.gameObject.SetActive(false);
             ShopScrollView.gameObject.SetActive(false);
             Menu.gameObject.SetActive(true);
         }
@@ -47,8 +49,8 @@ namespace Purgatory.Player
         public void OpenShop()
         {
             BackButton.gameObject.SetActive(true);
-            SoulsText.gameObject.SetActive(true);
-            CurrencyText.gameObject.SetActive(true);
+            Souls.gameObject.SetActive(true);
+            Currency.gameObject.SetActive(true);
             ShopScrollView.gameObject.SetActive(true);
             Menu.gameObject.SetActive(false);
         }
