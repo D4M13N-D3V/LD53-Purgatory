@@ -49,8 +49,10 @@ namespace Purgatory.Impl
         }
         private void OnDrawGizmos()
         {
+#if UNITY_EDITOR
             UnityEditor.Handles.color = Color.red;
             UnityEditor.Handles.DrawWireDisc(GetComponent<Transform>().position - Vector3.down * -2, Vector3.up, AttackRange);
+#endif
         }
     }
 }
