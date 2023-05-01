@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 1460617413575823345}
   - component: {fileID: 7794800505648270221}
   - component: {fileID: 42320374380658892}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: RusherEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -225,8 +225,7 @@ GameObject:
   - component: {fileID: 1460617413938241826}
   - component: {fileID: 1460617413938241855}
   - component: {fileID: 1460617413938241824}
-  - component: {fileID: 1460617413938241825}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -298,16 +297,3 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &1460617413938241825
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1460617413938241827}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
