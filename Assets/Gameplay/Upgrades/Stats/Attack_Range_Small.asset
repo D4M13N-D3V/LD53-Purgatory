@@ -16,7 +16,7 @@ MonoBehaviour:
   Cost: 5
   HealthModifier: 0
   AttackSpeedModifier: 0
-  AttackRangeModifier: 25
+  AttackRangeModifier: 0.25
   MovementSpeedModifier: 0
   MovementDecelerationModifier: 0
   DashSpeedModifier: 0

@@ -17,7 +17,7 @@ MonoBehaviour:
   HealthModifier: 0
   AttackSpeedModifier: 0
   AttackRangeModifier: 0
-  MovementSpeedModifier: 1.4
+  MovementSpeedModifier: 0.5
   MovementDecelerationModifier: 0
   DashSpeedModifier: 0
   DashLengthModifier: 0

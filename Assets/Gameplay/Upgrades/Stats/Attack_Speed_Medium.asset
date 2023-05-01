@@ -15,7 +15,7 @@ MonoBehaviour:
   Name: Attack Speed Medium
   Cost: 5
   HealthModifier: 0
-  AttackSpeedModifier: 50
+  AttackSpeedModifier: 0.5
   AttackRangeModifier: 0
   MovementSpeedModifier: 0
   MovementDecelerationModifier: 0

@@ -18,7 +18,7 @@ MonoBehaviour:
   AttackSpeedModifier: 0
   AttackRangeModifier: 0
   MovementSpeedModifier: 0
-  MovementDecelerationModifier: 0.9
+  MovementDecelerationModifier: 0.1
   DashSpeedModifier: 0
   DashLengthModifier: 0
   DashCooldownModifier: 0

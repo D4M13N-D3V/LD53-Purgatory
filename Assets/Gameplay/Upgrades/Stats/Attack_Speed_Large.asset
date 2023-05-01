@@ -15,7 +15,7 @@ MonoBehaviour:
   Name: Attack Speed Large
   Cost: 5
   HealthModifier: 0
-  AttackSpeedModifier: 100
+  AttackSpeedModifier: 1
   AttackRangeModifier: 0
   MovementSpeedModifier: 0
   MovementDecelerationModifier: 0

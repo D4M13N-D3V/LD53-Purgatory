@@ -10,11 +10,12 @@ public class MusicManager : MonoBehaviour
 
     public void ChangeTrack(int trackIndex)
     {
+
         if (trackIndex >= 0 && trackIndex < audioSources.Length && trackIndex != currentTrack)
         {
             audioSources[trackIndex].time = audioSources[currentTrack].time;
             audioSources[trackIndex].Play();
-            
+
             StartCoroutine(Crossfade(trackIndex));
         }
     }

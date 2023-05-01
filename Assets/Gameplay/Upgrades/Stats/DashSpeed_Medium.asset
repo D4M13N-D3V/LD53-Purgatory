@@ -19,7 +19,7 @@ MonoBehaviour:
   AttackRangeModifier: 0
   MovementSpeedModifier: 0
   MovementDecelerationModifier: 0
-  DashSpeedModifier: 50
+  DashSpeedModifier: 0.5
   DashLengthModifier: 0
   DashCooldownModifier: 0
   SoulCollectionRadius: 0

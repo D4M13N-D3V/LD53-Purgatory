@@ -25,3 +25,4 @@ MonoBehaviour:
   SoulCollectionRadius: 0
   Projectile: {fileID: 2178018784985968032, guid: 1bfdef2e48735c64799c22279c9dcb42, type: 3}
   Type: 2
+  IsPermanant: 1

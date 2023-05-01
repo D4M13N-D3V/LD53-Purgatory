@@ -43,6 +43,7 @@ namespace Purgatory.Player
         private void Start()
         {
             ShopInterface.SetActive(false);
+            GameManager.instance.musicManager.PlayShopMusic();
             _currentPool = Upgrades;
         }
 

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Small Health
   Cost: 5
-  HealthModifier: 25
+  HealthModifier: 1
   AttackSpeedModifier: 0
   AttackRangeModifier: 0
   MovementSpeedModifier: 0

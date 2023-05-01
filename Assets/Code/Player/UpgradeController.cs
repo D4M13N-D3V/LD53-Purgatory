@@ -61,7 +61,7 @@ namespace Purgatory.Upgrades
         public void RefreshStats()
         {
             // hard code base stats lol
-            var baseSpeed = 2f;
+            var baseSpeed = 1f;
             var baseDashCooldown = 3f;
             var baseDashLength = 2f;
             var baseDeceleration = 0.7f;
@@ -70,21 +70,21 @@ namespace Purgatory.Upgrades
             var baseMaximumHealth = 1;
             
             var baseAttackCooldown = 1f;
-            var baseAttackRangeModifier = 2f;
+            var baseAttackRange = 1f;
 
             var baseCollectionRadius = 1f;
 
 
             // Make temp vars for total stat multipliers
             var totalHealthModifier = 0;
-            var totalMovementSpeedModifier = 0f;
-            var totalDashCooldownModifier = 0f;
-            var totalDashLengthModifier = 0f;
-            var totalMovementDecelerationModifier = 0f;
-            var totalDashSpeedModifier = 0f;
-            var totalAttackSpeedModifier = 0f;
-            var totalAttackRangeModifier = 0f;
-            var totalSoulCollectionRadius = 0f;
+            var totalMovementSpeedModifier = 1f;
+            var totalDashCooldownModifier = 1f;
+            var totalDashLengthModifier = 1f;
+            var totalMovementDecelerationModifier = 1f;
+            var totalDashSpeedModifier = 1f;
+            var totalAttackSpeedModifier = 1f;
+            var totalAttackRangeModifier = 1f;
+            var totalSoulCollectionRadius = 1f;
 
 
 
@@ -114,10 +114,10 @@ namespace Purgatory.Upgrades
 
             //projectile stats
             ProjectileHandler.instance.attackCooldown = baseAttackCooldown * totalAttackSpeedModifier;
-            ProjectileHandler.instance.attackRange = baseAttackRangeModifier * totalAttackRangeModifier;
+            ProjectileHandler.instance.attackRange = baseAttackRange * totalAttackRangeModifier;
             
             //player stats
-            PlayerController.instance.SetMaximumHealth(baseMaximumHealth * totalHealthModifier);
+            PlayerController.instance.SetMaximumHealth(baseMaximumHealth + totalHealthModifier);
 
             //soul stats
             SoulCollectionController.instance.CollectionRadius = baseCollectionRadius * totalSoulCollectionRadius;

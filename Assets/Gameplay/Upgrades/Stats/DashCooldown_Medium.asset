@@ -21,7 +21,7 @@ MonoBehaviour:
   MovementDecelerationModifier: 0
   DashSpeedModifier: 0
   DashLengthModifier: 0
-  DashCooldownModifier: 50
+  DashCooldownModifier: 0.5
   SoulCollectionRadius: 0
   Projectile: {fileID: 0}
   Type: 1

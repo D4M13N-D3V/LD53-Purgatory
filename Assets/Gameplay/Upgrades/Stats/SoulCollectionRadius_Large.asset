@@ -22,7 +22,7 @@ MonoBehaviour:
   DashSpeedModifier: 0
   DashLengthModifier: 0
   DashCooldownModifier: 0
-  SoulCollectionRadius: 100
+  SoulCollectionRadius: 1
   Projectile: {fileID: 0}
   Type: 1
   IsPermanant: 1

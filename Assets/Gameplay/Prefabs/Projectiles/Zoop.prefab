@@ -78,6 +78,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc003d49a53f45d7a0096949503dd75d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  HitVFXPrefab: {fileID: 0}
   MainVisuals: {fileID: 4114432225380733501}
   ExtraVisuals: {fileID: 6389631678836819450}
   IsChild: 0

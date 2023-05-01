@@ -20,7 +20,7 @@ MonoBehaviour:
   MovementSpeedModifier: 0
   MovementDecelerationModifier: 0
   DashSpeedModifier: 0
-  DashLengthModifier: 100
+  DashLengthModifier: 1
   DashCooldownModifier: 0
   SoulCollectionRadius: 0
   Projectile: {fileID: 0}

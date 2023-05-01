@@ -19,9 +19,12 @@ public class GameManager : MonoBehaviour
     public int CurrentEnviroment = 0;
     public int CurrencyAmount = 0;
     public int SoulAmount = 0;
+    
     public List<Purgatory.Upgrades.UpgradeSciptableObject> StartingUpgrades = new List<UpgradeSciptableObject>();
 
     public static GameManager instance;
+
+    public MusicManager musicManager;
     private bool fading = false;
     internal List<GameObject> AvailableProjectiles;
 
@@ -40,7 +43,9 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-
+    private void Start(){
+        musicManager.PlayShopMusic();
+    }
     public void SetGameState(EnumGameState state)
     {
         GameState = state;
@@ -63,7 +68,7 @@ public class GameManager : MonoBehaviour
         UpgradeController.instance.RefreshStats();
         LoadScene("Death_Shop");
         CurrentEnviroment = 0;
-
+        musicManager.StopMusic();
     }
 
     public void LoadScene(string scene)
@@ -81,7 +86,10 @@ public class GameManager : MonoBehaviour
     public void IncrementLevel()
     {
         if (CurrentEnviroment < 2)
-            CurrentEnviroment++;
+            {
+                CurrentEnviroment++;
+                musicManager.ChangeTrack(CurrentEnviroment);
+            }
     }
     
     public void NewGame()

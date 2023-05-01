@@ -15,7 +15,7 @@ MonoBehaviour:
   Name: Attack Speed Small
   Cost: 0
   HealthModifier: 0
-  AttackSpeedModifier: 1
+  AttackSpeedModifier: 0.25
   AttackRangeModifier: 0
   MovementSpeedModifier: 0
   MovementDecelerationModifier: 0
