@@ -1608,6 +1608,7 @@ MonoBehaviour:
   DashLength: 1
   DashCooldown: 1
   _waveDisruptionObject: {fileID: 5802694871707074543}
+  _targetVelocity: 0
   actions: {fileID: -944628639613478452, guid: e0ada3906a3fbbd4182ae7023c3c57dc, type: 3}
 --- !u!54 &4300754432355367829
 Rigidbody:
@@ -2066,7 +2067,7 @@ Transform:
   m_GameObject: {fileID: 5802694871707074543}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: -0.64848334, y: -0.52, z: 0.54404795}
-  m_LocalScale: {x: 6.306949, y: 6.667983, z: 2}
+  m_LocalScale: {x: 4.048702, y: 6.6868167, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4300754432355367816}

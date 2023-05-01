@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4926769645515590771}
   - component: {fileID: 5479061309965896581}
   m_Layer: 0
-  m_Name: Segment_Forest_Transition_0
+  m_Name: Segment_Limbo_Cinematic_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6821f8eedff24bf3b91e39e5b5bd8404, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Type: 3
+  Type: 4
   Environment: 0
   EnemySpawnPositions: []
   MinimumEnemies: 0

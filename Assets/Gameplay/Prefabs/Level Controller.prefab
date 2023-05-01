@@ -50,8 +50,9 @@ MonoBehaviour:
   segmentSize: 40
   cinematicSegmentsCount: 2
   lookAheadCount: 4
-  environments: 00000000010000000200000003000000
-  environmentLengths: 14000000140000001400000014000000
+  environments: 000000000100000002000000
+  environmentLengths: 140000001400000014000000
+  enemies: []
   segmentWeights:
   - Type: 0
     Weight: 50

@@ -2,9 +2,8 @@
 {
 	public enum Environment
 	{
-		Forest,
-		Cave,
-		Mines,
-		Ruins
+		Limbo,
+		Avarice,
+		Treachery,
 	}
 }
