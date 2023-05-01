@@ -30,7 +30,6 @@ namespace Purgatory.Dialog
 
 		[SerializeField] private bool loadScene = false;
 		[SerializeField] private string sceneToLoad;
-		[SerializeField] private EnumGameState targetGameState = EnumGameState.GAME; 
 
 		private async void Start()
 		{
