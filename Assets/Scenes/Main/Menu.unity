@@ -1818,9 +1818,9 @@ MonoBehaviour:
   BackButton: {fileID: 72985501}
   ShopScrollView: {fileID: 1954858328}
   Menu: {fileID: 1631610308}
-  xOffset: 560
-  yOffset: -500
-  ySpacing: 95
+  xOffset: 16
+  yOffset: 0
+  ySpacing: 65
 --- !u!1 &864139668
 GameObject:
   m_ObjectHideFlags: 0
