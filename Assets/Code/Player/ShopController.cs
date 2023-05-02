@@ -12,9 +12,7 @@ namespace Purgatory.Player
     public class ShopController : MonoBehaviour
     {
         public List<Upgrades.UpgradeSciptableObject> Upgrades = new List<Upgrades.UpgradeSciptableObject>();
-        public TextMeshProUGUI SoulsText;
         public TextMeshProUGUI CurrencyText;
-        public Transform Souls;
         public Transform Currency;
         public GameObject ShopItemPrefab;
         public Button BackButton;
@@ -33,14 +31,12 @@ namespace Purgatory.Player
         private void Update()
         {
 
-            SoulsText.text = GameManager.instance.SoulAmount.ToString();
             CurrencyText.text = GameManager.instance.CurrencyAmount.ToString();
         }
 
         public void CloseShop()
         {
             BackButton.gameObject.SetActive(false);
-            Souls.gameObject.SetActive(false);
             Currency.gameObject.SetActive(false);
             ShopScrollView.gameObject.SetActive(false);
             Menu.gameObject.SetActive(true);
@@ -49,13 +45,17 @@ namespace Purgatory.Player
         public void OpenShop()
         {
             BackButton.gameObject.SetActive(true);
-            Souls.gameObject.SetActive(true);
             Currency.gameObject.SetActive(true);
             ShopScrollView.gameObject.SetActive(true);
             Menu.gameObject.SetActive(false);
         }
         private void Start()
         {
+            var souls = GameManager.instance.SoulAmount;
+            var cash = CurrencyController.Instance.SoulConversionRate * souls;
+            CurrencyController.Instance.AddCurrency(cash);
+            GameManager.instance.SoulAmount = 0;
+
             CloseShop();
             var total = 0;
             foreach(var upgrade in Upgrades)
