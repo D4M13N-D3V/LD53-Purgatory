@@ -34,16 +34,15 @@ public class GameManager : MonoBehaviour
 
     private bool inLevel = false;
 
-    public GameManager()
-    {
-        if (instance == null)
-            instance = this;
-        else
-            Destroy(this);
-    }
 
     private void Awake()
     {
+
+        if (GameManager.instance == null)
+            GameManager.instance = this;
+        else
+            Destroy(this.gameObject);
+
         DontDestroyOnLoad(gameObject);
     }
 

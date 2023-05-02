@@ -12,6 +12,7 @@ using SpeakerSide = Purgatory.Dialog.Conversation.DialogEntry.SpeakerSide;
 
 namespace Purgatory.Dialog
 {
+	[RequireComponent(typeof(AudioSource))]
 	public class DialogController : MonoBehaviour
 	{
 		public Conversation TEMP_CONVO;
@@ -33,6 +34,9 @@ namespace Purgatory.Dialog
 		[SerializeField] private bool openShop = false;
 		[SerializeField] private string sceneToLoad;
 
+		[Header("Audio")]
+		[SerializeField] private AudioSource vocalPlayer;
+
 
 		private async void Start()
 		{
@@ -44,6 +48,8 @@ namespace Purgatory.Dialog
 
 
 			textBackground.gameObject.SetActive(false);
+
+			vocalPlayer = GetComponent<AudioSource>();
 		}
 
 
@@ -76,6 +82,9 @@ namespace Purgatory.Dialog
 			{
 				effectRef.Component.enabled = entry.Effects?.Any(t => t == effectRef.Effect) ?? false;
 			}
+
+			//play a voice clip
+			PlayVoiceClip(entry.Speaker, entry.Text);
 
 			// Reveal the text
 			await RevealText();
@@ -120,6 +129,35 @@ namespace Purgatory.Dialog
 				counter += 1;
 				await Task.Delay(textRevealSpeedMs);
 			}
+		}
+
+		private void PlayVoiceClip(SpeakerSide speaker, string text)
+		{
+			if (speaker == SpeakerSide.Left)
+			{
+				//null check
+				if (TEMP_CONVO.LeftCharacter.VoiceLines == null || TEMP_CONVO.LeftCharacter.VoiceLines.Count == 0)
+					return;
+
+				var possibleClips = TEMP_CONVO.LeftCharacter.VoiceLines.Where(t => text.Split().Count() <= t.MaximumWords).ToList();
+				vocalPlayer.clip = possibleClips[UnityEngine.Random.Range(0, possibleClips.Count)].Clip;
+			}
+			else if (speaker == SpeakerSide.Right)
+			{
+				//null check
+				if (TEMP_CONVO.RightCharacter.VoiceLines == null || TEMP_CONVO.RightCharacter.VoiceLines.Count == 0)
+					return;
+
+				var possibleClips = TEMP_CONVO.RightCharacter.VoiceLines.Where(t => text.Split().Count() <= t.MaximumWords).ToList();
+
+				vocalPlayer.clip = possibleClips[UnityEngine.Random.Range(0, possibleClips.Count)].Clip;
+			}
+			else
+			{
+				return;
+			}
+
+			vocalPlayer.Play();
 		}
 
 		[Serializable]
