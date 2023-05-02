@@ -111,28 +111,31 @@ namespace Purgatory.Upgrades
             }
 
             // Apply stat multipliers
-            
+
             //boat stats
-            BoatController.instance.Speed =  baseSpeed *  totalMovementSpeedModifier;
-            BoatController.instance.DashCooldown = baseDashCooldown * totalDashCooldownModifier;
-            BoatController.instance.DashLength = baseDashLength * totalDashLengthModifier;
-            BoatController.instance.Deceleration = baseDeceleration * totalMovementDecelerationModifier;
-            BoatController.instance.DashMultiplier = baseDashMultiplier * totalDashSpeedModifier;
+            if (BoatController.instance != null)
+            {
+                BoatController.instance.Speed = baseSpeed * totalMovementSpeedModifier;
+                BoatController.instance.DashCooldown = baseDashCooldown * totalDashCooldownModifier;
+                BoatController.instance.DashLength = baseDashLength * totalDashLengthModifier;
+                BoatController.instance.Deceleration = baseDeceleration * totalMovementDecelerationModifier;
+                BoatController.instance.DashMultiplier = baseDashMultiplier * totalDashSpeedModifier;
 
-            //projectile stats
-            ProjectileHandler.instance.attackCooldown = baseAttackCooldown * totalAttackSpeedModifier;
-            ProjectileHandler.instance.attackRange = baseAttackRange * totalAttackRangeModifier;
-            
-            //player stats
-            PlayerController.instance.SetMaximumHealth(baseMaximumHealth + totalHealthModifier);
+                //projectile stats
+                ProjectileHandler.instance.attackCooldown = baseAttackCooldown * totalAttackSpeedModifier;
+                ProjectileHandler.instance.attackRange = baseAttackRange * totalAttackRangeModifier;
 
-            //soul stats
-            SoulCollectionController.instance.CollectionRadius = baseCollectionRadius * totalSoulCollectionRadius;
+                //player stats
+                PlayerController.instance.SetMaximumHealth(baseMaximumHealth + totalHealthModifier);
+
+                //soul stats
+                SoulCollectionController.instance.CollectionRadius = baseCollectionRadius * totalSoulCollectionRadius;
 
 
-            var projectiles = Upgrades.Where(x => x.Modifier != null).Select(x => x.Modifier).ToList(); ;
-            ProjectileHandler.instance.AvailableModifiers = projectiles;
-            GameManager.instance.AvailableModifiers = projectiles;
+                var projectiles = Upgrades.Where(x => x.Modifier != null).Select(x => x.Modifier).ToList(); ;
+                ProjectileHandler.instance.AvailableModifiers = projectiles;
+                GameManager.instance.AvailableModifiers = projectiles;
+            }
         }
     }
 }

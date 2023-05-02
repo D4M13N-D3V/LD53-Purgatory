@@ -13,9 +13,7 @@ using Purgatory.Player.Projectiles;
 
 public class GameManager : MonoBehaviour
 {
-    public EnumGameState GameState = EnumGameState.MENU;
     public string IntroductionSceneName = "Intro_Dialogue";
-    public string ReturnSceneName = "Return_Dialogue";
     public int CurrentEnviroment = 0;
     public int CurrencyAmount = 0;
     public int SoulAmount = 0;
@@ -128,13 +126,16 @@ public class GameManager : MonoBehaviour
         UpgradeController.instance.Upgrades = StartingUpgrades;
         UpgradeController.instance.ResetTiers();
         LoadScene(IntroductionSceneName);
-//        UpgradeController.instance.WipeNonPermanantUpgrades();
+        UpgradeController.instance.RefreshStats();
+        //        UpgradeController.instance.WipeNonPermanantUpgrades();
     }
 
     public void StartGame()
     {
         LoadScene("Level_1");
         UpgradeController.instance.WipeNonPermanantUpgrades();
+        UpgradeController.instance.RefreshStats();
+        CurrencyController.Instance.CurrencyAmount = CurrencyAmount;
         inLevel = true;
     }
 
