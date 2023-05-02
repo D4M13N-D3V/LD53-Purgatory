@@ -78,6 +78,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc003d49a53f45d7a0096949503dd75d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  HitVFXPrefab: {fileID: 8776043699915088838, guid: 9c7e4a6a9b40daa44b46ab99e4cf1b3c, type: 3}
   MainVisuals: {fileID: 4114432225380733501}
   ExtraVisuals: {fileID: 6389631678836819450}
   IsChild: 0
@@ -90,6 +91,7 @@ MonoBehaviour:
     HomingRange: 5
     HomingStrength: 1
     Size: 0.25
+  maxLifetime: 10
   enemyLayer:
     serializedVersion: 2
     m_Bits: 64

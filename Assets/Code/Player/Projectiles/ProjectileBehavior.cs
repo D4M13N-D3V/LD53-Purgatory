@@ -82,6 +82,13 @@ namespace Purgatory.Player.Projectiles
 
 		protected void OnDisable()
 		{
+			if (Handler != null)
+				return;
+
+			if (Handler.CurrentModifier == null)
+				return;
+
+				
 			Handler.CurrentModifier.RemoveProjectile(this);
 		}
 
