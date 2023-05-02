@@ -63,7 +63,7 @@ namespace Purgatory.Enemy
                 var rotation = Quaternion.LookRotation(_targetTransform.position - transform.position);
                 var newProject = GameObject.Instantiate(Projectile, transform.position + (transform.forward * 1.5f), rotation);
                 var projectile = newProject.GetComponent<Projectile>();
-                projectile.TargetLocation = _targetTransform.position;
+                projectile.TargetLocation = new Vector3(transform.position.x, 0, (_targetTransform.position.z - transform.position.z));
                 Debug.Log("Enemy projectile launched!");
             }
         }
@@ -85,8 +85,7 @@ namespace Purgatory.Enemy
 
             if (_targetTransform != null)
             {
-                Quaternion _lookRotation = Quaternion.LookRotation((_targetTransform.position - transform.position));
-                transform.rotation = _lookRotation;
+                transform.eulerAngles = new Vector3(0, 0, 0);
 
                 if (_cachedLocation == null)
                     _cachedLocation = _targetTransform.position;
