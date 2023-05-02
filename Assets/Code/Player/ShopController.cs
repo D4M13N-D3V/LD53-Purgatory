@@ -64,7 +64,7 @@ namespace Purgatory.Player
                 var gameObj = Instantiate(ShopItemPrefab, ShopScrollView);
                 gameObj.GetComponent<ShopItem>().Upgrade = upgrade;
                 gameObj.name = name;
-                gameObj.transform.position = new Vector3(xOffset, yOffset + (total * ySpacing), 0);
+                gameObj.GetComponent<RectTransform>().anchoredPosition = new Vector2(xOffset, yOffset - (total * ySpacing));
                 total++;
             }
         }
